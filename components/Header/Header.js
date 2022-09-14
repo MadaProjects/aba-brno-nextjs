@@ -1,10 +1,10 @@
-import { Navbar } from 'flowbite-react';
+import { Navbar, DarkThemeToggle } from 'flowbite-react';
 import Image from 'next/image';
 
 export const Header = () => {
   return (
     <div className='container mx-auto'>
-      <Navbar fluid={false} rounded={false}>
+      <Navbar fluid={true} rounded={false}>
         <Navbar.Brand href='/'>
           <Image
             src='/logo.png'
@@ -17,16 +17,22 @@ export const Header = () => {
             ABA Brno
           </span>
         </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse>
-          <Navbar.Link href='/navbars' active={true}>
-            Home
-          </Navbar.Link>
-          <Navbar.Link href='/navbars'>About</Navbar.Link>
-          <Navbar.Link href='/navbars'>Services</Navbar.Link>
-          <Navbar.Link href='/navbars'>Pricing</Navbar.Link>
-          <Navbar.Link href='/navbars'>Contact</Navbar.Link>
-        </Navbar.Collapse>
+        <div className='flex justify-center items-center'>
+          <div className='md:order-last md:ml-6'>
+            <DarkThemeToggle />
+          </div>
+          <Navbar.Collapse>
+            <Navbar.Link href='/navbars' active={true}>
+              Home
+            </Navbar.Link>
+            <Navbar.Link href='/navbars'>About</Navbar.Link>
+            <Navbar.Link href='/navbars'>Services</Navbar.Link>
+            <Navbar.Link href='/navbars'>Pricing</Navbar.Link>
+            <Navbar.Link href='/navbars'>Contact</Navbar.Link>
+          </Navbar.Collapse>
+
+          <Navbar.Toggle />
+        </div>
       </Navbar>
     </div>
   );
