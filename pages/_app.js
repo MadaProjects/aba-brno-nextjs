@@ -1,4 +1,6 @@
 import { Layout } from '../components/Layout/Layout';
+import '@fontsource/lato';
+
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
