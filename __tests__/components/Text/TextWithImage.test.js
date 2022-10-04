@@ -63,4 +63,16 @@ describe('TextWithImage', () => {
     // expect(screen.getByRole('img').src).toEqual(imgUrl);
     expect(screen.getByRole('img').alt).toEqual('');
   });
+
+  it('render perex', () => {
+    const perex = 'test subheading';
+    render(<TextWithImage perexText={perex} />);
+    expect(screen.getByText(perex)).toBeInTheDocument();
+  });
+
+  it('render diferent perex', () => {
+    const perex = 'perex lorem ipsum';
+    render(<TextWithImage perexText={perex} />);
+    expect(screen.getByText(perex)).toBeInTheDocument();
+  });
 });

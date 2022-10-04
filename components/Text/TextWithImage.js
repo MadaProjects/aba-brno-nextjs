@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import { Heading } from '../Tags/Heading';
 
 export const TextWithImage = ({
   headingLevel = 1,
   headingText,
+  perexText,
   paragraphText,
   imgUrl,
 }) => {
@@ -11,7 +13,10 @@ export const TextWithImage = ({
   return (
     <div data-testid='textWithImage' className='flex flex-col md:flex-row'>
       <div>
-        <HeadingTag>{headingText}</HeadingTag>
+        <div>
+          <Heading level={headingLevel}>{headingText}</Heading>
+          {perexText ? <p>{perexText}</p> : ''}
+        </div>
         {paragraphText ? <p>{paragraphText}</p> : ''}
       </div>
       <div className='relative min-h-screen w-full'>

@@ -12,7 +12,7 @@ export const Heading = ({ level = 1, children }) => {
   return (
     <HeadingLevel
       data-testid='heading'
-      className='mb-4 text-2xl uppercase font-black text-primary'>
+      className='mb-4 text-2xl uppercase font-black text-primary text-center'>
       {children}
     </HeadingLevel>
   );
