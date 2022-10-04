@@ -1,11 +1,13 @@
 export const Heading = ({ level = 1, children }) => {
-  const HeadingLevel = Number.isInteger(level)
+  const updateLevel = Number.isInteger(level)
     ? level > 6
-      ? `h6`
+      ? 6
       : level < 1
-      ? `h1`
-      : `h${level}`
-    : `h1`;
+      ? 1
+      : level
+    : 1;
+
+  const HeadingLevel = `h${updateLevel}`;
 
   return (
     <HeadingLevel
