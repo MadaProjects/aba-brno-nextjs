@@ -74,4 +74,19 @@ describe('TextOnImage', () => {
     render(<TextOnImage perexText={perex} />);
     expect(screen.getByText(perex)).toBeInTheDocument();
   });
+
+  it('render a button', () => {
+    const btnText = 'Btn text';
+    const btnLink = 'btnLink';
+    render(<TextOnImage btnText={btnText} btnLink={btnLink} />);
+    expect(
+      screen.getByRole('link', { name: btnText })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: btnText })).toHaveAttribute(
+      'href',
+      btnLink
+    );
+  });
+
+  // TODO Add target blank, noopener, nofollow
 });

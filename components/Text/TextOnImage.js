@@ -7,10 +7,12 @@ export const TextOnImage = ({
   perexText,
   paragraphText,
   imgUrl,
+  btnText,
+  btnLink,
 }) => {
   return (
     <div data-testid='textOnImage'>
-      <div>
+      <div className='relative min-h-[200px]'>
         {imgUrl ? (
           <Image
             src={imgUrl}
@@ -26,6 +28,7 @@ export const TextOnImage = ({
       <Heading level={headingLevel}>{headingText}</Heading>
       {perexText ? <p>{perexText}</p> : ''}
       {paragraphText ? <p>{paragraphText}</p> : ''}
+      {btnText ? <a href={btnLink}>{btnText}</a> : ''}
     </div>
   );
 };

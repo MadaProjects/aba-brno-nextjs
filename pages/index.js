@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { SimpleText } from '../components/Text/SimpleText';
 import { TextWithImage } from '../components/Text/TextWithImage';
+import { TextOnImage } from '../components/Text/TextOnImage';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -25,6 +26,14 @@ export default function Home() {
         </div>
         <section>
           <TextWithImage
+            headingLevel={1}
+            headingText='Lorem ipsum'
+            paragraphText='Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Aliquam id dolor. Ut tempus purus at lorem. Donec iaculis gravida nulla. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Nam sed tellus id magna elementum tincidunt. Nunc dapibus tortor vel mi dapibus sollicitudin. Phasellus et lorem id felis nonummy placerat. Nunc tincidunt ante vitae massa. Fusce nibh.'
+            imgUrl={`https://images.unsplash.com/photo-1662581872277-0fd0bf3ae8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80`}
+          />
+        </section>
+        <section>
+          <TextOnImage
             headingLevel={1}
             headingText='Lorem ipsum'
             paragraphText='Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Aliquam id dolor. Ut tempus purus at lorem. Donec iaculis gravida nulla. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Nam sed tellus id magna elementum tincidunt. Nunc dapibus tortor vel mi dapibus sollicitudin. Phasellus et lorem id felis nonummy placerat. Nunc tincidunt ante vitae massa. Fusce nibh.'
