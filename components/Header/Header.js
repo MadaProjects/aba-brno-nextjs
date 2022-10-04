@@ -10,7 +10,7 @@ export const Header = () => {
   };
 
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto' data-testid='header'>
       <nav className='bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900'>
         <div className='container flex flex-wrap justify-between items-center mx-auto'>
           <a href='https://flowbite.com/' className='flex items-center'>

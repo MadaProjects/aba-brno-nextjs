@@ -10,7 +10,6 @@
     "test": "jest --watch"
   },
   "dependencies": {
-    "@fontsource/lato": "^4.5.9",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.10",
     "next": "12.3.0",

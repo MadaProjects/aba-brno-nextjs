@@ -5,7 +5,7 @@ export const Layout = ({ children }) => {
   return (
     <div data-testid='layout'>
       <Header />
-      test<div>{children}</div>
+      <div className='text-base text-forText'>{children}</div>
       <MainFooter />
     </div>
   );
