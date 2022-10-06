@@ -1,0 +1,121 @@
+$color-primary: #1862a1;
+$color-secondary: #17a052;
+
+.experts {
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 2em;
+  display: block;
+  padding: 1em 2em;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    .img {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .imgWrap {
+      &::after {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+
+    .name {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.linkInner {
+  position: relative;
+  background-color: white;
+  padding: 2rem 1em;
+
+  /*
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: #fff;
+    transform: skew(2deg, 2deg);
+    background: linear-gradient(
+      to right,
+      $color-primary,
+      $color-secondary
+    );
+  }
+  */
+}
+
+.imgWrap {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid $color-primary;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    border-radius: 50%;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid $color-primary;
+    border-left: 2px solid $color-primary;
+    width: 90%;
+    height: 90%;
+    transition: transform 0.15s linear, border-color 0.15s linear;
+  }
+}
+
+.img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.25s ease-in-out, border-color 0.25s ease-in-out,
+    border-width 0.25s ease-in-out;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+}
+.imgUpdate {
+  border-radius: 50%;
+}
+
+.name {
+  color: $color-secondary;
+  transition: color 0.25s ease-in-out;
+  margin-bottom: 0.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.text {
+  color: black;
+}
