@@ -5,6 +5,14 @@ const expertMock = {
   name: 'Lorem ipsum',
   perex: 'Et donor',
   url: 'testurl',
+  img: '/imgurl.png',
+};
+
+const expertMockFirst = {
+  name: 'Second lorm',
+  perex: 'Second donor',
+  url: 'testurlSecond',
+  img: '/imgurlSecond.png',
 };
 
 describe('Expert', () => {
@@ -14,14 +22,11 @@ describe('Expert', () => {
   });
 
   it('render name in heading', () => {
-    const expertObj = {
-      name: 'Test Name',
-    };
-    render(<Expert expert={expertObj} />);
+    render(<Expert expert={expertMockFirst} />);
     const headingEl = screen.getByRole('heading', { level: 2 });
 
     expect(headingEl).toBeInTheDocument();
-    expect(headingEl.textContent).toEqual(expertObj.name);
+    expect(headingEl.textContent).toEqual(expertMockFirst.name);
   });
 
   it('render diferent name in heading', () => {
@@ -46,5 +51,12 @@ describe('Expert', () => {
     expect(
       screen.getByRole('link', { name: expertMock.name })
     ).toHaveAttribute('href', expertMock.url);
+  });
+
+  it('has img of expert', () => {
+    render(<Expert expert={expertMock} />);
+    expect(
+      screen.getByRole('img', { name: expertMock.name })
+    ).toBeInTheDocument();
   });
 });
