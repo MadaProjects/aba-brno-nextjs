@@ -52,6 +52,15 @@ export default function Home({ mainMenu }) {
     </div>
   );
 }
+
+/*
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { slug: 'test' } }],
+    fallback: false,
+  };
+}
+*/
 /*
 export async function getStaticProps() {
   const { data } = await client.query({
