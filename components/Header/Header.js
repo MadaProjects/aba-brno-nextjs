@@ -1,19 +1,63 @@
+import { gql, useQuery } from '@apollo/client';
+import client from '../../appolo-client';
+import { ApolloProvider } from '@apollo/client';
 import { useState } from 'react';
 import { Navbar, DarkThemeToggle, Alert } from 'flowbite-react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
+const MENU_QUERY = gql`
+  query MainMenu {
+    headerMenu {
+      data {
+        id
+        attributes {
+          Menu {
+            main_page {
+              data {
+                id
+                attributes {
+                  Title
+                  Url
+                }
+              }
+            }
+            submenu_pages {
+              data {
+                id
+                attributes {
+                  Title
+                  Url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const router = useRouter();
+  console.log(router.asPath);
 
   const handleHamburegerMenuClick = () => {
     setOpenMenu(!openMenu);
   };
 
+  const { loading, error, data } = useQuery(MENU_QUERY);
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
   return (
     <div className='container mx-auto' data-testid='header'>
       <nav className='bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900'>
         <div className='container flex flex-wrap justify-between items-center mx-auto'>
-          <a href='https://flowbite.com/' className='flex items-center'>
+          <a href='/' className='flex items-center'>
             <Image
               src='/logo.png'
               className='mr-3 h-6 sm:h-9'
@@ -29,42 +73,27 @@ export const Header = () => {
               } w-full md:block md:w-auto`}
               id='navbar-default'>
               <ul className='flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
-                <li>
-                  <a
-                    href='#'
-                    className='block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white'
-                    aria-current='page'>
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'>
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'>
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'>
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'>
-                    Contact
-                  </a>
-                </li>
+                {data.headerMenu.data.attributes.Menu.map((menu, i) => {
+                  const activeClassName =
+                    'block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white';
+                  const nonActiveClassName =
+                    'block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent';
+                  return (
+                    <li key={i}>
+                      <a
+                        href={menu.main_page.data.attributes.Url}
+                        className={
+                          router.asPath ===
+                          `/${menu.main_page.data.attributes.Url}`
+                            ? activeClassName
+                            : nonActiveClassName
+                        }
+                        aria-current='page'>
+                        {menu.main_page.data.attributes.Title}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
