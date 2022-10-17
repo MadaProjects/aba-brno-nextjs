@@ -8,7 +8,7 @@ export const DynamicZone = ({ element }) => {
     case 'ComponentPageText':
       return (
         <SimpleText
-          headingLevel=''
+          headingLevel={1}
           headingText={element.text_block.data.attributes.Title}
           paragraphText={element.text_block.data.attributes.Text}
         />
