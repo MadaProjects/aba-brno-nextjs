@@ -48,6 +48,16 @@ export const Header = () => {
     setOpenMenu(!openMenu);
   };
 
+  const handleSetDarkMode = () => {
+    if (localStorage.theme === 'dark') {
+      localStorage.theme = 'light';
+      document.body.classList.remove('dark');
+    } else {
+      localStorage.theme = 'dark';
+      document.body.classList.add('dark');
+    }
+  };
+
   const { loading, error, data } = useQuery(MENU_QUERY);
 
   if (loading) return <Spinner />;
@@ -100,6 +110,7 @@ export const Header = () => {
             <button
               id='theme-toggle'
               type='button'
+              onClick={handleSetDarkMode}
               className='text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5'>
               <svg
                 id='theme-toggle-dark-icon'

@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.css';
 
 export default function Home({ mainPage }) {
   const dymamicComponents = mainPage.page.data.attributes.pageDynamicZone;
-  //console.log(dymamicComponents);
+  console.log(dymamicComponents);
 
   return (
     <div className={styles.container}>
@@ -36,7 +36,7 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query getPage {
-        page(id: 1) {
+        page(id: 2) {
           data {
             attributes {
               Title

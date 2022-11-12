@@ -14,11 +14,11 @@ export const SimpleText = ({
   return (
     <div
       data-testid='simpleText'
-      className='container mx-auto px-4 text-center'>
+      className='container mx-auto px-4 text-center dark:text-white'>
       <Heading level={headingLevel}>{headingText}</Heading>
       {perexText ? <p>{perexText}</p> : ''}
       {paragraphText ? (
-        <div>
+        <div className='max-w-4xl	mr-auto ml-auto'>
           <ReactMarkdown>{paragraphText}</ReactMarkdown>
         </div>
       ) : (
