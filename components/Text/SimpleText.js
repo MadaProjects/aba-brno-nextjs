@@ -14,7 +14,7 @@ export const SimpleText = ({
   return (
     <div
       data-testid='simpleText'
-      className='container mx-auto px-4 text-center dark:text-white'>
+      className='container mx-auto px-4 text-center dark:text-white py-5 md:py-10'>
       <Heading level={headingLevel}>{headingText}</Heading>
       {perexText ? <p>{perexText}</p> : ''}
       {paragraphText ? (

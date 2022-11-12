@@ -45,6 +45,27 @@ export async function getStaticProps() {
                 ... on ComponentPageNiceTitle {
                   Title
                 }
+                ... on ComponentPageTextWithImage {
+                  text_block_with_image {
+                    data {
+                      attributes {
+                        Title
+                        Perex
+                        Text
+                        ButtonText
+                        ExternalUrl
+                        InternalUrl
+                        Image {
+                          data {
+                            attributes {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
                 ... on ComponentPageText {
                   text_block {
                     data {
