@@ -1,19 +1,21 @@
 import { SimpleText } from '../Text/SimpleText';
 import { TextWithImage } from '../Text/TextWithImage';
 
-export const DynamicZone = ({ element }) => {
+export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
 
   // TODO too much duplicities
   switch (element.__typename) {
     case 'ComponentPageText':
       const textData = element.text_block.data.attributes;
-      const buttonLink = textData.InternalUrl.data
-        ? textData.InternalUrl.data.attributes.Url
-        : textData.ExternalUrl
-        ? textData.ExternalUrl
-        : false;
-      const openLinkInNewTab = textData.InternalUrl.data ? false : true;
+      const buttonLink =
+        textData.InternalUrl && textData.InternalUrl.data
+          ? textData.InternalUrl.data.attributes.Url
+          : textData.ExternalUrl
+          ? textData.ExternalUrl
+          : false;
+      const openLinkInNewTab =
+        textData.InternalUrl && textData.InternalUrl.data ? false : true;
 
       return (
         <SimpleText
@@ -28,16 +30,18 @@ export const DynamicZone = ({ element }) => {
       );
       break;
     case 'ComponentPageTextWithImage':
+      console.log(numberOfTextWithImageBlocks);
       const textWithImage = element.text_block_with_image.data.attributes;
-      const buttonLinkTextWithImage = textWithImage.InternalUrl.data
-        ? textWithImage.InternalUrl.data.attributes.Url
-        : textWithImage.ExternalUrl
-        ? textWithImage.ExternalUrl
-        : false;
-      const openLinkInNewTabTextWithImage = element.text_block_with_image
-        .data.attributes.InternalUrl.data
-        ? false
-        : true;
+      const buttonLinkTextWithImage =
+        textWithImage.InternalUrl && textWithImage.InternalUrl.data
+          ? textWithImage.InternalUrl.data.attributes.Url
+          : textWithImage.ExternalUrl
+          ? textWithImage.ExternalUrl
+          : false;
+      const openLinkInNewTabTextWithImage =
+        textWithImage.InternalUrl && textWithImage.InternalUrl.data
+          ? false
+          : true;
 
       return element.text_block_with_image.data ? (
         <TextWithImage
@@ -49,6 +53,7 @@ export const DynamicZone = ({ element }) => {
           buttonText={textWithImage.ButtonText}
           buttonLink={buttonLinkTextWithImage}
           buttonNewTab={openLinkInNewTabTextWithImage}
+          isEven={numberOfTextWithImageBlocks % 2}
         />
       ) : null;
       break;

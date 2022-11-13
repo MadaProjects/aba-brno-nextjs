@@ -37,7 +37,7 @@ export const SimpleText = ({
       )}
 
       {buttonText ? (
-        <div>
+        <div className='text-center mb-6'>
           {buttonNewTab ? (
             <a
               href={cleanBtnLink}

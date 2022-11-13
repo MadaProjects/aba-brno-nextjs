@@ -11,14 +11,16 @@ export const TextWithImage = ({
   buttonText,
   buttonLink,
   buttonNewTab = false,
+  isEven = false,
 }) => {
   const cleanBtnLink = buttonLink === 'homepage' ? '/' : buttonLink;
+  const switchOrder = isEven ? 'md:flex-row' : 'md:flex-row-reverse';
 
   return (
     <div
       data-testid='textWithImage'
-      className='flex flex-col md:flex-row dark:text-white py-5 md:py-10'>
-      <div className='px-4 py-10 md:w-[60%] md:px-10 xl:w-[50%] xl:py-20'>
+      className={`flex flex-col  dark:text-white py-5 md:py-0 ${switchOrder}`}>
+      <div className='px-4 pt-10 pb-0 md:w-[60%] md:px-10 xl:w-[50%] xl:py-20'>
         <div className='xl:max-w-[690px] xl:mr-0 xl:ml-auto'>
           <div>
             <Heading
@@ -39,7 +41,7 @@ export const TextWithImage = ({
           )}
 
           {buttonText ? (
-            <div className='text-center'>
+            <div className='text-center mb-6'>
               {buttonNewTab ? (
                 <a
                   href={cleanBtnLink}
@@ -61,7 +63,7 @@ export const TextWithImage = ({
           )}
         </div>
       </div>
-      <div className='relative h-60 w-full md:w-[40%] md:h-auto xl:w-[50%] xl:ml-10'>
+      <div className='relative h-60 w-full md:w-[40%] md:h-auto xl:w-[50%] '>
         {imgUrl ? (
           <Image
             src={imgUrl}

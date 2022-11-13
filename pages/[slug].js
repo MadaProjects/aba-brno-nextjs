@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { gql } from '@apollo/client';
@@ -10,8 +11,8 @@ import { DynamicZone } from '../components/DynamicZone/DynamicZone';
 import styles from '../styles/Home.module.css';
 
 export default function Home({ mainPage }) {
+  let numberOfTextWithImageBlocks = 0;
   const dymamicComponents = mainPage.page.data.attributes.pageDynamicZone;
-  console.log(dymamicComponents);
 
   return (
     <div className={styles.container}>
@@ -23,7 +24,16 @@ export default function Home({ mainPage }) {
 
       <main className={styles.main}>
         {dymamicComponents.map((elementInZone, i) => {
-          return <DynamicZone element={elementInZone} key={i} />;
+          if (elementInZone.__typename === 'ComponentPageTextWithImage') {
+            numberOfTextWithImageBlocks++;
+          }
+          return (
+            <DynamicZone
+              element={elementInZone}
+              key={i}
+              numberOfTextWithImageBlocks={numberOfTextWithImageBlocks}
+            />
+          );
         })}
       </main>
 
