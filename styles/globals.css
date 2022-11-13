@@ -21,6 +21,12 @@ a {
 * {
 }
 
+p {
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
   }
