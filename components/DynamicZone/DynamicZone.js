@@ -3,41 +3,36 @@ import { TextWithImage } from '../Text/TextWithImage';
 
 export const DynamicZone = ({ element }) => {
   let returnComponent = '';
-  console.log(element);
 
+  // TODO too much duplicities
   switch (element.__typename) {
     case 'ComponentPageText':
-      const buttonLink = element.text_block.data.attributes.InternalUrl
-        .data
-        ? element.text_block.data.attributes.InternalUrl.data.attributes
-            .Url
-        : element.text_block.data.attributes.ExternalUrl
-        ? element.text_block.data.attributes.ExternalUrl
+      const textData = element.text_block.data.attributes;
+      const buttonLink = textData.InternalUrl.data
+        ? textData.InternalUrl.data.attributes.Url
+        : textData.ExternalUrl
+        ? textData.ExternalUrl
         : false;
-      const openLinkInNewTab = element.text_block.data.attributes
-        .InternalUrl.data
-        ? false
-        : true;
+      const openLinkInNewTab = textData.InternalUrl.data ? false : true;
 
       return (
         <SimpleText
           headingLevel={1}
-          headingText={element.text_block.data.attributes.Title}
-          paragraphText={element.text_block.data.attributes.Text}
-          perexText={element.text_block.data.attributes.Perex}
-          buttonText={element.text_block.data.attributes.ButtonText}
+          headingText={textData.Title}
+          paragraphText={textData.Text}
+          perexText={textData.Perex}
+          buttonText={textData.ButtonText}
           buttonLink={buttonLink}
           buttonNewTab={openLinkInNewTab}
         />
       );
       break;
     case 'ComponentPageTextWithImage':
-      const buttonLinkTextWithImage = element.text_block_with_image.data
-        .attributes.InternalUrl.data
-        ? element.text_block_with_image.data.attributes.InternalUrl.data
-            .attributes.Url
-        : element.text_block_with_image.data.attributes.ExternalUrl
-        ? element.text_block_with_image.data.attributes.ExternalUrl
+      const textWithImage = element.text_block_with_image.data.attributes;
+      const buttonLinkTextWithImage = textWithImage.InternalUrl.data
+        ? textWithImage.InternalUrl.data.attributes.Url
+        : textWithImage.ExternalUrl
+        ? textWithImage.ExternalUrl
         : false;
       const openLinkInNewTabTextWithImage = element.text_block_with_image
         .data.attributes.InternalUrl.data
@@ -47,18 +42,11 @@ export const DynamicZone = ({ element }) => {
       return element.text_block_with_image.data ? (
         <TextWithImage
           headingLevel={1}
-          headingText={element.text_block_with_image.data.attributes.Title}
-          perexText={element.text_block_with_image.data.attributes.Perex}
-          paragraphText={
-            element.text_block_with_image.data.attributes.Text
-          }
-          imgUrl={
-            element.text_block_with_image.data.attributes.Image.data
-              .attributes.url
-          }
-          buttonText={
-            element.text_block_with_image.data.attributes.ButtonText
-          }
+          headingText={textWithImage.Title}
+          perexText={textWithImage.Perex}
+          paragraphText={textWithImage.Text}
+          imgUrl={textWithImage.Image.data.attributes.url}
+          buttonText={textWithImage.ButtonText}
           buttonLink={buttonLinkTextWithImage}
           buttonNewTab={openLinkInNewTabTextWithImage}
         />
