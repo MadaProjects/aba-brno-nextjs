@@ -54,6 +54,8 @@ export async function getStaticProps() {
                 __typename
                 ... on ComponentPageNiceTitle {
                   Title
+                  GraphicTitle
+                  TextUnder
                 }
                 ... on ComponentPageTextWithImage {
                   text_block_with_image {

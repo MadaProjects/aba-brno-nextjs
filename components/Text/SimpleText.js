@@ -24,7 +24,9 @@ export const SimpleText = ({
         {headingText}
       </Heading>
       {perexText ? (
-        <p className='italic mb-7 text-center'>{perexText}</p>
+        <p className='italic mb-7 text-center max-w-lg mx-auto'>
+          {perexText}
+        </p>
       ) : (
         ''
       )}

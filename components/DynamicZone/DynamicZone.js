@@ -1,3 +1,4 @@
+import { NiceTitle } from '../Text/NiceTitle';
 import { SimpleText } from '../Text/SimpleText';
 import { TextWithImage } from '../Text/TextWithImage';
 
@@ -30,7 +31,6 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
       );
       break;
     case 'ComponentPageTextWithImage':
-      console.log(numberOfTextWithImageBlocks);
       const textWithImage = element.text_block_with_image.data.attributes;
       const buttonLinkTextWithImage =
         textWithImage.InternalUrl && textWithImage.InternalUrl.data
@@ -57,7 +57,18 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
         />
       ) : null;
       break;
+    case 'ComponentPageNiceTitle':
+      console.log(element);
+      return (
+        <NiceTitle
+          headingText={element.Title}
+          graphicText={element.GraphicTitle}
+          perex={element.TextUnder}
+        />
+      );
+      break;
     default:
+      console.log(`Block element is not defined - ${element.__typename}`);
       return '';
   }
 };
