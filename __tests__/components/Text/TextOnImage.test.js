@@ -57,8 +57,8 @@ describe('TextOnImage', () => {
   });
 
   it('render image', () => {
-    const imgUrl = ' https://test.com/testimageurl.jpg';
-    render(<TextOnImage imgUrl={imgUrl} />);
+    const backgroundImage = ' https://test.com/testimageurl.jpg';
+    render(<TextOnImage backgroundImage={backgroundImage} />);
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('img').alt).toEqual('');
   });
@@ -76,15 +76,17 @@ describe('TextOnImage', () => {
   });
 
   it('render a button', () => {
-    const btnText = 'Btn text';
-    const btnLink = 'btnLink';
-    render(<TextOnImage btnText={btnText} btnLink={btnLink} />);
+    const buttonText = 'Btn text';
+    const buttonLink = 'buttonLink';
+    render(
+      <TextOnImage buttonText={buttonText} buttonLink={buttonLink} />
+    );
     expect(
-      screen.getByRole('link', { name: btnText })
+      screen.getByRole('link', { name: buttonText })
     ).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: btnText })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: buttonText })).toHaveAttribute(
       'href',
-      btnLink
+      `/${buttonLink}`
     );
   });
 

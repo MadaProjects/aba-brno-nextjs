@@ -17,7 +17,7 @@ export const NiceTitle = ({ headingText, graphicText, perex }) => {
         )}
         {graphicText ? (
           <span
-            className={`${style.graphicText} text-primary dark:text-secondary opacity-10 leading-none text-5xl md:text-8xl`}>
+            className={`${style.graphicText} text-primary dark:text-secondary opacity-10 dark:opacity-20 leading-none text-5xl md:text-8xl`}>
             {graphicText}
           </span>
         ) : (

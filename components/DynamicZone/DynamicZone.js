@@ -1,6 +1,7 @@
 import { NiceTitle } from '../Text/NiceTitle';
 import { SimpleText } from '../Text/SimpleText';
 import { TextWithImage } from '../Text/TextWithImage';
+import { TextOnImage } from '../Text/TextOnImage';
 
 export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
@@ -58,12 +59,40 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
       ) : null;
       break;
     case 'ComponentPageNiceTitle':
-      console.log(element);
       return (
         <NiceTitle
           headingText={element.Title}
           graphicText={element.GraphicTitle}
           perex={element.TextUnder}
+        />
+      );
+      break;
+    case 'ComponentPageTextOnImage':
+      console.log(element);
+      const textOnImgData = element.text_on_image.data.attributes;
+      const textOnImgBtnLink = textOnImgData.InternalUrl
+        ? textOnImgData.InternalUrl
+        : textOnImgData.ExternalUrl
+        ? textOnImgData.ExternalUrl
+        : false;
+
+      const textOnImgOpenLinkInNewTab =
+        textOnImgData.InternalUrl && textOnImgData.InternalUrl.data
+          ? false
+          : true;
+
+      return (
+        <TextOnImage
+          headingLevel={2}
+          headingText={textOnImgData.Title}
+          perexText={textOnImgData.Perex}
+          paragraphText={textOnImgData.Text}
+          backgroundImage={
+            textOnImgData.BackgroundImage.data.attributes.url
+          }
+          buttonText={textOnImgData.ButtonText}
+          buttonLink={textOnImgBtnLink}
+          buttonNewTab={textOnImgOpenLinkInNewTab}
         />
       );
       break;
