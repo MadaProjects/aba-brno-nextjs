@@ -56,13 +56,6 @@ describe('TextOnImage', () => {
     expect(paragraphEl).toBeInTheDocument();
   });
 
-  it('render image', () => {
-    const backgroundImage = ' https://test.com/testimageurl.jpg';
-    render(<TextOnImage backgroundImage={backgroundImage} />);
-    expect(screen.getByRole('img')).toBeInTheDocument();
-    expect(screen.getByRole('img').alt).toEqual('');
-  });
-
   it('render perex', () => {
     const perex = 'test subheading';
     render(<TextOnImage perexText={perex} />);

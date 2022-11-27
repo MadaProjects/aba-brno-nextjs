@@ -2,6 +2,7 @@ import { NiceTitle } from '../Text/NiceTitle';
 import { SimpleText } from '../Text/SimpleText';
 import { TextWithImage } from '../Text/TextWithImage';
 import { TextOnImage } from '../Text/TextOnImage';
+import { ArticlesList } from '../Lists/ArticlesList';
 
 export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
@@ -68,7 +69,6 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
       );
       break;
     case 'ComponentPageTextOnImage':
-      console.log(element);
       const textOnImgData = element.text_on_image.data.attributes;
       const textOnImgBtnLink = textOnImgData.InternalUrl
         ? textOnImgData.InternalUrl
@@ -93,6 +93,16 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
           buttonText={textOnImgData.ButtonText}
           buttonLink={textOnImgBtnLink}
           buttonNewTab={textOnImgOpenLinkInNewTab}
+        />
+      );
+      break;
+    case 'ComponentPagePage':
+      //console.log(element);
+      return (
+        <ArticlesList
+          headingText={element.Title}
+          perex={element.TextUnderTitle}
+          graphicText={element.GraphicTitleSignpost}
         />
       );
       break;

@@ -15,13 +15,16 @@ export const TextWithImage = ({
 }) => {
   const cleanBtnLink = buttonLink === 'homepage' ? '/' : buttonLink;
   const switchOrder = isEven ? 'md:flex-row' : 'md:flex-row-reverse';
+  const textMarginSide = isEven
+    ? 'xl:ml-auto xl:pr-10'
+    : 'xl:mr-auto xl:pl-10';
 
   return (
     <div
       data-testid='textWithImage'
       className={`flex flex-col  dark:text-white py-5 md:py-0 ${switchOrder}`}>
       <div className='px-4 pt-10 pb-0 md:w-[60%] md:px-10 xl:w-[50%] xl:py-20'>
-        <div className='xl:max-w-[690px] xl:mr-0 xl:ml-auto'>
+        <div className={`xl:max-w-[690px] xl:mr-0 ${textMarginSide}`}>
           <div>
             <Heading
               level={headingLevel}

@@ -52,6 +52,13 @@ export async function getStaticProps() {
               Title
               pageDynamicZone {
                 __typename
+                ... on ComponentPagePage {
+                  Title
+                  GraphicTitleSignpost: GraphicTitle
+                  TextUnderTitle
+                  ButtonText
+                  ListOf
+                }
                 ... on ComponentPageTextOnImage {
                   text_on_image {
                     data {
