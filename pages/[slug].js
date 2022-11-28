@@ -10,9 +10,10 @@ import { ExpertsList } from '../components/Lists/ExpertsList';
 import { DynamicZone } from '../components/DynamicZone/DynamicZone';
 import styles from '../styles/Home.module.css';
 
-export default function Home({ mainPage }) {
+export default function Home({ pageData }) {
   let numberOfTextWithImageBlocks = 0;
-  const dymamicComponents = mainPage.page.data.attributes.pageDynamicZone;
+
+  const dymamicComponents = pageData.attributes.pageDynamicZone;
 
   return (
     <div className={styles.container}>
@@ -42,11 +43,25 @@ export default function Home({ mainPage }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/pages`);
+  const pages = await res.json();
+
+  const paths = pages.data.map((page) => ({
+    params: { slug: page.attributes.Url },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const { data } = await client.query({
     query: gql`
       query getPage {
-        page(id: 2) {
+        pages(filters: { Url: { eq: "${params.slug}" } }) {
           data {
             attributes {
               Title
@@ -137,14 +152,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      mainPage: data,
+      pageData: data.pages.data[0],
     },
-  };
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { slug: 'test' } }],
-    fallback: false,
   };
 }

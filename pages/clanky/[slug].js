@@ -46,7 +46,6 @@ export async function getStaticPaths() {
     params: { slug: article.attributes.Url },
   }));
 
-  console.log(paths);
   return {
     paths,
     fallback: false,
@@ -57,7 +56,7 @@ export async function getStaticProps({ params }) {
   const { data } = await client.query({
     query: gql`
       query getPage {
-        articles(filters: { Url: { eq: "na-co-se-ptat" } }) {
+        articles(filters: { Url: { eq: "${params.Url}" } }) {
           data {
             attributes {
               Title
