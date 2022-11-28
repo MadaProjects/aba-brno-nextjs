@@ -5,7 +5,6 @@ import { Heading } from '../../components/Tags/Heading';
 import ReactMarkdown from 'react-markdown';
 
 export default function Article({ pageData }) {
-  console.log(pageData);
   return (
     <div>
       <Head>
@@ -56,7 +55,7 @@ export async function getStaticProps({ params }) {
   const { data } = await client.query({
     query: gql`
       query getPage {
-        articles(filters: { Url: { eq: "${params.Url}" } }) {
+        articles(filters: { Url: { eq: "${params.slug}" } }) {
           data {
             attributes {
               Title

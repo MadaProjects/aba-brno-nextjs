@@ -66,8 +66,8 @@ export const Header = () => {
   return (
     <div className='container mx-auto' data-testid='header'>
       <nav className='bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900'>
-        <div className='container flex flex-wrap justify-between items-center mx-auto'>
-          <a href='/' className='flex items-center'>
+        <div className='container flex flex-wrap items-center justify-between mx-auto'>
+          <Link href='/' className='flex items-center'>
             <Image
               src='/logo.png'
               className='mr-3 h-6 sm:h-9'
@@ -75,43 +75,9 @@ export const Header = () => {
               width={100}
               height={44}
             />
-          </a>
-          <div className='flex items-center justify-items-center'>
-            <div
-              className={`${
-                openMenu ? `` : `hidden`
-              } w-full md:block md:w-auto`}
-              id='navbar-default'>
-              <ul className='flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
-                {data.headerMenu.data.attributes?.Menu.map((menu, i) => {
-                  const activeClassName =
-                    'block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white';
-                  const nonActiveClassName =
-                    'block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent';
+          </Link>
 
-                  if (menu.main_page.data.attributes.Url === 'homepage') {
-                    return '';
-                  }
-
-                  return (
-                    <li key={i}>
-                      <a
-                        href={menu.main_page.data.attributes.Url}
-                        className={
-                          router.asPath ===
-                          `./${menu.main_page.data.attributes.Url}`
-                            ? activeClassName
-                            : nonActiveClassName
-                        }
-                        aria-current='page'>
-                        {menu.main_page.data.attributes.Title}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
+          <div className='flex md:order-2 md:ml-7'>
             <button
               id='theme-toggle'
               type='button'
@@ -158,6 +124,41 @@ export const Header = () => {
                   clipRule='evenodd'></path>
               </svg>
             </button>
+          </div>
+
+          <div
+            className={`${
+              openMenu ? `` : `hidden`
+            } items-center justify-between w-full md:flex md:w-auto md:order-1 md:ml-auto`}
+            id='navbar-default'>
+            <ul className='flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
+              {data.headerMenu.data.attributes?.Menu.map((menu, i) => {
+                const activeClassName =
+                  'block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white';
+                const nonActiveClassName =
+                  'block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent';
+
+                if (menu.main_page.data.attributes.Url === 'homepage') {
+                  return '';
+                }
+
+                return (
+                  <li key={i}>
+                    <a
+                      href={menu.main_page.data.attributes.Url}
+                      className={
+                        router.asPath ===
+                        `./${menu.main_page.data.attributes.Url}`
+                          ? activeClassName
+                          : nonActiveClassName
+                      }
+                      aria-current='page'>
+                      {menu.main_page.data.attributes.Title}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </nav>

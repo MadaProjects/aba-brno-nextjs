@@ -28,8 +28,6 @@ export const ExpertsList = ({
     fetcher
   );
 
-  console.log(data);
-
   // TODO change loading to icon
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;

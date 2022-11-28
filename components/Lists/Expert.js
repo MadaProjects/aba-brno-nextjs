@@ -3,8 +3,6 @@ import Link from 'next/link';
 import styles from './Experts.module.scss';
 
 export const Expert = ({ expert }) => {
-  console.log(expert.Url);
-
   return (
     <Link href={`/teraputi/${expert.Url}`}>
       <a className={`column ${styles.link}`}>
