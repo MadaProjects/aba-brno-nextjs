@@ -42,7 +42,8 @@ export const ExpertsList = ({
         perex={perex}
         graphicText={graphicText}
       />
-      <div className={`columns ${styles.experts}`}>
+      <div
+        className={`container mx-auto flex flex-col md:flex-row	 ${styles.experts}`}>
         {selectedExperts.map((expert, i) => (
           <Expert expert={expert.attributes} key={i} />
         ))}

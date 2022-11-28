@@ -17,7 +17,9 @@ export const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div data-testid='layout' className='dark:bg-gray-900 dark:text-white'>
+    <div
+      data-testid='layout'
+      className='dark:bg-slate-900 dark:text-white'>
       <Header />
       <div className='text-base text-forText'>{children}</div>
       <MainFooter />

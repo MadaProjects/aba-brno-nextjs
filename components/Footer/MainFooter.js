@@ -4,7 +4,7 @@ import Image from 'next/image';
 export const MainFooter = () => {
   return (
     <div className='container mx-auto'>
-      <footer className='p-4 bg-white sm:p-6 dark:bg-gray-900'>
+      <footer className='p-4 bg-white sm:p-6 dark:bg-slate-900'>
         <div className='md:flex md:justify-between'>
           <div className='mb-6 md:mb-0'>
             <a href='https://flowbite.com/' className='flex items-center'>
