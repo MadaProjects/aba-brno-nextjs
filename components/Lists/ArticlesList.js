@@ -5,6 +5,7 @@ import { Article } from './Article';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
+// TODO get only x articles from api
 export const ArticlesList = ({ headingText, perex, graphicText }) => {
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/api/articles?populate[0]=Image`,

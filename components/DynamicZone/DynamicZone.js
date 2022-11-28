@@ -3,6 +3,7 @@ import { SimpleText } from '../Text/SimpleText';
 import { TextWithImage } from '../Text/TextWithImage';
 import { TextOnImage } from '../Text/TextOnImage';
 import { ArticlesList } from '../Lists/ArticlesList';
+import { ExpertsList } from '../Lists/ExpertsList';
 
 export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
@@ -97,14 +98,26 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
       );
       break;
     case 'ComponentPagePage':
-      //console.log(element);
-      return (
-        <ArticlesList
-          headingText={element.Title}
-          perex={element.TextUnderTitle}
-          graphicText={element.GraphicTitleSignpost}
-        />
-      );
+      switch (element.ListOf) {
+        case 'Therapeutist':
+          return (
+            <ExpertsList
+              headingText={element.Title}
+              perex={element.TextUnderTitle}
+              graphicText={element.GraphicTitleSignpost}
+            />
+          );
+          break;
+        default:
+          return (
+            <ArticlesList
+              headingText={element.Title}
+              perex={element.TextUnderTitle}
+              graphicText={element.GraphicTitleSignpost}
+            />
+          );
+          break;
+      }
       break;
     default:
       console.log(`Block element is not defined - ${element.__typename}`);

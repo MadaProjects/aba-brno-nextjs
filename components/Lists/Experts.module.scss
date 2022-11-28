@@ -16,7 +16,7 @@ $color-secondary: #17a052;
 
   &:hover,
   &:focus {
-    .img {
+    .imgX {
       transform: translate(-50%, -50%) scale(1.1);
     }
 
@@ -39,7 +39,6 @@ $color-secondary: #17a052;
 
 .linkInner {
   position: relative;
-  background-color: white;
   padding: 2rem 1em;
 
   /*
@@ -90,7 +89,7 @@ $color-secondary: #17a052;
   }
 }
 
-.img {
+.imgX {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -104,6 +103,14 @@ $color-secondary: #17a052;
   height: 80%;
   transform: translate(-50%, -50%);
 }
+
+.img {
+  transition: transform 0.25s ease-in-out, border-color 0.25s ease-in-out,
+    border-width 0.25s ease-in-out;
+  width: 80%;
+  height: 80%;
+}
+
 .imgUpdate {
   border-radius: 50%;
 }
