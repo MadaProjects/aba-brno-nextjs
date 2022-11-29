@@ -5,7 +5,7 @@ import styles from './Experts.module.scss';
 
 export const Expert = ({ expert }) => {
   return (
-    <Link href={`/teraputi/${expert.Url}`}>
+    <Link href={`/odbornici/${expert.Url}`}>
       <a className={`w-full	md:w-1/2 xl:w-1/4 ${styles.link}`}>
         <div className={` text-center ${styles.linkInner}`}>
           <div
