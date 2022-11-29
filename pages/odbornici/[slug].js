@@ -5,10 +5,12 @@ import { Heading } from '../../components/Tags/Heading';
 import ReactMarkdown from 'react-markdown';
 
 export default function Expert({ pageData }) {
+  console.log(pageData.Name);
+  const pageTitle = `ABA Brno - ${pageData.Name}`;
   return (
     <div>
       <Head>
-        <title>ABA Brno - {pageData.Name}</title>
+        <title>{pageTitle}</title>
         <meta name='description' content='ABA Brno' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
