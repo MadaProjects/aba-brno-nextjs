@@ -6,7 +6,10 @@ import styles from './Experts.module.scss';
 export const Expert = ({ expert }) => {
   return (
     <Link href={`/odbornici/${expert.Url}`}>
-      <a className={`w-full	md:w-1/2 xl:w-1/4 ${styles.link}`}>
+      <a
+        className={`w-full	md:w-1/2 xl:w-1/4 ${styles.link}`}
+        data-testid='expert'
+        aria-label={expert.Name}>
         <div className={` text-center ${styles.linkInner}`}>
           <div
             className={`relative overflow-hidden w-40	h-40 rounded-full border-2 mx-auto border-primary dark:border-secondary ${styles.imgWrap}  dark:after:border-x-secondary	`}>
@@ -57,9 +60,15 @@ export const Expert = ({ expert }) => {
 
 Expert.defaultProps = {
   expert: {
-    name: 'Test name',
-    perex: 'Lorem ipsum',
-    url: 'test-name',
-    img: '/imgurl.png',
+    Name: 'Test name',
+    Perex: 'Lorem ipsum',
+    Url: 'test-name',
+    Image: {
+      data: {
+        attributes: {
+          url: '/defaultimg.jpg',
+        },
+      },
+    },
   },
 };

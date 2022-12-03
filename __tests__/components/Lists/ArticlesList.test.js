@@ -2,8 +2,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { SWRConfig } from 'swr';
 import fetchMock from 'jest-fetch-mock';
-import { articlesErrorHandler } from '../../handlers';
-import { mswServer } from '../../msw-server';
+import { articlesErrorHandler } from '../../../helpers/tests/api-mocks/handlers';
+import { mswServer } from '../../../helpers/tests/api-mocks/msw-server';
 import { ArticlesList } from '../../../components/Lists/ArticlesList';
 
 describe('ArticlesList', () => {
@@ -76,8 +76,8 @@ describe('ArticlesList', () => {
       </SWRConfig>
     );
 
-    await waitFor(() => screen.getByText('Failed to load'));
-    expect(screen.getByText('Failed to load')).toBeInTheDocument();
+    await waitFor(() => screen.getByText(/Failed to load/i));
+    expect(screen.getByText(/Failed to load/i)).toBeInTheDocument();
   });
 
   it('shows max 3 articles', async () => {

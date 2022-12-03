@@ -1,11 +1,13 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import { gql } from '@apollo/client';
 import client from '../../appolo-client';
 import { Heading } from '../../components/Tags/Heading';
 import ReactMarkdown from 'react-markdown';
 
 export default function Expert({ pageData }) {
-  console.log(pageData.Name);
+  console.log(pageData);
+
   const pageTitle = `ABA Brno - ${pageData.Name}`;
   return (
     <div>
@@ -16,16 +18,31 @@ export default function Expert({ pageData }) {
       </Head>
 
       <main className='container mx-auto px-4 py-5 dark:text-white md:py-10'>
-        <Heading level={1} headingClass='max-w-5xl mx-auto'>
-          {pageData.Name}
-        </Heading>
-        {pageData.Perex ? (
-          <p className='italic mb-7 text-center max-w-lg mx-auto'>
-            {pageData.Perex}
-          </p>
-        ) : (
-          ''
-        )}
+        <div className='flex flex-col md:flex-row mx-auto  mx-auto'>
+          <div className='md:w-3/5'>
+            <Heading level={1} headingClass='max-w-5xl mx-auto'>
+              {pageData.Name}
+            </Heading>
+            {pageData.Perex ? (
+              <p className='italic mb-7 text-center max-w-lg mx-auto'>
+                {pageData.Perex}
+              </p>
+            ) : (
+              ''
+            )}
+          </div>
+          <div className='mx-auto md:w-2/5 md:pl-8'>
+            <div className='relative w-60 h-60'>
+              <Image
+                src={pageData.Image.data.attributes.url}
+                alt={pageData.Name}
+                layout='fill'
+                objectFit='cover'
+                objectPosition='center'
+              />
+            </div>
+          </div>
+        </div>
 
         <div className='max-w-5xl mx-auto'>
           <ReactMarkdown>{pageData.Text}</ReactMarkdown>

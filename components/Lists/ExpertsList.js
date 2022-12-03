@@ -17,19 +17,14 @@ const shuffleArray = (array) => {
 };
 
 // TODO change key in map
-export const ExpertsList = ({
-  headingText,
-  perex,
-  graphicText,
-  experts,
-}) => {
+export const ExpertsList = ({ headingText, perex, graphicText }) => {
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/api/therapeutists?populate[0]=Image`,
     fetcher
   );
 
   // TODO change loading to icon
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load {error.message}</div>;
   if (!data) return <div>Loading...</div>;
 
   const suffledExperts = data.data ? shuffleArray(data.data) : [];
