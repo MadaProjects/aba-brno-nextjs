@@ -1,89 +1,102 @@
 import { Footer } from 'flowbite-react';
+import { gql, useQuery } from '@apollo/client';
+import { Spinner } from '../Spinner';
 import Image from 'next/image';
 
+export const FOOTER_MENU_QUERY = gql`
+  query footerMenu {
+    footerMenu {
+      data {
+        attributes {
+          Menu {
+            id
+            Title
+            pages {
+              data {
+                attributes {
+                  Url
+                  Title
+                }
+              }
+            }
+
+            external_links {
+              data {
+                attributes {
+                  Title
+                  Url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const MainFooter = () => {
+  const { loading, error, data } = useQuery(FOOTER_MENU_QUERY);
+  const currentYear = new Date().getFullYear();
+
+  if (loading) return <Spinner />;
+  if (error) return `${error.message}`;
   return (
     <div className='container mx-auto'>
       <footer className='p-4 bg-white sm:p-6 dark:bg-slate-900'>
         <div className='md:flex md:justify-between'>
           <div className='mb-6 md:mb-0'>
-            <a href='https://flowbite.com/' className='flex items-center'>
+            <a href='./' className='flex items-center'>
               <Image
                 src='/logo.png'
                 width={100}
                 height={44}
                 className='mr-3 h-8'
-                alt='FlowBite Logo'
+                alt='ABA Brno'
               />
             </a>
           </div>
           <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
-            <div>
-              <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>
-                Resources
-              </h2>
-              <ul className='text-gray-600 dark:text-gray-400'>
-                <li className='mb-4'>
-                  <a
-                    href='https://flowbite.com/'
-                    className='hover:underline'>
-                    Flowbite
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://tailwindcss.com/'
-                    className='hover:underline'>
-                    Tailwind CSS
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>
-                Follow us
-              </h2>
-              <ul className='text-gray-600 dark:text-gray-400'>
-                <li className='mb-4'>
-                  <a
-                    href='https://github.com/themesberg/flowbite'
-                    className='hover:underline '>
-                    Github
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://discord.gg/4eeurUVvTy'
-                    className='hover:underline'>
-                    Discord
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>
-                Legal
-              </h2>
-              <ul className='text-gray-600 dark:text-gray-400'>
-                <li className='mb-4'>
-                  <a href='#' className='hover:underline'>
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    Terms &amp; Conditions
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {data.footerMenu.data.attributes.Menu.map((menuColumn) => (
+              <div key={menuColumn} className='max-w-[200px]'>
+                <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>
+                  {menuColumn.Title}
+                </h2>
+                <ul className='text-gray-600 dark:text-gray-400'>
+                  {menuColumn.pages.data.map((menuItem, i) => (
+                    <li key={i} className='mb-4'>
+                      <a
+                        href={`./${menuItem.attributes.Url}`}
+                        className='hover:underline'>
+                        {menuItem.attributes.Title}
+                      </a>
+                    </li>
+                  ))}
+                  {menuColumn.external_links.data.map((menuItem, i) => (
+                    <li key={i} className='mb-4'>
+                      <a
+                        href={menuItem.attributes.Title}
+                        className='hover:underline'
+                        target='_blank'
+                        rel='noopener noreferrer'>
+                        {menuItem.attributes.Title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
         <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
         <div className='sm:flex sm:items-center sm:justify-between'>
           <span className='text-sm text-gray-500 sm:text-center dark:text-gray-400'>
-            © 2022{' '}
-            <a href='https://flowbite.com/' className='hover:underline'>
+            © {currentYear}{' '}
+            <a
+              href='https://www.petermada.info/'
+              target='_blank'
+              className='hover:underline'
+              rel='noopener noreferrer'>
               Peter Mada
             </a>
             . All Rights Reserved.
