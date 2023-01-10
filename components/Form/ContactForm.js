@@ -4,11 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // TODO https://blog.devgenius.io/creating-advanced-reusable-forms-in-next-js-611325fb4eee
 
+// TODO add GDPR field
+
 export const ConatactForm = ({ sendContactTo }) => {
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
+    reset,
   } = useForm();
 
   async function saveFormData(data) {
@@ -22,8 +25,14 @@ export const ConatactForm = ({ sendContactTo }) => {
   const onSumbit = async (data) => {
     const response = await saveFormData(data);
 
-    console.log(response.status);
-    toast.success(response.status);
+    if (response.ok) {
+      toast.success('Zprava úspěšně odeslána');
+    } else {
+      toast.error(
+        'An unexpected error occurred while saving, please try again'
+      );
+    }
+    reset();
   };
 
   const inputClassName = `block p-3 w-full text-sm text-gray-900 bg-white border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light`;
@@ -107,7 +116,7 @@ export const ConatactForm = ({ sendContactTo }) => {
             <input
               type='text'
               id='phone'
-              className='block p-3 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light'
+              className='block p-3 w-full text-sm text-gray-900 border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light'
               placeholder='+420776596563'
               {...register('phone')}
             />
@@ -123,8 +132,8 @@ export const ConatactForm = ({ sendContactTo }) => {
               rows='6'
               className={
                 errors.message
-                  ? `block p-2.5 w-full text-sm text-gray-900 bg-gray-50 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 !border-red-500 dark:border-red-500`
-                  : `block p-2.5 w-full text-sm text-gray-900 bg-gray-50 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`
+                  ? `block p-2.5 w-full text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 !border-red-500 dark:border-red-500`
+                  : `block p-2.5 w-full text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`
               }
               placeholder='Vaše zpráva...'
               {...register('message', {
@@ -139,10 +148,24 @@ export const ConatactForm = ({ sendContactTo }) => {
               </p>
             )}
           </div>
+          <div className='!mt-4'>
+            <p className='font-small text-sm  text-center lg:text-right'>
+              Odesláním souhlasíte se{' '}
+              <a
+                href='./suhlas-so-spracovanim-osobnych-udajov'
+                className='underline hover:no-underline'>
+                zpracováním osobních údajů.
+              </a>
+            </p>
+          </div>
           <div className='text-right'>
             <button
               type='submit'
-              className='inline-block py-3 px-5 ml-auto mr-0 text-sm font-medium text-center  sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-white bg-primary border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'
+              className={
+                isSubmitting
+                  ? `inline-block py-3 px-5 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-black bg-gray-400 border-solid border-2 border-gray-400 transition-colors duration-300 ease-in-out cursor-not-allowed dark:text-white`
+                  : `inline-block py-3 px-5 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-white bg-primary border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent`
+              }
               disabled={isSubmitting}>
               {isSubmitting ? 'Odesílám...' : 'Odeslat'}
             </button>
