@@ -78,7 +78,7 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
           <span className='inline'>Kontakt</span>
         </button>
       </div>
-      <div>
+      <div className={`textContainer`}>
         {tabs
           ? tabs.map((tab, i) => (
               <div
@@ -88,7 +88,7 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
                 aria-labelledby={`tab-${i}`}
                 className={
                   currentTab == i
-                    ? 'block p-4 bg-gray-50 rounded-lg dark:bg-gray-800'
+                    ? 'block px-6 py-8 bg-gray-50 rounded-lg dark:bg-gray-800'
                     : 'hidden'
                 }>
                 <ReactMarkdown>{tab.Text}</ReactMarkdown>

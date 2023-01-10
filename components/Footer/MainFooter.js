@@ -58,7 +58,6 @@ export const MainFooter = () => {
   if (loading) return <Spinner />;
   if (error) return `${error.message}`;
 
-  console.log(data);
   return (
     <div className='container mx-auto'>
       <footer className='p-4 bg-white sm:p-6 dark:bg-slate-900'>
