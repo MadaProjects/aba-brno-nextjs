@@ -54,7 +54,7 @@ export const ConatactForm = ({ sendContactTo }) => {
           <div>
             <label
               htmlFor='name'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'>
+              className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
               Jméno
             </label>
             <input
@@ -82,7 +82,7 @@ export const ConatactForm = ({ sendContactTo }) => {
           <div>
             <label
               htmlFor='email'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'>
+              className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
               Email
             </label>
             <input
@@ -110,7 +110,7 @@ export const ConatactForm = ({ sendContactTo }) => {
           <div>
             <label
               htmlFor='phone'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'>
+              className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
               Telefon
             </label>
             <input
@@ -124,7 +124,7 @@ export const ConatactForm = ({ sendContactTo }) => {
           <div className='sm:col-span-2'>
             <label
               htmlFor='message'
-              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400'>
+              className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
               Zpráva
             </label>
             <textarea
@@ -152,7 +152,7 @@ export const ConatactForm = ({ sendContactTo }) => {
             <p className='font-small text-sm  text-center lg:text-right'>
               Odesláním souhlasíte se{' '}
               <a
-                href='./suhlas-so-spracovanim-osobnych-udajov'
+                href='../suhlas-so-spracovanim-osobnych-udajov'
                 className='underline hover:no-underline'>
                 zpracováním osobních údajů.
               </a>
@@ -163,8 +163,8 @@ export const ConatactForm = ({ sendContactTo }) => {
               type='submit'
               className={
                 isSubmitting
-                  ? `inline-block py-3 px-5 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-black bg-gray-400 border-solid border-2 border-gray-400 transition-colors duration-300 ease-in-out cursor-not-allowed dark:text-white`
-                  : `inline-block py-3 px-5 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-white bg-primary border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent`
+                  ? `inline-block py-3 px-5 lg:px-10 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-black bg-gray-400 border-solid border-2 border-gray-400 transition-colors duration-300 ease-in-out cursor-not-allowed dark:text-white`
+                  : `inline-block py-3 px-5 lg:px-10 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-white bg-primary border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent`
               }
               disabled={isSubmitting}>
               {isSubmitting ? 'Odesílám...' : 'Odeslat'}

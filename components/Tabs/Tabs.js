@@ -52,8 +52,8 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
                 onKeyDown={changeTabOnKeyDown}
                 className={
                   currentTab == i
-                    ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-blue-600 dark:text-secondary dark:hover:text-blue-500 border-primary dark:border-secondary'
-                    : 'inline-block p-4 rounded-t-lg border-b-2 hover:text-blue-600 dark:hover:text-blue-500'
+                    ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-primary dark:text-secondary dark:hover:text-secondary border-primary dark:border-secondary'
+                    : 'inline-block p-4 rounded-t-lg border-b-2 hover:text-primary dark:hover:text-secondary'
                 }>
                 <span className='inline'>{tab.Title}</span>
               </button>
@@ -72,8 +72,8 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
           onKeyDown={changeTabOnKeyDown}
           className={
             currentTab == 999
-              ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-blue-600 dark:text-secondary dark:hover:text-blue-500 border-primary dark:border-secondary'
-              : 'inline-block p-4 rounded-t-lg border-b-2 hover:text-blue-600 dark:hover:text-blue-500'
+              ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-primary dark:text-secondary dark:hover:text-secondary border-primary dark:border-secondary'
+              : 'inline-block p-4 rounded-t-lg border-b-2 hover:text-primary dark:hover:text-secondary'
           }>
           <span className='inline'>Kontakt</span>
         </button>
