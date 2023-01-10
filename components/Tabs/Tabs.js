@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { ConatactForm } from '../Form/ContactForm';
 
-export const Tabs = ({ tabs }) => {
+export const Tabs = ({ tabs, sendContactTo = '' }) => {
   const [currentTab, setCurrentTab] = useState(0);
   const [maxTabs, setMaxTabs] = useState(tabs.length + 1);
 
@@ -105,7 +105,7 @@ export const Tabs = ({ tabs }) => {
               ? 'block p-4 bg-gray-50 rounded-lg dark:bg-gray-800'
               : 'hidden'
           }>
-          <ConatactForm />
+          <ConatactForm sendContactTo={sendContactTo} />
         </div>
       </div>
     </div>

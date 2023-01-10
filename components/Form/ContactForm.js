@@ -1,68 +1,154 @@
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // TODO https://blog.devgenius.io/creating-advanced-reusable-forms-in-next-js-611325fb4eee
 
-export const ConatactForm = () => {
-  const { register, handleSubmit } = useForm();
+export const ConatactForm = ({ sendContactTo }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm();
 
   async function saveFormData(data) {
-    return await fetch('/api/form', {
+    return await fetch('/api/contact', {
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
     });
   }
 
+  const onSumbit = async (data) => {
+    const response = await saveFormData(data);
+
+    console.log(response.status);
+    toast.success(response.status);
+  };
+
+  const inputClassName = `block p-3 w-full text-sm text-gray-900 bg-white border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light`;
+
   return (
     <section>
-      <div className='py-8 lg:py-16 px-4 mx-auto max-w-screen-md'>
-        <form action='#' className='space-y-8'>
+      <div className='py-2 px-4 mx-auto'>
+        <form
+          action='#'
+          className='space-y-8'
+          onSubmit={handleSubmit(onSumbit)}>
+          <input
+            type='hidden'
+            value={sendContactTo}
+            name='sendEmailTo'
+            {...register('sendContactTo')}
+          />
+
           <div>
             <label
-              for='email'
+              htmlFor='name'
               className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'>
-              Your email
+              Jméno
+            </label>
+            <input
+              type='text'
+              id='name'
+              className={
+                errors.name
+                  ? `${inputClassName} !border-red-500 dark:border-red-500`
+                  : inputClassName
+              }
+              placeholder='Jan Novák'
+              {...register('name', { required: 'Toto pole je povinné' })}
+              aria-invalid={errors.name ? 'true' : 'false'}
+            />
+
+            {errors.name && (
+              <p
+                role='alert'
+                className='mt-2 px-2 font-small text-sm text-red-600'>
+                {errors.name?.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor='email'
+              className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'>
+              Email
             </label>
             <input
               type='email'
               id='email'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light'
-              placeholder='name@flowbite.com'
-              required
+              className={
+                errors.email
+                  ? `${inputClassName} !border-red-500 dark:border-red-500`
+                  : inputClassName
+              }
+              placeholder='jannovak@email.com'
+              {...register('email', {
+                required: 'Toto pole je povinné',
+              })}
+              aria-invalid={errors.email ? 'true' : 'false'}
             />
+            {errors.email && (
+              <p
+                role='alert'
+                className='mt-2 px-2 font-small text-sm text-red-600'>
+                {errors.email?.message}
+              </p>
+            )}
           </div>
           <div>
             <label
-              for='subject'
+              htmlFor='phone'
               className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'>
-              Subject
+              Telefon
             </label>
             <input
               type='text'
-              id='subject'
-              className='block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light'
-              placeholder='Let us know how we can help you'
-              required
+              id='phone'
+              className='block p-3 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light'
+              placeholder='+420776596563'
+              {...register('phone')}
             />
           </div>
           <div className='sm:col-span-2'>
             <label
-              for='message'
+              htmlFor='message'
               className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400'>
-              Your message
+              Zpráva
             </label>
             <textarea
               id='message'
               rows='6'
-              className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'
-              placeholder='Leave a comment...'></textarea>
+              className={
+                errors.message
+                  ? `block p-2.5 w-full text-sm text-gray-900 bg-gray-50 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 !border-red-500 dark:border-red-500`
+                  : `block p-2.5 w-full text-sm text-gray-900 bg-gray-50 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`
+              }
+              placeholder='Vaše zpráva...'
+              {...register('message', {
+                required: 'Toto pole je povinné',
+              })}></textarea>
+
+            {errors.message && (
+              <p
+                role='alert'
+                className='mt-2 px-2 font-small text-sm text-red-600'>
+                {errors.message?.message}
+              </p>
+            )}
           </div>
-          <button
-            type='submit'
-            className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>
-            Send message
-          </button>
+          <div className='text-right'>
+            <button
+              type='submit'
+              className='inline-block py-3 px-5 ml-auto mr-0 text-sm font-medium text-center  sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-white bg-primary border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'
+              disabled={isSubmitting}>
+              {isSubmitting ? 'Odesílám...' : 'Odeslat'}
+            </button>
+          </div>
         </form>
+        <ToastContainer />
       </div>
     </section>
   );

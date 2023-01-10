@@ -34,7 +34,7 @@ export const ExpertPage = ({ pageData }) => {
         </div>
       </div>
       <div className='max-w-5xl mx-auto'>
-        <Tabs tabs={pageData.TabText} />
+        <Tabs tabs={pageData.TabText} sendContactTo={pageData.Email} />
       </div>
     </div>
   );

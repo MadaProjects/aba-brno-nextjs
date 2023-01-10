@@ -7,8 +7,6 @@ import ReactMarkdown from 'react-markdown';
 import { ExpertPage } from '../../components/Pages/ExpertPage';
 
 export default function Expert({ pageData }) {
-  console.log(pageData);
-
   const pageTitle = `ABA Brno - ${pageData.Name}`;
   return (
     <div>
@@ -53,6 +51,7 @@ export async function getStaticProps({ params }) {
               Name
               Perex
               Url
+              Email
               TabText {
                 id
                 Title
