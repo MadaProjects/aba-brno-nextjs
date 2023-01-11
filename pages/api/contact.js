@@ -32,8 +32,6 @@ export default async function handler(req, res) {
         <p><strong>Zpráva: </strong> ${message}</p><br>
       `,
     });
-    console.log(info);
-    console.log('Message sent: %s', info.messageId);
   } catch (error) {
     return res
       .status(500)

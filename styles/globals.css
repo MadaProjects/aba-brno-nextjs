@@ -104,6 +104,7 @@ p {
 .textContainer p {
   margin-bottom: 10px;
   font-weight: 400;
+  text-align: justify;
 }
 
 .textContainer a {

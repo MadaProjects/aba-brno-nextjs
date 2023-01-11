@@ -52,6 +52,7 @@ export async function getStaticProps({ params }) {
               Perex
               Url
               Email
+              ImportantInfo
               TabText {
                 id
                 Title
@@ -61,6 +62,15 @@ export async function getStaticProps({ params }) {
                 data {
                   attributes {
                     url
+                  }
+                }
+              }
+              social_media_sites {
+                data {
+                  attributes {
+                    Title
+                    Url
+                    Logo
                   }
                 }
               }

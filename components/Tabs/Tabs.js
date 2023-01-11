@@ -55,7 +55,7 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
                     ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-primary dark:text-secondary dark:hover:text-secondary border-primary dark:border-secondary'
                     : 'inline-block p-4 rounded-t-lg border-b-2 hover:text-primary dark:hover:text-secondary'
                 }>
-                <span className='inline'>{tab.Title}</span>
+                <span className='inline text-[16px]'>{tab.Title}</span>
               </button>
             ))
           : ''}
@@ -75,7 +75,7 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
               ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-primary dark:text-secondary dark:hover:text-secondary border-primary dark:border-secondary'
               : 'inline-block p-4 rounded-t-lg border-b-2 hover:text-primary dark:hover:text-secondary'
           }>
-          <span className='inline'>Kontakt</span>
+          <span className='inline  text-[16px]'>Kontakt</span>
         </button>
       </div>
       <div className={`textContainer`}>

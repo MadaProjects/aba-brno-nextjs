@@ -59,11 +59,11 @@ export const MainFooter = () => {
   if (error) return `${error.message}`;
 
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto mt-6 md:mt-10'>
       <footer className='p-4 bg-white sm:p-6 dark:bg-slate-900'>
         <div className='md:flex md:justify-between'>
           <div className='mb-6 md:mb-0'>
-            <a href='./' className='flex items-center'>
+            <a href='../' className='flex items-center'>
               <Image
                 src='/logo.png'
                 width={100}
@@ -83,7 +83,7 @@ export const MainFooter = () => {
                   {menuColumn.pages.data.map((menuItem, i) => (
                     <li key={i} className='mb-4'>
                       <a
-                        href={`./${menuItem.attributes.Url}`}
+                        href={`../${menuItem.attributes.Url}`}
                         className='hover:underline'>
                         {menuItem.attributes.Title}
                       </a>

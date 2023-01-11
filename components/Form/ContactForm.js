@@ -163,7 +163,7 @@ export const ConatactForm = ({ sendContactTo }) => {
               type='submit'
               className={
                 isSubmitting
-                  ? `inline-block py-3 px-5 lg:px-10 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-black bg-gray-400 border-solid border-2 border-gray-400 transition-colors duration-300 ease-in-out cursor-not-allowed dark:text-white`
+                  ? `inline-block py-3 px-5 lg:px-10 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-black bg-gray-400 border-solid border-2 border-gray-400 transition-colors duration-300 ease-in-out cursor-wait	dark:text-white`
                   : `inline-block py-3 px-5 lg:px-10 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-white bg-primary border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent`
               }
               disabled={isSubmitting}>
