@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { gql } from '@apollo/client';
 import client from '../../appolo-client';
 import { Heading } from '../../components/Tags/Heading';
+import { ArticlesList } from '../../components/Lists/ArticlesList';
 import ReactMarkdown from 'react-markdown';
 
 export default function Article({ pageData }) {
@@ -25,6 +26,7 @@ export default function Article({ pageData }) {
     updatedDate.getMonth() + 1
   }. ${updatedDate.getFullYear()}`;
 
+  // TODO this should be in article tag
   return (
     <div>
       <Head>
@@ -33,77 +35,82 @@ export default function Article({ pageData }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className='container max-w-5xl mx-auto px-4 py-5 dark:text-white md:py-10'>
-        <Heading level={1} headingClass='max-w-5xl mx-auto'>
-          {pageData.Title}
-        </Heading>
-        {pageData.Perex ? (
-          <p className='italic mb-7 text-center max-w-lg mx-auto'>
-            {pageData.Perex}
-          </p>
-        ) : (
-          ''
-        )}
-
-        <p className='mb-2 text-sm text-right	'>{`${totalMinutesToread} minuty čtení`}</p>
-        <div className='mb-10'>
-          <div className='relative w-full h-80 max-w-5xl mx-auto '>
-            <Image
-              src={pageData.Image.data.attributes.url}
-              alt={pageData.Name}
-              layout='fill'
-              objectFit='cover'
-              objectPosition='center'
-            />
-          </div>
-          {pageData.Image.data.attributes.caption ? (
-            <p className='block text-sm text-center mt-2 dark:text-gray-400'>
-              {`Zdroj: ${pageData.Image.data.attributes.caption}`}
+      <main className='container mx-auto'>
+        <div className='container max-w-5xl mx-auto px-4 py-5 dark:text-white md:py-10'>
+          <Heading level={1} headingClass='max-w-5xl mx-auto'>
+            {pageData.Title}
+          </Heading>
+          {pageData.Perex ? (
+            <p className='italic mb-7 text-center max-w-lg mx-auto'>
+              {pageData.Perex}
             </p>
           ) : (
             ''
           )}
-        </div>
 
-        <div className='max-w-5xl mx-auto textContainer'>
-          <ReactMarkdown>{pageData.Text}</ReactMarkdown>
-        </div>
-
-        <hr className='mt-6 mb-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:mt-8 lg:mb-4'></hr>
-        <div className='text-sm	text-right dark:text-gray-400'>
-          {pageData.Author.data ? (
-            <p className='mb-0'>
-              {`Autor: `}
-              <span className='dark:text-white'>
-                {pageData.Author.data.attributes.Name}
-              </span>
-            </p>
-          ) : (
-            ''
-          )}
-          <div>
-            <p className='mb-0'>
-              Datum zveřejnění:{' '}
-              <time
-                datetime={pageData.createdDate}
-                className='dark:text-white'>
-                {formatedDate}
-              </time>
-            </p>
+          <p className='mb-2 text-sm text-right	'>{`${totalMinutesToread} minuty čtení`}</p>
+          <div className='mb-10'>
+            <div className='relative w-full h-80 max-w-5xl mx-auto '>
+              <Image
+                src={pageData.Image.data.attributes.url}
+                alt={pageData.Name}
+                layout='fill'
+                objectFit='cover'
+                objectPosition='center'
+              />
+            </div>
+            {pageData.Image.data.attributes.caption ? (
+              <p className='block text-sm text-center mt-2 dark:text-gray-400'>
+                {`Zdroj: ${pageData.Image.data.attributes.caption}`}
+              </p>
+            ) : (
+              ''
+            )}
           </div>
 
-          {formatedUpdatedDate != formatedDate ? (
+          <div className='max-w-5xl mx-auto textContainer'>
+            <ReactMarkdown>{pageData.Text}</ReactMarkdown>
+          </div>
+
+          <hr className='mt-6 mb-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:mt-8 lg:mb-4'></hr>
+          <div className='text-sm	text-right dark:text-gray-400'>
+            {pageData.Author.data ? (
+              <p className='mb-0'>
+                {`Autor: `}
+                <span className='dark:text-white'>
+                  {pageData.Author.data.attributes.Name}
+                </span>
+              </p>
+            ) : (
+              ''
+            )}
             <div>
               <p className='mb-0'>
-                Poslední aktualizace:{' '}
-                <time datetime={pageData.updatedAt}>
-                  {formatedUpdatedDate}
+                Datum zveřejnění:{' '}
+                <time
+                  datetime={pageData.createdDate}
+                  className='dark:text-white'>
+                  {formatedDate}
                 </time>
               </p>
             </div>
-          ) : (
-            ''
-          )}
+
+            {formatedUpdatedDate != formatedDate ? (
+              <div>
+                <p className='mb-0'>
+                  Poslední aktualizace:{' '}
+                  <time datetime={pageData.updatedAt}>
+                    {formatedUpdatedDate}
+                  </time>
+                </p>
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
+        </div>
+        <div>
+          <ArticlesList doNotShowArticleWithThisUrl={pageData.Url} />
         </div>
       </main>
 
@@ -140,6 +147,7 @@ export async function getStaticProps({ params }) {
               Text
               createdAt
               updatedAt
+              Url
               Author {
                 data {
                   attributes {

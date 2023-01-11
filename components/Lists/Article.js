@@ -2,12 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Heading } from '../Tags/Heading';
 
+// TODO should be in article tag
 export const Article = ({ data }) => {
   const dateFormated = new Date(data.publishedAt);
 
   return (
-    <div data-testid='article' className='w-full md:w-1/3 px-2 xl:px-8'>
-      <div className='relative w-full min-h-[200px] mb-4'>
+    <div
+      data-testid='article'
+      className='w-full mb-10 md:w-1/3 px-2 xl:px-8'>
+      <div className='relative w-full min-h-[200px] mb-0 '>
         <Image
           src={data.Image.data.attributes.url}
           layout='fill'
@@ -16,16 +19,16 @@ export const Article = ({ data }) => {
           objectPosition='center'
         />
       </div>
-      <div className='px-4'>
+      <div className='px-4 py-4 shadow-lg shadow-slate-300 dark:shadow-zinc-600 dark:shadow-lg '>
         <div>
           <Link href={`/clanky/${data.Url}`}>
             <a className='hover:underline text-primary dark:text-secondary'>
-              <h3 className='mb-2 text-xl xl:text-2xl font-black text-primary dark:text-secondary'>
+              <h3 className='mb-2 text-center text-xl xl:text-2xl font-black text-primary dark:text-secondary'>
                 {data.Title}
               </h3>
             </a>
           </Link>
-          <p className='dark:text-white'>{data.Perex}</p>
+          <p className='dark:text-white text-justify'>{data.Perex}</p>
         </div>
         <div className='flex flex-col md:flex-row md:justify-between		md:items-center	text-sm mt-4 dark:text-white'>
           <time
