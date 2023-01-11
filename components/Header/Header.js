@@ -63,6 +63,8 @@ export const Header = () => {
   if (loading) return <Spinner />;
   if (error) return `${error.message}`;
 
+  const homepageUrl = document.location.host;
+
   return (
     <div className=' shadow-md dark:shadow-none ' data-testid='header'>
       <div className='container mx-auto'>
@@ -71,7 +73,7 @@ export const Header = () => {
             <Link href='/' className='flex items-center'>
               <Image
                 src='/logo.png'
-                className='mr-3 h-6 sm:h-9'
+                className='mr-3 h-6 sm:h-9 hover:cursor-pointer'
                 alt='ABA Brno'
                 width={100}
                 height={44}

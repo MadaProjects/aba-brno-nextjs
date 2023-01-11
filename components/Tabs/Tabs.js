@@ -88,7 +88,7 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
                 aria-labelledby={`tab-${i}`}
                 className={
                   currentTab == i
-                    ? 'block px-6 py-8 bg-gray-50 rounded-lg dark:bg-gray-800'
+                    ? 'block px-6 py-8 bg-gray-50 dark:bg-gray-800'
                     : 'hidden'
                 }>
                 <ReactMarkdown>{tab.Text}</ReactMarkdown>
@@ -102,7 +102,7 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
           aria-labelledby={`tab-999`}
           className={
             currentTab == 999
-              ? 'block p-4 bg-gray-50 rounded-lg dark:bg-gray-800'
+              ? 'block p-4 bg-gray-50 dark:bg-gray-800'
               : 'hidden'
           }>
           <ConatactForm sendContactTo={sendContactTo} />

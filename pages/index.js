@@ -8,7 +8,17 @@ import { TextOnImage } from '../components/Text/TextOnImage';
 import { ExpertsList } from '../components/Lists/ExpertsList';
 import styles from '../styles/Home.module.css';
 
-export default function Home({ mainMenu }) {
+import { useState } from 'react';
+import { DynamicZone } from '../components/DynamicZone/DynamicZone';
+
+export default function Home({ mainMenu, pageData }) {
+  console.log('Page data');
+  console.log(pageData);
+
+  let numberOfTextWithImageBlocks = 0;
+
+  const dymamicComponents = pageData.attributes.pageDynamicZone;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -18,39 +28,166 @@ export default function Home({ mainMenu }) {
       </Head>
 
       <main className={styles.main}>
-        <h1>Index page</h1>
-
-        <div className='bg-sky-100 py-10'>
-          <SimpleText
-            headingLevel={1}
-            headingText='Lorem ipsum'
-            paragraphText='Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Aliquam id dolor. Ut tempus purus at lorem. Donec iaculis gravida nulla. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Nam sed tellus id magna elementum tincidunt. Nunc dapibus tortor vel mi dapibus sollicitudin. Phasellus et lorem id felis nonummy placerat. Nunc tincidunt ante vitae massa. Fusce nibh.'
-          />
-        </div>
-        <section>
-          <TextWithImage
-            headingLevel={1}
-            headingText='Lorem ipsum'
-            paragraphText='Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Aliquam id dolor. Ut tempus purus at lorem. Donec iaculis gravida nulla. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Nam sed tellus id magna elementum tincidunt. Nunc dapibus tortor vel mi dapibus sollicitudin. Phasellus et lorem id felis nonummy placerat. Nunc tincidunt ante vitae massa. Fusce nibh.'
-            imgUrl={`https://images.unsplash.com/photo-1662581872277-0fd0bf3ae8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80`}
-          />
-        </section>
-        <section>
-          <TextOnImage
-            headingLevel={1}
-            headingText='Lorem ipsum'
-            paragraphText='Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Aliquam id dolor. Ut tempus purus at lorem. Donec iaculis gravida nulla. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor. Nam sed tellus id magna elementum tincidunt. Nunc dapibus tortor vel mi dapibus sollicitudin. Phasellus et lorem id felis nonummy placerat. Nunc tincidunt ante vitae massa. Fusce nibh.'
-            imgUrl={`https://images.unsplash.com/photo-1662581872277-0fd0bf3ae8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80`}
-          />
-        </section>
-        <section>
-          <ExpertsList />
-        </section>
+        {dymamicComponents.map((elementInZone, i) => {
+          if (elementInZone.__typename === 'ComponentPageTextWithImage') {
+            numberOfTextWithImageBlocks++;
+          }
+          return (
+            <DynamicZone
+              element={elementInZone}
+              key={i}
+              numberOfTextWithImageBlocks={numberOfTextWithImageBlocks}
+            />
+          );
+        })}
       </main>
 
       <footer className={styles.footer}></footer>
     </div>
   );
+}
+
+export async function getStaticProps({ params }) {
+  const { data } = await client.query({
+    query: gql`
+      query getPage {
+        pages(filters: { Url: { eq: "homepage" } }) {
+          data {
+            attributes {
+              Title
+              pageDynamicZone {
+                __typename
+                ... on ComponentPagePage {
+                  Title
+                  GraphicTitleSignpost: GraphicTitle
+                  TextUnderTitle
+                  ButtonText
+                  ListOf
+                }
+                ... on ComponentPageTextOnImage {
+                  text_on_image {
+                    data {
+                      attributes {
+                        Title
+                        Perex
+                        Text
+                        ButtonText
+                        ExternalUrl
+                        InternalUrl
+                        BackgroundImage {
+                          data {
+                            attributes {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on ComponentPageNiceTitle {
+                  Title
+                  GraphicTitle
+                  TextUnder
+                }
+                ... on ComponentPageTextWithImage {
+                  text_block_with_image {
+                    data {
+                      attributes {
+                        Title
+                        Perex
+                        Text
+                        ButtonText
+                        ExternalUrl
+                        InternalUrl
+                        Image {
+                          data {
+                            attributes {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on ComponentPageText {
+                  text_block {
+                    data {
+                      attributes {
+                        Title
+                        Perex
+                        Text
+                        ButtonText
+                        ExternalUrl
+                        BackgroundColor
+                        InternalUrl {
+                          data {
+                            attributes {
+                              Url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on ComponentPageSlider {
+                  sliders {
+                    data {
+                      attributes {
+                        Title
+                        Text
+                        ControlsColor
+                        ExternalUrl
+                        ButtonText
+                        article {
+                          data {
+                            attributes {
+                              Url
+                            }
+                          }
+                        }
+                        expert {
+                          data {
+                            attributes {
+                              Url
+                            }
+                          }
+                        }
+                        page {
+                          data {
+                            attributes {
+                              Url
+                            }
+                          }
+                        }
+                        Image {
+                          data {
+                            attributes {
+                              url
+                              name
+                              caption
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      pageData: data.pages.data[0],
+    },
+  };
 }
 
 /*

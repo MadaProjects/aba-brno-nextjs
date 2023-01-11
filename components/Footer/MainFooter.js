@@ -2,6 +2,7 @@ import { Footer } from 'flowbite-react';
 import { gql, useQuery } from '@apollo/client';
 import { Spinner } from '../Spinner';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const FOOTER_MENU_QUERY = gql`
   query footerMenu {
@@ -62,16 +63,18 @@ export const MainFooter = () => {
     <div className='container mx-auto mt-6 md:mt-10'>
       <footer className='p-4 bg-white sm:p-6 dark:bg-slate-900'>
         <div className='md:flex md:justify-between'>
-          <div className='mb-6 md:mb-0'>
-            <a href='../' className='flex items-center'>
+          <div className='mb-6 md:mb-0 '>
+            <Link
+              href='../'
+              className='flex items-center overflow-visible'>
               <Image
                 src='/logo.png'
                 width={100}
                 height={44}
-                className='mr-3 h-8'
+                className='mr-3 h-8 hover:cursor-pointer '
                 alt='ABA Brno'
               />
-            </a>
+            </Link>
           </div>
           <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
             {data.footerMenu.data.attributes.Menu.map((menuColumn) => (

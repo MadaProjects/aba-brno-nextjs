@@ -149,7 +149,7 @@ export const ConatactForm = ({ sendContactTo }) => {
             )}
           </div>
           <div className='!mt-4'>
-            <p className='font-small text-sm  text-center lg:text-right'>
+            <p className='font-small text-sm  !text-center lg:!text-right'>
               Odesláním souhlasíte se{' '}
               <a
                 href='../suhlas-so-spracovanim-osobnych-udajov'
