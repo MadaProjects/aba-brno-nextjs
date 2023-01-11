@@ -142,6 +142,50 @@ export async function getStaticProps({ params }) {
                     }
                   }
                 }
+                ...on ComponentPageSlider {
+                  sliders {
+                    data {
+                      attributes {
+                        Title
+                        Text
+                        ControlsColor
+                        ExternalUrl
+                        ButtonText      
+                        article {
+                          data {
+                            attributes {
+                              Url
+                            }
+                          }
+                        }
+                        expert {
+                          data {
+                            attributes {
+                              Url
+                            }
+                          }
+                        }
+                        page {
+                          data {
+                            attributes {
+                              Url
+                            }
+                          }
+                        }
+                        Image {
+                          data {
+                            attributes {
+                              url
+                              name
+                              caption
+                            }
+                          }
+                        }
+                        
+                      }
+                    }
+                  }
+                }
               }
             }
           }

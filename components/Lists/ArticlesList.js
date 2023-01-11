@@ -22,8 +22,6 @@ export const ArticlesList = ({
 
   let numberOfArticlesInFilteredArticles = 0;
   const onlyThreeArticles = data.data.filter((article, i) => {
-    console.log(article.attributes.Url);
-
     if (
       doNotShowArticleWithThisUrl &&
       doNotShowArticleWithThisUrl == article.attributes.Url

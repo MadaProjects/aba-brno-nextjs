@@ -7,8 +7,6 @@ import { ArticlesList } from '../../components/Lists/ArticlesList';
 import ReactMarkdown from 'react-markdown';
 
 export default function Article({ pageData }) {
-  console.log(pageData);
-
   const wordsPerMinute = 225;
   const totalNumberOfWordsInArticle =
     pageData.Text.trim().split(/\s+/).length;

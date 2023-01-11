@@ -29,7 +29,7 @@ export const TextOnImage = ({
   return (
     <div
       data-testid='textOnImage'
-      className='mx-auto text-center relative dark:text-white py-5 md:py-10 overflow-hidden	'>
+      className='mx-auto text-center relative dark:text-white py-5 md:py-10 overflow-hidden'>
       {backgroundImage ? (
         <div
           className='bg-center bg-repeat	bg-cover bg-fixed min-h-[200px] absolute inset-0 z-10 before:content-[""] before:absolute before:inset-0 before:z-20 before:bg-black/[.50] dark:before:bg-black/[.70]'
