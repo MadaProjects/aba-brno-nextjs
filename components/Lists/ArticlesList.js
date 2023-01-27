@@ -54,6 +54,14 @@ export const ArticlesList = ({
           <Article key={i} data={article.attributes} />
         ))}
       </div>
+
+      <div className='container mx-auto px-6 xl:px-12 text-center md:text-right'>
+        <a
+          href=''
+          className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'>
+          všechny články
+        </a>
+      </div>
     </div>
   );
 };

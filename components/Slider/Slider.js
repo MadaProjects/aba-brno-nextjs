@@ -36,6 +36,19 @@ export const Slider = ({ slides }) => {
     setActiveIndex(nextSliderNumber);
   };
 
+  const urlify = (text) => {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function (url) {
+      return (
+        '<a href="' +
+        url +
+        '" rel="noopener noreferrer" target="_blank">' +
+        url +
+        '</a>'
+      );
+    });
+  };
+
   return (
     <div>
       {slides.map((slide, i) => {
@@ -56,7 +69,7 @@ export const Slider = ({ slides }) => {
                   {slide.attributes.Title}
                 </h2>
                 {slide.attributes.Text ? (
-                  <p className='mb-0 mt-4 text-justify'>
+                  <p className='mb-0 mt-4 text-center'>
                     {slide.attributes.Text}
                   </p>
                 ) : (
@@ -76,6 +89,16 @@ export const Slider = ({ slides }) => {
                 )}
               </div>
             </div>
+
+            {slide.attributes.Image.data.attributes.caption && (
+              <p
+                className='text-xs pr-2	text-right dark:text-slate-500'
+                dangerouslySetInnerHTML={{
+                  __html: urlify(
+                    slide.attributes.Image.data.attributes.caption
+                  ),
+                }}></p>
+            )}
           </div>
         );
       })}
@@ -84,7 +107,7 @@ export const Slider = ({ slides }) => {
         <div className='flex items-center justify-center mt-4'>
           <a
             href=''
-            className='mx-4 hover:scale-125 transition-transform duration-300 dark:text-slate-300'
+            className='mx-4 p-px hover:scale-125 transition-transform duration-300 dark:text-slate-300'
             onClick={goToPrevSlide}
             rel='nofollow'
             title='Previous slide'
@@ -107,7 +130,7 @@ export const Slider = ({ slides }) => {
           </a>
           <a
             href=''
-            className='mx-4 hover:scale-125 transition-transform duration-300 dark:text-slate-300'
+            className='mx-4 p-px hover:scale-125 transition-transform duration-300 dark:text-slate-300'
             onClick={goToNextSlide}
             rel='nofollow'
             title='Next slide'

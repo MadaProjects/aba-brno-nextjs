@@ -7,33 +7,36 @@ export const Expert = ({ expert }) => {
   return (
     <Link href={`/odbornici/${expert.Url}`}>
       <a
-        className={`w-full	md:w-1/2 xl:w-1/4 ${styles.link}`}
+        className='w-full mb-10 md:w-1/3 md:mb-0 px-2 xl:px-8'
         data-testid='expert'
         aria-label={expert.Name}>
-        <div className={` text-center ${styles.linkInner}`}>
+        <div className={`text-center`}>
           <div
-            className={`relative overflow-hidden w-40	h-40 rounded-full border-2 mx-auto border-primary dark:border-secondary ${styles.imgWrap}  dark:after:border-x-secondary	`}>
-            <div className='absolute inset-1/2	translate-x-[-50%] translate-y-[-50%] w-[80%] h-[80%] rounded-full overflow-hidden'>
+            className={`relative overflow-hidden w-[100%]	h-60 lg:h-80 mx-auto `}>
+            <div className='absolute inset-1/2 translate-x-[-50%] translate-y-[-50%] w-[100%] h-[100%] overflow-hidden'>
               <Image
                 src={expert.Image.data.attributes.url}
                 alt={expert.Name}
                 layout='fill'
                 objectFit='cover'
                 objectPosition='center'
-                className={styles.img}
               />
             </div>
           </div>
 
-          <h3 className='mb-2 mt-4 text-xl xl:text-2xl font-black text-primary dark:text-secondary'>
-            {expert.Name}
-          </h3>
+          <div className='shadow-lg shadow-slate-300 py-4 px-4 dark:shadow-none dark:border-solid dark:border-2 dark:border-t-0 dark:border-slate-600'>
+            <h3 className='mb-2 mt-0 text-xl xl:mb-6 xl:text-2xl font-black text-primary dark:text-secondary'>
+              {expert.Name}
+            </h3>
 
-          {expert.Perex ? (
-            <p className='dark:text-white'>{expert.Perex}</p>
-          ) : (
-            ''
-          )}
+            {expert.Perex ? (
+              <p className='dark:text-white mb-0 leading-5'>
+                {expert.Perex}
+              </p>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
       </a>
     </Link>

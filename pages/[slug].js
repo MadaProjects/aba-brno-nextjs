@@ -148,7 +148,6 @@ export async function getStaticProps({ params }) {
                       attributes {
                         Title
                         Text
-                        ControlsColor
                         ExternalUrl
                         ButtonText      
                         article {

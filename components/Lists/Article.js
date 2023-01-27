@@ -19,7 +19,7 @@ export const Article = ({ data }) => {
           objectPosition='center'
         />
       </div>
-      <div className='px-4 py-4 shadow-lg shadow-slate-300 dark:shadow-zinc-600 dark:shadow-lg '>
+      <div className='px-4 py-4 shadow-lg shadow-slate-300 dark:shadow-none dark:border-solid dark:border-2 dark:border-t-0 dark:border-slate-600'>
         <div>
           <Link href={`/clanky/${data.Url}`}>
             <a className='hover:underline text-primary dark:text-secondary'>

@@ -1,17 +1,20 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { gql } from '@apollo/client';
-import client from '../appolo-client';
-import { SimpleText } from '../components/Text/SimpleText';
-import { TextWithImage } from '../components/Text/TextWithImage';
-import { TextOnImage } from '../components/Text/TextOnImage';
-import { ExpertsList } from '../components/Lists/ExpertsList';
-import styles from '../styles/Home.module.css';
+import client from '../../appolo-client';
+import { SimpleText } from '../../components/Text/SimpleText';
+import { TextWithImage } from '../../components/Text/TextWithImage';
+import { TextOnImage } from '../../components/Text/TextOnImage';
+import { ExpertsList } from '../../components/Lists/ExpertsList';
+import styles from '../../styles/Home.module.css';
 
 import { useState } from 'react';
-import { DynamicZone } from '../components/DynamicZone/DynamicZone';
+import { DynamicZone } from '../../components/DynamicZone/DynamicZone';
 
 export default function Home({ mainMenu, pageData }) {
+  console.log('Page data');
+  console.log(pageData);
+
   let numberOfTextWithImageBlocks = 0;
 
   const dymamicComponents = pageData.attributes.pageDynamicZone;
@@ -48,7 +51,7 @@ export async function getStaticProps({ params }) {
   const { data } = await client.query({
     query: gql`
       query getPage {
-        pages(filters: { Url: { eq: "homepage" } }) {
+        pages(filters: { Url: { eq: "clanky" } }) {
           data {
             attributes {
               Title

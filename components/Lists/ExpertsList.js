@@ -28,7 +28,7 @@ export const ExpertsList = ({ headingText, perex, graphicText }) => {
   if (!data) return <div>Loading...</div>;
 
   const suffledExperts = data.data ? shuffleArray(data.data) : [];
-  const selectedExperts = suffledExperts.filter((expert, i) => i < 4);
+  const selectedExperts = suffledExperts.filter((expert, i) => i < 3);
 
   return (
     <div data-testid='expertsList'>
@@ -38,10 +38,17 @@ export const ExpertsList = ({ headingText, perex, graphicText }) => {
         graphicText={graphicText}
       />
       <div
-        className={`container mx-auto flex flex-col md:flex-row	 ${styles.experts}`}>
+        className={`container mx-auto flex flex-col md:flex-row	px-4 py-5 md:py-10`}>
         {selectedExperts.map((expert, i) => (
           <Expert expert={expert.attributes} key={i} />
         ))}
+      </div>
+      <div className='container mx-auto px-6 xl:px-12 text-center md:text-right'>
+        <a
+          href=''
+          className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'>
+          Všichni odborníci
+        </a>
       </div>
     </div>
   );
