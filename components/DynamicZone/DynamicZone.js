@@ -9,6 +9,7 @@ import { TextSlider } from '../TextSlider/TextSlider';
 
 export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
+  console.log(element);
 
   // TODO too much duplicities
   switch (element.__typename) {
@@ -107,6 +108,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
               headingText={element.Title}
               perex={element.TextUnderTitle}
               graphicText={element.GraphicTitleSignpost}
+              showAll={element.ShowAll ? element.ShowAll : false}
             />
           );
           break;

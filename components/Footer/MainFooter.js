@@ -1,7 +1,7 @@
 import { Footer } from 'flowbite-react';
 import { gql, useQuery } from '@apollo/client';
 import { Spinner } from '../Spinner';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 
 export const FOOTER_MENU_QUERY = gql`

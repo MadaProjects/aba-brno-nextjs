@@ -1,10 +1,11 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { gql } from '@apollo/client';
 import client from '../../appolo-client';
 import { Heading } from '../../components/Tags/Heading';
 import { ArticlesList } from '../../components/Lists/ArticlesList';
 import ReactMarkdown from 'react-markdown';
+import Link from 'next/link';
 
 export default function Article({ pageData }) {
   const wordsPerMinute = 225;
@@ -23,6 +24,19 @@ export default function Article({ pageData }) {
   const formatedUpdatedDate = `${updatedDate.getDate()}. ${
     updatedDate.getMonth() + 1
   }. ${updatedDate.getFullYear()}`;
+
+  const urlify = (text) => {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function (url) {
+      return (
+        '<a href="' +
+        url +
+        '" rel="noopener noreferrer" target="_blank">' +
+        url +
+        '</a>'
+      );
+    });
+  };
 
   // TODO this should be in article tag
   return (
@@ -57,12 +71,13 @@ export default function Article({ pageData }) {
                 objectPosition='center'
               />
             </div>
-            {pageData.Image.data.attributes.caption ? (
-              <p className='block text-sm text-center mt-2 dark:text-gray-400'>
-                {`Zdroj: ${pageData.Image.data.attributes.caption}`}
-              </p>
-            ) : (
-              ''
+
+            {pageData.Image.data.attributes.caption && (
+              <p
+                className='text-xs pr-2	text-right dark:text-slate-500'
+                dangerouslySetInnerHTML={{
+                  __html: urlify(pageData.Image.data.attributes.caption),
+                }}></p>
             )}
           </div>
 
@@ -75,9 +90,11 @@ export default function Article({ pageData }) {
             {pageData.Author.data ? (
               <p className='mb-0'>
                 {`Autor: `}
-                <span className='dark:text-white'>
+                <Link
+                  href={`../odbornici/${pageData.Author.data.attributes.Url}`}
+                  className='dark:text-white underline hover:no-underline hover:color-primary dark:hover:color-secondary'>
                   {pageData.Author.data.attributes.Name}
-                </span>
+                </Link>
               </p>
             ) : (
               ''
@@ -150,6 +167,7 @@ export async function getStaticProps({ params }) {
                 data {
                   attributes {
                     Name
+                    Url
                   }
                 }
               }

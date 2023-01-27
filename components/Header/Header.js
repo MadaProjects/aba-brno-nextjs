@@ -3,7 +3,7 @@ import client from '../../appolo-client';
 import { ApolloProvider } from '@apollo/client';
 import { useState } from 'react';
 import { Navbar, DarkThemeToggle, Alert } from 'flowbite-react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Spinner } from '../Spinner';
