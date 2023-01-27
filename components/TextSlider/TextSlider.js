@@ -34,6 +34,8 @@ export const TextSlider = ({ slides, backgroundImage }) => {
     setActiveIndex(nextSliderNumber);
   };
 
+  // TODO automatic slider slideshow
+  /*
   useEffect(() => {
     if (slides.length > 1) {
       const interval = setTimeout(() => {
@@ -47,9 +49,8 @@ export const TextSlider = ({ slides, backgroundImage }) => {
         setActiveIndex(nextSliderNumber);
       }, 5000);
     }
-  }, [slides.length, activeIndex]);
-
-  //return 'SLIDER TEXT';
+  }, [slides.length]);
+  */
 
   return (
     <div>

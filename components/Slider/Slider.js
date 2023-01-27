@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const Slider = ({ slides }) => {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -46,6 +46,24 @@ export const Slider = ({ slides }) => {
       );
     });
   };
+
+  // TODO automatic slider slideshow
+  /*
+  useEffect(() => {
+    if (slides.length > 1) {
+      const interval = setTimeout(() => {
+        const numberOfSlides = slides.length;
+        let nextSliderNumber = activeIndex + 1;
+
+        if (nextSliderNumber > numberOfSlides) {
+          nextSliderNumber = 1;
+        }
+
+        setActiveIndex(nextSliderNumber);
+      }, 5000);
+    }
+  }, [slides.length]);
+  */
 
   return (
     <div>
