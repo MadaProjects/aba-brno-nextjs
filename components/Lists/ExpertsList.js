@@ -28,7 +28,6 @@ export const ExpertsList = ({
     `${process.env.NEXT_PUBLIC_API_URL}/api/therapeutists?populate[0]=Image`,
     fetcher
   );
-  console.log(showAll);
 
   // TODO change loading to icon
   if (error) return <div>Failed to load {error.message}</div>;

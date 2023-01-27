@@ -10,6 +10,7 @@ export const TextWithImage = ({
   imgUrl,
   buttonText,
   buttonLink,
+  imgData,
   buttonNewTab = false,
   isEven = false,
 }) => {
@@ -18,6 +19,19 @@ export const TextWithImage = ({
   const textMarginSide = isEven
     ? 'xl:ml-auto xl:pr-10'
     : 'xl:mr-auto xl:pl-10';
+
+  const urlify = (text) => {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function (url) {
+      return (
+        '<a href="' +
+        url +
+        '" rel="noopener noreferrer" target="_blank">' +
+        url +
+        '</a>'
+      );
+    });
+  };
 
   return (
     <div
@@ -71,12 +85,20 @@ export const TextWithImage = ({
           <Image
             src={imgUrl}
             layout='fill'
-            alt=''
+            alt={imgData.data.attributes.name}
             objectFit='cover'
             objectPosition='center'
           />
         ) : (
           ''
+        )}
+
+        {imgData.data.attributes.caption && (
+          <p
+            className='absolute mb-0 bottom-0 right-0 z-10 text-xs pr-2	text-right dark:text-slate-500'
+            dangerouslySetInnerHTML={{
+              __html: urlify(imgData.data.attributes.caption),
+            }}></p>
         )}
       </div>
     </div>

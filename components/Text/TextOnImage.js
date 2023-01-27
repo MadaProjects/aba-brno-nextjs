@@ -20,11 +20,25 @@ export const TextOnImage = ({
   perexText,
   paragraphText,
   backgroundImage,
+  imgData,
   buttonText,
   buttonLink,
   buttonNewTab = false,
 }) => {
   const cleanBtnLink = buttonLink === 'homepage' ? '/' : buttonLink;
+
+  const urlify = (text) => {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function (url) {
+      return (
+        '<a href="' +
+        url +
+        '" rel="noopener noreferrer" target="_blank">' +
+        url +
+        '</a>'
+      );
+    });
+  };
 
   return (
     <div
@@ -82,6 +96,13 @@ export const TextOnImage = ({
           ''
         )}
       </div>
+      {imgData.data.attributes.caption && (
+        <p
+          className='absolute mb-0 bottom-0 right-0 z-10 text-xs pr-2	text-right text-slate-400 dark:text-slate-500'
+          dangerouslySetInnerHTML={{
+            __html: urlify(imgData.data.attributes.caption),
+          }}></p>
+      )}
     </div>
   );
 };

@@ -74,7 +74,7 @@ export default function Article({ pageData }) {
 
             {pageData.Image.data.attributes.caption && (
               <p
-                className='text-xs pr-2	text-right dark:text-slate-500'
+                className='text-xs pr-0	text-right dark:text-slate-500'
                 dangerouslySetInnerHTML={{
                   __html: urlify(pageData.Image.data.attributes.caption),
                 }}></p>
@@ -103,7 +103,7 @@ export default function Article({ pageData }) {
               <p className='mb-0'>
                 Datum zveřejnění:{' '}
                 <time
-                  datetime={pageData.createdDate}
+                  dateTime={pageData.createdDate}
                   className='dark:text-white'>
                   {formatedDate}
                 </time>
@@ -114,7 +114,7 @@ export default function Article({ pageData }) {
               <div>
                 <p className='mb-0'>
                   Poslední aktualizace:{' '}
-                  <time datetime={pageData.updatedAt}>
+                  <time dateTime={pageData.updatedAt}>
                     {formatedUpdatedDate}
                   </time>
                 </p>

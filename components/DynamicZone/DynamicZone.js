@@ -9,8 +9,6 @@ import { TextSlider } from '../TextSlider/TextSlider';
 
 export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
-  console.log(element);
-
   // TODO too much duplicities
   switch (element.__typename) {
     case 'ComponentPageText':
@@ -56,6 +54,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
           perexText={textWithImage.Perex}
           paragraphText={textWithImage.Text}
           imgUrl={textWithImage.Image.data.attributes.url}
+          imgData={textWithImage.Image}
           buttonText={textWithImage.ButtonText}
           buttonLink={buttonLinkTextWithImage}
           buttonNewTab={openLinkInNewTabTextWithImage}
@@ -94,6 +93,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
           backgroundImage={
             textOnImgData.BackgroundImage.data.attributes.url
           }
+          imgData={textOnImgData.BackgroundImage}
           buttonText={textOnImgData.ButtonText}
           buttonLink={textOnImgBtnLink}
           buttonNewTab={textOnImgOpenLinkInNewTab}

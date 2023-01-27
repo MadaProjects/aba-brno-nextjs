@@ -178,7 +178,7 @@ export const MainFooter = () => {
                     );
                     break;
                 }
-                console.log(i);
+
                 return (
                   <a
                     href={socialMedia.attributes.Url}

@@ -94,6 +94,8 @@ export async function getStaticProps({ params }) {
                           data {
                             attributes {
                               url
+                              name
+                              caption
                             }
                           }
                         }
@@ -120,6 +122,8 @@ export async function getStaticProps({ params }) {
                           data {
                             attributes {
                               url
+                              name
+                              caption
                             }
                           }
                         }
