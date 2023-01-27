@@ -77,14 +77,14 @@ export const MainFooter = () => {
             </Link>
           </div>
           <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
-            {data.footerMenu.data.attributes.Menu.map((menuColumn) => (
-              <div key={menuColumn} className='max-w-[200px]'>
+            {data.footerMenu.data.attributes.Menu.map((menuColumn, i) => (
+              <div key={`${menuColumn}-${i}`} className='max-w-[200px]'>
                 <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>
                   {menuColumn.Title}
                 </h2>
                 <ul className='text-gray-600 dark:text-gray-400'>
                   {menuColumn.pages.data.map((menuItem, i) => (
-                    <li key={i} className='mb-4'>
+                    <li key={`footer-menu-item-${i}`} className='mb-4'>
                       <a
                         href={`../${menuItem.attributes.Url}`}
                         className='hover:underline'>
@@ -93,7 +93,7 @@ export const MainFooter = () => {
                     </li>
                   ))}
                   {menuColumn.external_links.data.map((menuItem, i) => (
-                    <li key={i} className='mb-4'>
+                    <li key={`footer-menu-item-2-${i}`} className='mb-4'>
                       <a
                         href={menuItem.attributes.Title}
                         className='hover:underline'
@@ -178,12 +178,12 @@ export const MainFooter = () => {
                     );
                     break;
                 }
-
+                console.log(i);
                 return (
                   <a
                     href={socialMedia.attributes.Url}
                     className='text-gray-500 hover:text-gray-900 dark:hover:text-white'
-                    key={i}
+                    key={`social-media-footer-${i}`}
                     target='_blank'
                     rel='noopener noreferrer'>
                     {socialMediaIcon}
