@@ -5,10 +5,11 @@ import { TextOnImage } from '../Text/TextOnImage';
 import { ArticlesList } from '../Lists/ArticlesList';
 import { ExpertsList } from '../Lists/ExpertsList';
 import { Slider } from '../Slider/Slider';
+import { TextSlider } from '../TextSlider/TextSlider';
 
 export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
-  console.log(element);
+
   // TODO too much duplicities
   switch (element.__typename) {
     case 'ComponentPageText':
@@ -124,6 +125,17 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
       const allSlides = element.sliders.data;
 
       return <Slider slides={allSlides} />;
+      break;
+    case 'ComponentPageTextSlider':
+      const allTextSlides = element.text_on_sliders.data;
+      const backgroundImage = element.BackgroundImage;
+
+      return (
+        <TextSlider
+          slides={allTextSlides}
+          backgroundImage={backgroundImage}
+        />
+      );
       break;
     default:
       console.log(`Block element is not defined - ${element.__typename}`);

@@ -12,9 +12,6 @@ import { useState } from 'react';
 import { DynamicZone } from '../../components/DynamicZone/DynamicZone';
 
 export default function Home({ mainMenu, pageData }) {
-  console.log('Page data');
-  console.log(pageData);
-
   let numberOfTextWithImageBlocks = 0;
 
   const dymamicComponents = pageData.attributes.pageDynamicZone;

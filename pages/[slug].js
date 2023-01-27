@@ -95,6 +95,24 @@ export async function getStaticProps({ params }) {
                     }
                   }
                 }
+                ... on ComponentPageTextSlider {
+                  BackgroundImage {
+                    data {
+                      attributes {
+                        url
+                      }
+                    }
+                  }
+                  text_on_sliders {
+                    data{
+                      attributes {
+                        Title
+                        Text
+                        TextUnder
+                      }
+                    }
+                  }
+                }
                 ... on ComponentPageNiceTitle {
                   Title
                   GraphicTitle

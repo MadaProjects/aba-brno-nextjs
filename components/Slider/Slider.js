@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
 export const Slider = ({ slides }) => {
-  console.log(slides);
-
   const [activeIndex, setActiveIndex] = useState(1);
 
   const goToSlide = (e) => {

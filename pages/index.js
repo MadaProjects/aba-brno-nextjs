@@ -61,6 +61,24 @@ export async function getStaticProps({ params }) {
                   ButtonText
                   ListOf
                 }
+                ... on ComponentPageTextSlider {
+                  BackgroundImage {
+                    data {
+                      attributes {
+                        url
+                      }
+                    }
+                  }
+                  text_on_sliders {
+                    data {
+                      attributes {
+                        Title
+                        Text
+                        TextUnder
+                      }
+                    }
+                  }
+                }
                 ... on ComponentPageTextOnImage {
                   text_on_image {
                     data {
