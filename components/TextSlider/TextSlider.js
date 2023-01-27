@@ -55,7 +55,7 @@ export const TextSlider = ({ slides, backgroundImage }) => {
   return (
     <div>
       <div
-        className='relative bg-no-repeat bg-center bg-cover after:content-[""] after:bg-black/30 after:absolute after:inset-0 dark:after:bg-black/60'
+        className='relative h-[30vh] min-h-[350px] bg-no-repeat bg-center bg-cover after:content-[""] after:bg-black/30 after:absolute after:inset-0 dark:after:bg-black/60'
         style={{
           backgroundImage: `url(${backgroundImage.data.attributes.url})`,
         }}>
@@ -65,8 +65,8 @@ export const TextSlider = ({ slides, backgroundImage }) => {
               key={`slide-${i}`}
               className={
                 i + 1 == activeIndex
-                  ? `block mx-auto relative h-[30vh] min-h-[300px] z-10`
-                  : `hidden mx-auto relative h-[30vh] min-h-[300px] z-10`
+                  ? `block mx-auto relative h-full z-10`
+                  : `hidden mx-auto relative h-full	z-10`
               }>
               <div className='container h-full h-full mx-auto px-4 py-10 lg:py-20 lg:px-6 relative'>
                 <div className='md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 max-w-xl text-white px-4 py-4'>

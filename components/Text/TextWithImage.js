@@ -22,8 +22,8 @@ export const TextWithImage = ({
   return (
     <div
       data-testid='textWithImage'
-      className={`flex flex-col  dark:text-white py-5 md:py-0 ${switchOrder}`}>
-      <div className='px-4 pt-10 pb-0 md:w-[60%] md:px-10 xl:w-[50%] xl:py-20'>
+      className={`flex flex-col  dark:text-white  md:py-0 ${switchOrder}`}>
+      <div className='px-4 pt-10 pb-0 md:py-10 md:w-[60%] md:px-10 xl:w-[50%] xl:py-20'>
         <div className={`xl:max-w-[690px] xl:mr-0 ${textMarginSide}`}>
           <div>
             <Heading
@@ -66,7 +66,7 @@ export const TextWithImage = ({
           )}
         </div>
       </div>
-      <div className='relative h-60 w-full md:w-[40%] md:h-auto xl:w-[50%] '>
+      <div className='relative h-60 min-h-[350px] w-full md:w-[40%] md:h-auto xl:w-[50%] '>
         {imgUrl ? (
           <Image
             src={imgUrl}

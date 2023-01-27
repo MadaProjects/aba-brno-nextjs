@@ -17,7 +17,7 @@ export const SimpleText = ({
   return (
     <div
       data-testid='simpleText'
-      className='container mx-auto px-4 text-center dark:text-white py-5 md:py-10'>
+      className='container mx-auto text-center dark:text-white px-4 py-6 md:py-10'>
       <Heading
         level={headingLevel}
         headingClass={perexText ? 'mb-3 xl:mb-3' : ''}>
