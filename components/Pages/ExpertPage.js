@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Image from 'next/legacy/image';
-import ReactMarkdown from 'react-markdown';
+
 import { Heading } from '../Tags/Heading';
 import { Tabs } from '../Tabs/Tabs';
 

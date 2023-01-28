@@ -7,10 +7,6 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
   const [currentTab, setCurrentTab] = useState(0);
   const [maxTabs, setMaxTabs] = useState(tabs.length + 1);
 
-  useEffect(() => {
-    //setMaxTabs(tabs.length + 1);
-  }, [tabs]);
-
   const handleTabChange = (e) => {
     setCurrentTab(e.currentTarget.dataset.id);
   };

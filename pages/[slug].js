@@ -1,14 +1,38 @@
+import dynamic from 'next/dynamic';
+
 import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/legacy/image';
 import { gql } from '@apollo/client';
 import client from '../appolo-client';
+
 import { SimpleText } from '../components/Text/SimpleText';
 import { TextWithImage } from '../components/Text/TextWithImage';
 import { TextOnImage } from '../components/Text/TextOnImage';
 import { ExpertsList } from '../components/Lists/ExpertsList';
 import { DynamicZone } from '../components/DynamicZone/DynamicZone';
+
 import styles from '../styles/Home.module.css';
+
+/*
+const SimpleText = dynamic(() => import('../components/Text/SimpleText'));
+
+const TextWithImage = dynamic(() =>
+  import('../components/Text/TextWithImage')
+);
+
+const TextOnImage = dynamic(() =>
+  import('../components/Text/TextOnImage')
+);
+
+const ExpertsList = dynamic(() =>
+  import('../components/Lists/ExpertsList')
+);
+
+const DynamicZone = dynamic(() =>
+  import('../components/DynamicZone/DynamicZone')
+);
+*/
 
 export default function Home({ pageData }) {
   let numberOfTextWithImageBlocks = 0;

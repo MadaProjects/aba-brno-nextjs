@@ -3,7 +3,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import { Expert } from './Expert';
 import { NiceTitle } from '../Text/NiceTitle';
-import { expertExamples } from '../../__mocks__/expertsMocks';
+//import { expertExamples } from '../../__mocks__/expertsMocks';
 import styles from './Experts.module.scss';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -67,6 +67,8 @@ export const ExpertsList = ({
   );
 };
 
+/*
 ExpertsList.defaultProps = {
   experts: expertExamples,
 };
+*/

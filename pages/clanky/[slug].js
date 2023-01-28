@@ -1,11 +1,18 @@
+import dynamic from 'next/dynamic';
+
 import Head from 'next/head';
 import Image from 'next/legacy/image';
 import { gql } from '@apollo/client';
 import client from '../../appolo-client';
-import { Heading } from '../../components/Tags/Heading';
-import { ArticlesList } from '../../components/Lists/ArticlesList';
+//import { Heading } from '../../components/Tags/Heading';
+//import { ArticlesList } from '../../components/Lists/ArticlesList';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
+
+const ArticlesList = dynamic(() =>
+  import('../../components/Lists/ArticlesList')
+);
+const Heading = dynamic(() => import('../../components/Tags/Heading'));
 
 export default function Article({ pageData }) {
   const wordsPerMinute = 225;
