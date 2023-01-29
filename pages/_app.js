@@ -1,9 +1,12 @@
 import { ApolloProvider } from '@apollo/client';
 import client from '../appolo-client';
 import { Layout } from '../components/Layout/Layout';
-import { CookieConsent } from '../components/Banner/CookieConsent';
+//import { CookieConsent } from '../components/Banner/CookieConsent';
 
 import '../styles/globals.css';
+
+// TODO add cookie consent
+// <CookieConsent />
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -13,7 +16,6 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </Layout>
       </ApolloProvider>
-      <CookieConsent />
     </div>
   );
 }
