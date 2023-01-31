@@ -1,13 +1,22 @@
+import { ApolloProvider } from '@apollo/client';
+import client from '../appolo-client';
 import { Layout } from '../components/Layout/Layout';
-import '@fontsource/lato';
+//import { CookieConsent } from '../components/Banner/CookieConsent';
 
 import '../styles/globals.css';
 
+// TODO add cookie consent
+// <CookieConsent />
+
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <div>
+      <ApolloProvider client={client}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </div>
   );
 }
 
