@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 html {
   min-width: 320px;
 }
@@ -11,6 +16,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Lato', sans-serif;
+  /*font-family: 'Atkinson Hyperlegible', sans-serif; */
 }
 
 a {
@@ -19,9 +25,99 @@ a {
 * {
 }
 
+p {
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
   }
   body {
   }
+}
+
+.textContainer h1 {
+  font-size: 35px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #1862a1;
+}
+
+.textContainer h2 {
+  font-size: 30px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #1862a1;
+}
+
+.textContainer h3 {
+  font-size: 25px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #1862a1;
+}
+
+.textContainer h4 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #1862a1;
+}
+
+.textContainer h5 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.textContainer h6 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.dark .textContainer h1,
+.dark .textContainer h2,
+.dark .textContainer h3,
+.dark .textContainer h4 {
+  color: #17a052;
+}
+
+.textContainer h1:not(:first-child) {
+  margin-top: 50px;
+}
+.textContainer h2:not(:first-child) {
+  margin-top: 45px;
+}
+.textContainer h3:not(:first-child) {
+  margin-top: 40px;
+}
+.textContainer h4:not(:first-child) {
+  margin-top: 35px;
+}
+.textContainer h5:not(:first-child) {
+  margin-top: 30px;
+}
+.textContainer h6:not(:first-child) {
+  margin-top: 30px;
+}
+
+.textContainer p {
+  margin-bottom: 10px;
+  font-weight: 400;
+  text-align: justify;
+}
+
+.textContainer a {
+  text-decoration: underline;
+  color: #1862a1;
+}
+.dark .textContainer a {
+  color: #17a052;
+}
+
+.textContainer a:hover {
+  text-decoration: none;
 }
