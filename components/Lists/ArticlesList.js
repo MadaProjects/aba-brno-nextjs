@@ -17,7 +17,6 @@ export const ArticlesList = ({
     `${process.env.NEXT_PUBLIC_API_URL}/api/articles?populate=*`,
     fetcher
   );
-  console.log(showAll);
 
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
