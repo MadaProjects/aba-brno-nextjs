@@ -34,7 +34,6 @@ export async function getStaticPaths() {
   const paths = experts.data.map((expert) => ({
     params: { slug: expert.attributes.Url },
   }));
-  console.log(paths);
   return {
     paths,
     fallback: false,

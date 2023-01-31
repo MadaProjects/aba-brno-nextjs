@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const Slider = ({ slides }) => {
+export const Slider = ({ slides, showTextBlock, smallBanner }) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   const goToSlide = (e) => {
@@ -65,6 +65,14 @@ export const Slider = ({ slides }) => {
   }, [slides.length]);
   */
 
+  const sliderHeight = smallBanner ? '200' : '400';
+  const sliderHeightXl = smallBanner ? '300' : '550';
+  const sliderHeightVh = smallBanner ? '25' : '60';
+
+  const heightVar = smallBanner
+    ? 'h-[25vh] min-h-[200px] lg:min-h-[300px]'
+    : 'h-[60vh] min-h-[400px] lg:min-h-[550px]';
+
   return (
     <div className='pb-6'>
       {slides.map((slide, i) => {
@@ -73,42 +81,44 @@ export const Slider = ({ slides }) => {
             key={`slide-${i}`}
             className={
               i + 1 == activeIndex
-                ? `block mx-auto relative h-[60vh] min-h-[300px] bg-no-repeat bg-center bg-cover`
-                : `hidden mx-auto relative h-[60vh] min-h-[300px] bg-no-repeat bg-center bg-cover`
+                ? `block mx-auto relative bg-no-repeat bg-center bg-cover ${heightVar}`
+                : `hidden mx-auto relative bg-no-repeat bg-center bg-cover ${heightVar}`
             }
             style={{
               backgroundImage: `url(${slide.attributes.Image.data.attributes.url})`,
             }}>
-            <div className='container h-full h-full mx-auto px-4 py-4 lg:py-20 lg:px-6 relative'>
-              <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-6 md:top-[initial] md:right-[initial] md:bottom-20 md:translate-x-0 md:translate-y-0 bg-black/60 w-[300px] md:w-[400px] xl:w-[450px] text-white px-4 py-4 md:px-10 md:py-6'>
-                <h2 className='font-black text-lg text-center md:text-xl'>
-                  {slide.attributes.Title}
-                </h2>
-                {slide.attributes.Text ? (
-                  <p className='mb-0 mt-4 text-center'>
-                    {slide.attributes.Text}
-                  </p>
-                ) : (
-                  ''
-                )}
+            {showTextBlock && !smallBanner && (
+              <div className='container h-full h-full mx-auto px-4 py-4 lg:py-20 lg:px-6 relative'>
+                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-6 md:top-[initial] md:right-[initial] md:bottom-20 md:translate-x-0 md:translate-y-0 bg-black/60 w-[300px] md:w-[400px] xl:w-[450px] text-white px-4 py-4 md:px-10 md:py-6'>
+                  <h2 className='font-black text-lg text-center md:text-xl'>
+                    {slide.attributes.Title}
+                  </h2>
+                  {slide.attributes.Text ? (
+                    <p className='mb-0 mt-4 text-center'>
+                      {slide.attributes.Text}
+                    </p>
+                  ) : (
+                    ''
+                  )}
 
-                {slide.attributes.ButtonText ? (
-                  <div className='text-center mt-4'>
-                    <a
-                      href=''
-                      className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent tracking-wider		'>
-                      {slide.attributes.ButtonText}
-                    </a>
-                  </div>
-                ) : (
-                  ''
-                )}
+                  {slide.attributes.ButtonText ? (
+                    <div className='text-center mt-4'>
+                      <a
+                        href=''
+                        className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent tracking-wider		'>
+                        {slide.attributes.ButtonText}
+                      </a>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             {slide.attributes.Image.data.attributes.caption && (
               <p
-                className='text-xs pr-2	text-right dark:text-slate-500'
+                className='absolute bottom-0 right-0 mb-0 text-xs pr-2 text-right text-slate-50 dark:text-slate-500'
                 dangerouslySetInnerHTML={{
                   __html: urlify(
                     slide.attributes.Image.data.attributes.caption

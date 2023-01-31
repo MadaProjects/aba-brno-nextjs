@@ -118,6 +118,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
               headingText={element.Title}
               perex={element.TextUnderTitle}
               graphicText={element.GraphicTitleSignpost}
+              showAll={element.ShowAll ? element.ShowAll : false}
             />
           );
           break;
@@ -126,7 +127,13 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
     case 'ComponentPageSlider':
       const allSlides = element.sliders.data;
 
-      return <Slider slides={allSlides} />;
+      return (
+        <Slider
+          slides={allSlides}
+          showTextBlock={element.ShowTextBlock ? true : false}
+          smallBanner={element.SmallBanner ? true : false}
+        />
+      );
       break;
     case 'ComponentPageTextSlider':
       const allTextSlides = element.text_on_sliders.data;

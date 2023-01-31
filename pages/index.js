@@ -153,6 +153,8 @@ export async function getStaticProps({ params }) {
                   }
                 }
                 ... on ComponentPageSlider {
+                  ShowTextBlock
+                  SmallBanner
                   sliders {
                     data {
                       attributes {
