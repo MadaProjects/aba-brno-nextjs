@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import client from '../../appolo-client';
 import { ApolloProvider } from '@apollo/client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar, DarkThemeToggle, Alert } from 'flowbite-react';
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
@@ -42,14 +42,16 @@ export const MENU_QUERY = gql`
 
 export const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const [isDarkMode, setDarkMode] = useState(
-    localStorage.theme === 'dark' ? true : false
-  );
+  const [isDarkMode, setDarkMode] = useState(false);
   const router = useRouter();
 
   const handleHamburegerMenuClick = () => {
     setOpenMenu(!openMenu);
   };
+
+  useEffect(() => {
+    setDarkMode(localStorage.theme === 'dark' ? true : false);
+  }, []);
 
   const handleSetDarkMode = () => {
     if (localStorage.theme === 'dark') {
