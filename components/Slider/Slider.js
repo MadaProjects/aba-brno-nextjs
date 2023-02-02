@@ -89,7 +89,7 @@ export const Slider = ({ slides, showTextBlock, smallBanner }) => {
             }}>
             {showTextBlock && !smallBanner && (
               <div className='container h-full h-full mx-auto px-4 py-4 lg:py-20 lg:px-6 relative'>
-                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-6 md:top-[initial] md:right-[initial] md:bottom-20 md:translate-x-0 md:translate-y-0 bg-black/60 w-[300px] md:w-[400px] xl:w-[450px] text-white px-4 py-4 md:px-10 md:py-6'>
+                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-6 md:top-[initial] md:right-[initial] md:bottom-20 md:translate-x-0 md:translate-y-0 bg-black/80 w-[300px] md:w-[400px] xl:w-[450px] text-white px-4 py-4 md:px-10 md:py-6'>
                   <h2 className='font-black text-lg text-center md:text-xl'>
                     {slide.attributes.Title}
                   </h2>

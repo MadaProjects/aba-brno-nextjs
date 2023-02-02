@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 // TODO add uri to env
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://aba-brno-strapi.herokuapp.com/graphql',
+    uri: 'http://localhost:1337/graphql',
     fetch,
   }),
   //uri: 'http://localhost:1337/graphql',

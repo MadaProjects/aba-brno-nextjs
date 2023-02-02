@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import client from '../../appolo-client';
 import { ApolloProvider } from '@apollo/client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar, DarkThemeToggle, Alert } from 'flowbite-react';
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
@@ -42,19 +42,26 @@ export const MENU_QUERY = gql`
 
 export const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(false);
   const router = useRouter();
 
   const handleHamburegerMenuClick = () => {
     setOpenMenu(!openMenu);
   };
 
+  useEffect(() => {
+    setDarkMode(localStorage.theme === 'dark' ? true : false);
+  }, []);
+
   const handleSetDarkMode = () => {
     if (localStorage.theme === 'dark') {
       localStorage.theme = 'light';
       document.body.classList.remove('dark');
+      setDarkMode(false);
     } else {
       localStorage.theme = 'dark';
       document.body.classList.add('dark');
+      setDarkMode(true);
     }
   };
 
@@ -69,8 +76,8 @@ export const Header = () => {
     <div className=' shadow-md dark:shadow-none ' data-testid='header'>
       <div className='container mx-auto'>
         <nav className='bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-slate-900'>
-          <div className='container flex flex-wrap items-center justify-between mx-auto'>
-            <Link href='/' className='flex items-center'>
+          <div className='container flex flex-nowrap items-center justify-between mx-auto'>
+            <Link href='/' className='flex items-center mr-10'>
               <Image
                 src='/logo.png'
                 className='mr-3 h-6 sm:h-9 hover:cursor-pointer'
@@ -88,7 +95,7 @@ export const Header = () => {
                 className='text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5'>
                 <svg
                   id='theme-toggle-dark-icon'
-                  className=' w-5 h-5'
+                  className={`${isDarkMode ? 'hidden' : ''} w-5 h-5 `}
                   fill='currentColor'
                   viewBox='0 0 20 20'
                   xmlns='http://www.w3.org/2000/svg'>
@@ -96,7 +103,7 @@ export const Header = () => {
                 </svg>
                 <svg
                   id='theme-toggle-light-icon'
-                  className='hidden w-5 h-5'
+                  className={`${isDarkMode ? '' : 'hidden'} w-5 h-5`}
                   fill='currentColor'
                   viewBox='0 0 20 20'
                   xmlns='http://www.w3.org/2000/svg'>
@@ -139,7 +146,7 @@ export const Header = () => {
                   const activeClassName =
                     'block py-2 pr-4 pl-3 text-whitebg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white';
                   const nonActiveClassName =
-                    'block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent';
+                    'block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent';
 
                   if (menu.main_page.data.attributes.Url === 'homepage') {
                     return '';
