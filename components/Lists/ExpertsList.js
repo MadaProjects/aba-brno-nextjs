@@ -35,7 +35,7 @@ export const ExpertsList = ({
 
   const suffledExperts = data.data ? shuffleArray(data.data) : [];
   const selectedExperts = suffledExperts.filter(
-    (expert, i) => i < (showAll ? 9999 : 3)
+    (expert, i) => i < (showAll ? 9999 : 4)
   );
 
   return (

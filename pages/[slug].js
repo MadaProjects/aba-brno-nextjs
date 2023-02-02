@@ -234,6 +234,30 @@ export async function getStaticProps({ params }) {
                     }
                   }
                 }
+                
+                ... on ComponentPagePhotoEfect {
+                  Title
+                  GraphicTitlePhotoEffect: GraphicTitle
+                  TextUnderTitle
+                  photo_efect_text {
+                    data {
+                      attributes {
+                        Title
+                        Text
+                        Image {
+                          data {
+                            attributes {
+                              url
+                              name
+                              caption
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                
               }
             }
           }

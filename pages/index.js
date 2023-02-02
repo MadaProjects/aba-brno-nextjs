@@ -54,6 +54,29 @@ export async function getStaticProps({ params }) {
               Title
               pageDynamicZone {
                 __typename
+
+                ... on ComponentPagePhotoEfect {
+                  Title
+                  GraphicTitlePhotoEffect: GraphicTitle
+                  TextUnderTitle
+                  photo_efect_text {
+                    data {
+                      attributes {
+                        Title
+                        Text
+                        Image {
+                          data {
+                            attributes {
+                              url
+                              name
+                              caption
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
                 ... on ComponentPagePage {
                   Title
                   GraphicTitleSignpost: GraphicTitle

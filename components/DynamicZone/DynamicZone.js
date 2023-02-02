@@ -146,6 +146,9 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
         />
       );
       break;
+    case 'ComponentPagePhotoEfect':
+      console.log(element);
+      break;
     default:
       console.log(`Block element is not defined - ${element.__typename}`);
       return '';
