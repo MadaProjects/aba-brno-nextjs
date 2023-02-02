@@ -33,9 +33,9 @@ export const Article = ({ data }) => {
         <div className='flex flex-col md:justify-between items-end text-sm mt-4 dark:text-white'>
           <time
             className='mb-2 md:mb-0'
-            dateTime={
-              data.publishedAt
-            }>{`${dateFormated.getDate()}. ${dateFormated.getMonth()}. ${dateFormated.getFullYear()}`}</time>
+            dateTime={data.publishedAt}>{`${dateFormated.getDate()}. ${
+            dateFormated.getMonth() + 1
+          }. ${dateFormated.getFullYear()}`}</time>
 
           {data.Author.data ? (
             <p className='mb-0'>
