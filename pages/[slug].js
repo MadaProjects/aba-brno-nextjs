@@ -91,6 +91,10 @@ export async function getStaticProps({ params }) {
               Title
               pageDynamicZone {
                 __typename
+                ... on ComponentPageContactForm {
+                  WhereSendEmailsFromForm
+                }
+
                 ... on ComponentPagePage {
                   Title
                   GraphicTitleSignpost: GraphicTitle

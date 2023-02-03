@@ -23,7 +23,6 @@ export const TextWithPhotosList = ({
       <div className='flex flex-col flex-wrap md:flex-row '>
         {list.map((item, i) => {
           const currentItem = item.attributes;
-          console.log(currentItem);
 
           return (
             <div

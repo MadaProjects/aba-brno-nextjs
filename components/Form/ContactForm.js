@@ -39,7 +39,7 @@ export const ConatactForm = ({ sendContactTo }) => {
 
   return (
     <section>
-      <div className='py-2 px-4 mx-auto'>
+      <div className='py-2 px-4 mx-auto container'>
         <form
           action='#'
           className='space-y-8'
@@ -132,8 +132,8 @@ export const ConatactForm = ({ sendContactTo }) => {
               rows='6'
               className={
                 errors.message
-                  ? `block p-2.5 w-full text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 !border-red-500 dark:border-red-500`
-                  : `block p-2.5 w-full text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`
+                  ? `block p-2.5 w-full min-h-[200px] md:min-h-[350px] text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 !border-red-500 dark:border-red-500`
+                  : `block p-2.5 w-full min-h-[200px] md:min-h-[350px] text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`
               }
               placeholder='Vaše zpráva...'
               {...register('message', {
@@ -149,11 +149,11 @@ export const ConatactForm = ({ sendContactTo }) => {
             )}
           </div>
           <div className='!mt-4'>
-            <p className='font-small text-sm  !text-center lg:!text-right'>
+            <p className='font-small text-sm  !text-center lg:!text-right dark:text-white'>
               Odesláním souhlasíte se{' '}
               <a
                 href='../suhlas-so-spracovanim-osobnych-udajov'
-                className='underline hover:no-underline'>
+                className='underline hover:no-underline hover:text-primary dark:hover:text-secondary'>
                 zpracováním osobních údajů.
               </a>
             </p>

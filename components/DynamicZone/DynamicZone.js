@@ -7,6 +7,7 @@ import { ExpertsList } from '../Lists/ExpertsList';
 import { Slider } from '../Slider/Slider';
 import { TextSlider } from '../TextSlider/TextSlider';
 import { TextWithPhotosList } from '../Lists/TextWithPhotosList';
+import { ConatactForm } from '../Form/ContactForm';
 
 export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
@@ -156,6 +157,11 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
           perex={element.TextUnderTitle}
           graphicText={element.GraphicTitlePhotoEffect}
         />
+      );
+      break;
+    case 'ComponentPageContactForm':
+      return (
+        <ConatactForm sendContactTo={element.WhereSendEmailsFromForm} />
       );
       break;
     default:

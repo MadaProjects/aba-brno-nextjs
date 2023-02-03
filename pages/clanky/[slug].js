@@ -13,7 +13,6 @@ import { ShareSocial } from '../../components/ShareSocial/ShareSocial';
 
 export default function Article({ pageData }) {
   const router = useRouter();
-  console.log(router.basePath);
 
   const wordsPerMinute = 225;
   const totalNumberOfWordsInArticle =
