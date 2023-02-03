@@ -40,7 +40,7 @@ export const ArticlesList = ({
   return (
     <div
       data-testid='articlesList'
-      className='container mx-auto px-4 py-5 md:py-10 md:px-0'>
+      className='container mx-auto px-4 pt-5 pb-10 md:pt-10 md:pb-12 md:px-0'>
       {headingText ? (
         <NiceTitle
           headingText={headingText}

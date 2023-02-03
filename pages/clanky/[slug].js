@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/legacy/image';
 import { gql } from '@apollo/client';
@@ -8,8 +9,12 @@ import { Heading } from '../../components/Tags/Heading';
 import { ArticlesList } from '../../components/Lists/ArticlesList';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
+import { ShareSocial } from '../../components/ShareSocial/ShareSocial';
 
 export default function Article({ pageData }) {
+  const router = useRouter();
+  console.log(router.basePath);
+
   const wordsPerMinute = 225;
   const totalNumberOfWordsInArticle =
     pageData.Text.trim().split(/\s+/).length;
@@ -125,6 +130,8 @@ export default function Article({ pageData }) {
               ''
             )}
           </div>
+
+          <ShareSocial text={pageData.Title} />
         </div>
         <div>
           <ArticlesList doNotShowArticleWithThisUrl={pageData.Url} />

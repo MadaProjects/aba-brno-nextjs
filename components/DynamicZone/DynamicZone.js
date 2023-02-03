@@ -6,6 +6,7 @@ import { ArticlesList } from '../Lists/ArticlesList';
 import { ExpertsList } from '../Lists/ExpertsList';
 import { Slider } from '../Slider/Slider';
 import { TextSlider } from '../TextSlider/TextSlider';
+import { TextWithPhotosList } from '../Lists/TextWithPhotosList';
 
 export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
   let returnComponent = '';
@@ -147,7 +148,15 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
       );
       break;
     case 'ComponentPagePhotoEfect':
-      console.log(element);
+      const listOfTexts = element.photo_efect_text.data;
+      return (
+        <TextWithPhotosList
+          list={listOfTexts}
+          headingText={element.Title}
+          perex={element.TextUnderTitle}
+          graphicText={element.GraphicTitlePhotoEffect}
+        />
+      );
       break;
     default:
       console.log(`Block element is not defined - ${element.__typename}`);

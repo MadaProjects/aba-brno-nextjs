@@ -87,21 +87,27 @@ p {
 
 .textContainer h1:not(:first-child) {
   margin-top: 50px;
+  line-height: 1.2;
 }
 .textContainer h2:not(:first-child) {
   margin-top: 45px;
+  line-height: 1.2;
 }
 .textContainer h3:not(:first-child) {
   margin-top: 40px;
+  line-height: 1.2;
 }
 .textContainer h4:not(:first-child) {
   margin-top: 35px;
+  line-height: 1.2;
 }
 .textContainer h5:not(:first-child) {
   margin-top: 30px;
+  line-height: 1.2;
 }
 .textContainer h6:not(:first-child) {
   margin-top: 30px;
+  line-height: 1.2;
 }
 
 .textContainer p {
