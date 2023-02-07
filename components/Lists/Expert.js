@@ -26,9 +26,9 @@ export const Expert = ({ expert }) => {
         </div>
 
         <div className='flex flex-col h-full py-4 px-4 dark:border-t-2 dark:border-slate-600'>
-          <h3 className='group-hover:underline group-focus:underline h-full mb-2 text-center text-xl md:mb-6 xl:text-2xl font-black text-primary dark:text-secondary'>
+          <h2 className='group-hover:underline group-focus:underline h-full mb-2 text-center text-xl md:mb-6 xl:text-2xl font-black text-primary dark:text-secondary'>
             {expert.Name}
-          </h3>
+          </h2>
 
           {expert.Perex ? (
             <p className='dark:text-white mb-0 leading-5'>

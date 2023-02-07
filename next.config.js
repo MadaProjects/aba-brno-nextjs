@@ -16,6 +16,10 @@ const nextConfig = {
   experimental: {
     forceSwcTransforms: true,
   },
+  i18n: {
+    locales: ['cs'],
+    defaultLocale: 'cs',
+  },
 };
 
 module.exports = nextConfig;

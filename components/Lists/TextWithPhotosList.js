@@ -6,6 +6,7 @@ export const TextWithPhotosList = ({
   headingText = '',
   perex = '',
   graphicText = '',
+  headingLevel,
 }) => {
   return (
     <div
@@ -13,6 +14,7 @@ export const TextWithPhotosList = ({
       className='container mx-auto px-4 py-5 md:py-10 md:px-0'>
       {headingText ? (
         <NiceTitle
+          headingLevel={headingLevel}
           headingText={headingText}
           perex={perex}
           graphicText={graphicText}
@@ -36,7 +38,11 @@ export const TextWithPhotosList = ({
                   <Image
                     src={currentItem.Image.data.attributes.url}
                     layout='fill'
-                    alt={currentItem.Image.data.attributes.caption}
+                    alt={
+                      currentItem.Image.data.attributes.caption
+                        ? currentItem.Image.data.attributes.caption
+                        : currentItem.Title
+                    }
                     objectFit='cover'
                     objectPosition='center'
                   />

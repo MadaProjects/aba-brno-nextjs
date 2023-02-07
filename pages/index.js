@@ -13,7 +13,7 @@ import { DynamicZone } from '../components/DynamicZone/DynamicZone';
 
 export default function Home({ mainMenu, pageData }) {
   let numberOfTextWithImageBlocks = 0;
-
+  let numberOfDynamicBlocks = -1;
   const dymamicComponents = pageData.attributes.pageDynamicZone;
 
   return (
@@ -24,15 +24,25 @@ export default function Home({ mainMenu, pageData }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className={styles.main}>
+      <main className={styles.main} role='main'>
         {dymamicComponents.map((elementInZone, i) => {
           if (elementInZone.__typename === 'ComponentPageTextWithImage') {
             numberOfTextWithImageBlocks++;
           }
+
+          if (elementInZone.__typename !== 'ComponentPageSlider') {
+            numberOfDynamicBlocks++;
+          } else {
+            if (elementInZone.ShowTextBlock === true) {
+              numberOfDynamicBlocks++;
+            }
+          }
+
           return (
             <DynamicZone
               element={elementInZone}
               key={i}
+              orderNumber={numberOfDynamicBlocks}
               numberOfTextWithImageBlocks={numberOfTextWithImageBlocks}
             />
           );

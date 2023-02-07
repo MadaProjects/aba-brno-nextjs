@@ -36,7 +36,7 @@ const DynamicZone = dynamic(() =>
 
 export default function Home({ pageData }) {
   let numberOfTextWithImageBlocks = 0;
-
+  let numberOfDynamicBlocks = -1;
   const dymamicComponents = pageData.attributes.pageDynamicZone;
 
   return (
@@ -52,10 +52,20 @@ export default function Home({ pageData }) {
           if (elementInZone.__typename === 'ComponentPageTextWithImage') {
             numberOfTextWithImageBlocks++;
           }
+
+          if (elementInZone.__typename !== 'ComponentPageSlider') {
+            numberOfDynamicBlocks++;
+          } else {
+            if (elementInZone.ShowTextBlock === true) {
+              numberOfDynamicBlocks++;
+            }
+          }
+
           return (
             <DynamicZone
               element={elementInZone}
               key={i}
+              orderNumber={numberOfDynamicBlocks}
               numberOfTextWithImageBlocks={numberOfTextWithImageBlocks}
             />
           );

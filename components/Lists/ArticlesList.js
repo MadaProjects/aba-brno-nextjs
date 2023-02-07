@@ -2,6 +2,7 @@ import { useState, useEfect } from 'react';
 import useSWR from 'swr';
 import { NiceTitle } from '../Text/NiceTitle';
 import { Article } from './Article';
+import { Spinner } from '../Spinner';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -12,6 +13,7 @@ export const ArticlesList = ({
   graphicText = '',
   doNotShowArticleWithThisUrl = false,
   showAll,
+  headingLevel,
 }) => {
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/api/articles?populate=*`,
@@ -19,7 +21,12 @@ export const ArticlesList = ({
   );
 
   if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data)
+    return (
+      <div className='my-10 md:my-16'>
+        <Spinner />
+      </div>
+    );
 
   let numberOfArticlesInFilteredArticles = 0;
   const onlyThreeArticles = data.data.filter((article, i) => {
@@ -46,6 +53,7 @@ export const ArticlesList = ({
           headingText={headingText}
           perex={perex}
           graphicText={graphicText}
+          headingLevel={headingLevel}
         />
       ) : (
         ''
@@ -59,7 +67,7 @@ export const ArticlesList = ({
         <div className='container mx-auto px-6 xl:px-12 text-center md:text-right'>
           <a
             href=''
-            className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'>
+            className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent'>
             Všechny články
           </a>
         </div>

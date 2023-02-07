@@ -53,7 +53,7 @@ export default function Article({ pageData }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className='container mx-auto'>
+      <main className='container mx-auto' data-testid='articlePage'>
         <div className='container max-w-5xl mx-auto px-4 py-5 dark:text-white md:py-10'>
           <Heading level={1} headingClass='max-w-5xl mx-auto'>
             {pageData.Title}
@@ -71,7 +71,7 @@ export default function Article({ pageData }) {
             <div className='relative w-full h-80 max-w-5xl mx-auto '>
               <Image
                 src={pageData.Image.data.attributes.url}
-                alt={pageData.Name}
+                alt={pageData.Title}
                 layout='fill'
                 objectFit='cover'
                 objectPosition='center'
@@ -80,7 +80,7 @@ export default function Article({ pageData }) {
 
             {pageData.Image.data.attributes.caption && (
               <p
-                className='text-xs pr-0	text-right dark:text-slate-500'
+                className='text-xs pr-0	text-right dark:text-white'
                 dangerouslySetInnerHTML={{
                   __html: urlify(pageData.Image.data.attributes.caption),
                 }}></p>

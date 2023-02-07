@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export const Slider = ({ slides, showTextBlock, smallBanner }) => {
+export const Slider = ({
+  slides,
+  showTextBlock,
+  smallBanner,
+  headingLevel,
+}) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   const goToSlide = (e) => {
@@ -90,9 +95,16 @@ export const Slider = ({ slides, showTextBlock, smallBanner }) => {
             {showTextBlock && !smallBanner && (
               <div className='container h-full h-full mx-auto px-4 py-4 lg:py-20 lg:px-6 relative'>
                 <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-6 md:top-[initial] md:right-[initial] md:bottom-20 md:translate-x-0 md:translate-y-0 bg-black/80 w-[300px] md:w-[400px] xl:w-[450px] text-white px-4 py-4 md:px-10 md:py-6'>
-                  <h2 className='font-black text-lg text-center md:text-xl'>
-                    {slide.attributes.Title}
-                  </h2>
+                  {headingLevel === 1 && i === 0 ? (
+                    <h1 className='font-black text-lg text-center md:text-xl'>
+                      {slide.attributes.Title}
+                    </h1>
+                  ) : (
+                    <h2 className='font-black text-lg text-center md:text-xl'>
+                      {slide.attributes.Title}
+                    </h2>
+                  )}
+
                   {slide.attributes.Text ? (
                     <p className='mb-0 mt-4 text-center'>
                       {slide.attributes.Text}
@@ -105,7 +117,7 @@ export const Slider = ({ slides, showTextBlock, smallBanner }) => {
                     <div className='text-center mt-4'>
                       <a
                         href=''
-                        className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent tracking-wider		'>
+                        className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent tracking-wider		'>
                         {slide.attributes.ButtonText}
                       </a>
                     </div>

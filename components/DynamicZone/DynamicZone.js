@@ -9,8 +9,13 @@ import { TextSlider } from '../TextSlider/TextSlider';
 import { TextWithPhotosList } from '../Lists/TextWithPhotosList';
 import { ConatactForm } from '../Form/ContactForm';
 
-export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
+export const DynamicZone = ({
+  element,
+  numberOfTextWithImageBlocks,
+  orderNumber,
+}) => {
   let returnComponent = '';
+
   // TODO too much duplicities
   switch (element.__typename) {
     case 'ComponentPageText':
@@ -26,7 +31,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
 
       return (
         <SimpleText
-          headingLevel={1}
+          headingLevel={orderNumber === 0 ? 1 : 2}
           headingText={textData.Title}
           paragraphText={textData.Text}
           perexText={textData.Perex}
@@ -51,7 +56,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
 
       return element.text_block_with_image.data ? (
         <TextWithImage
-          headingLevel={1}
+          headingLevel={orderNumber === 0 ? 1 : 2}
           headingText={textWithImage.Title}
           perexText={textWithImage.Perex}
           paragraphText={textWithImage.Text}
@@ -69,6 +74,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
         <NiceTitle
           headingText={element.Title}
           graphicText={element.GraphicTitle}
+          headingLevel={orderNumber === 0 ? 1 : 2}
           perex={element.TextUnder}
         />
       );
@@ -88,7 +94,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
 
       return (
         <TextOnImage
-          headingLevel={2}
+          headingLevel={orderNumber === 0 ? 1 : 2}
           headingText={textOnImgData.Title}
           perexText={textOnImgData.Perex}
           paragraphText={textOnImgData.Text}
@@ -107,6 +113,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
         case 'Therapeutist':
           return (
             <ExpertsList
+              headingLevel={orderNumber === 0 ? 1 : 2}
               headingText={element.Title}
               perex={element.TextUnderTitle}
               graphicText={element.GraphicTitleSignpost}
@@ -117,6 +124,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
         default:
           return (
             <ArticlesList
+              headingLevel={orderNumber === 0 ? 1 : 2}
               headingText={element.Title}
               perex={element.TextUnderTitle}
               graphicText={element.GraphicTitleSignpost}
@@ -131,6 +139,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
 
       return (
         <Slider
+          headingLevel={orderNumber === 0 ? 1 : 2}
           slides={allSlides}
           showTextBlock={element.ShowTextBlock ? true : false}
           smallBanner={element.SmallBanner ? true : false}
@@ -152,6 +161,7 @@ export const DynamicZone = ({ element, numberOfTextWithImageBlocks }) => {
       const listOfTexts = element.photo_efect_text.data;
       return (
         <TextWithPhotosList
+          headingLevel={orderNumber === 0 ? 1 : 2}
           list={listOfTexts}
           headingText={element.Title}
           perex={element.TextUnderTitle}
