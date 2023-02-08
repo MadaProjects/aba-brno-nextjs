@@ -1,7 +1,7 @@
 describe('Contact form', () => {
   context('errors', () => {
     it('should show error message on empty form submit', () => {
-      cy.visit('http://localhost:3000/odbornici/mgr-lucie-vozakova-bcba');
+      cy.visit('/odbornici/mgr-lucie-vozakova-bcba');
 
       cy.get('[data-testid="tabWithContactFormBtn"]').click();
       cy.get('[data-testid="contactForm"]').should('be.visible');
@@ -11,7 +11,7 @@ describe('Contact form', () => {
     });
 
     it('should show error message when name is not filled', () => {
-      cy.visit('http://localhost:3000/odbornici/mgr-lucie-vozakova-bcba');
+      cy.visit('/odbornici/mgr-lucie-vozakova-bcba');
 
       cy.get('[data-testid="tabWithContactFormBtn"]').click();
       cy.get('[data-testid="contactForm"]').should('be.visible');
@@ -28,7 +28,7 @@ describe('Contact form', () => {
     });
 
     it('should show error message when email is not filled', () => {
-      cy.visit('http://localhost:3000/odbornici/mgr-lucie-vozakova-bcba');
+      cy.visit('/odbornici/mgr-lucie-vozakova-bcba');
 
       cy.get('[data-testid="tabWithContactFormBtn"]').click();
       cy.get('[data-testid="contactForm"]').should('be.visible');
@@ -45,7 +45,7 @@ describe('Contact form', () => {
     });
 
     it('should show error message when message is not filled', () => {
-      cy.visit('http://localhost:3000/odbornici/mgr-lucie-vozakova-bcba');
+      cy.visit('/odbornici/mgr-lucie-vozakova-bcba');
 
       cy.get('[data-testid="tabWithContactFormBtn"]').click();
       cy.get('[data-testid="contactForm"]').should('be.visible');
@@ -62,7 +62,7 @@ describe('Contact form', () => {
     });
 
     it('should show error message on form submit', () => {
-      cy.visit('http://localhost:3000/odbornici/mgr-lucie-vozakova-bcba');
+      cy.visit('/odbornici/mgr-lucie-vozakova-bcba');
 
       cy.get('[data-testid="tabWithContactFormBtn"]').click();
       cy.get('[data-testid="contactForm"]').should('be.visible');
@@ -87,7 +87,7 @@ describe('Contact form', () => {
 
   context('success', () => {
     it('should show success message on form submit', () => {
-      cy.visit('http://localhost:3000/odbornici/mgr-lucie-vozakova-bcba');
+      cy.visit('/odbornici/mgr-lucie-vozakova-bcba');
 
       cy.get('[data-testid="tabWithContactFormBtn"]').click();
       cy.get('[data-testid="contactForm"]').should('be.visible');
