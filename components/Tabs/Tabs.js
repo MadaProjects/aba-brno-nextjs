@@ -66,6 +66,7 @@ export const Tabs = ({ tabs, sendContactTo = '' }) => {
           tabIndex={currentTab == 999 ? '0' : '-1'}
           onClick={handleTabChange}
           onKeyDown={changeTabOnKeyDown}
+          data-testid='tabWithContactFormBtn'
           className={
             currentTab == 999
               ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-primary dark:text-secondary dark:hover:text-secondary border-primary dark:border-secondary'

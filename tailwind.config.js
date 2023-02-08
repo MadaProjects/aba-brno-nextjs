@@ -14,6 +14,7 @@ module.exports = {
         current: 'currentColor',
         primary: '#1862a1',
         secondary: '#17a052',
+        tertiary: '#0C6432',
         forText: '#575757',
         forLinks: '#1862a1',
         forBackground: '#e5ecf3',

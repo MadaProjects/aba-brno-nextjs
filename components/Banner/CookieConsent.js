@@ -47,13 +47,13 @@ export const CookieConsent = () => {
         </div>
         <div className='flex flex-col xl:flex-row items-center justify-center	w-full md:w-auto md:pl-10'>
           <button
-            className='px-8 py-3 mt-4 md:mt-0 min-w-[150px] inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'
+            className='px-8 py-3 mt-4 md:mt-0 min-w-[150px] inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent'
             onClick={onClick}>
             Odmítnout
           </button>
 
           <button
-            className='px-8 py-3 mt-4 md:mt-4 xl:mt-0 xl:ml-6 min-w-[150px] inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'
+            className='px-8 py-3 mt-4 md:mt-4 xl:mt-0 xl:ml-6 min-w-[150px] inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent'
             onClick={onClick}>
             Povolit
           </button>

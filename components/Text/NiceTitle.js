@@ -2,14 +2,21 @@ import PropTypes from 'prop-types';
 import { Heading } from '../Tags/Heading';
 import style from './NiceTitle.module.css';
 
-export const NiceTitle = ({ headingText, graphicText, perex }) => {
+export const NiceTitle = ({
+  headingText,
+  graphicText,
+  perex,
+  headingLevel,
+}) => {
   return (
     <div
       data-testid='niceTitle'
-      className='container mx-auto px-4 py-5 text-center dark:text-white md:py-10'>
+      className='container mx-auto px-4 pt-8 pb-5 text-center dark:text-white md:pt-12 md:pb-6'>
       <div className='relative overflow-hidden'>
         {headingText ? (
-          <Heading level={2} headingClass='z-30 relative pt-8 md:pt-14'>
+          <Heading
+            level={headingLevel}
+            headingClass='z-30 relative pt-8 md:pt-14'>
             {headingText}
           </Heading>
         ) : (

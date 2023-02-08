@@ -7,7 +7,7 @@ export const Expert = ({ expert }) => {
   return (
     <Link
       href={`/odbornici/${expert.Url}`}
-      className='w-full mb-10 md:w-[calc(33%_-_2rem)] xl:w-[calc(33%_-_4rem)] px-0 md:mx-4 xl:mx-8 shadow-lg shadow-slate-300 dark:shadow-none dark:border-solid dark:border-2 dark:border-slate-600'
+      className='group w-full mb-10 md:w-[calc(50%_-_2rem)] xl:w-[calc(25%_-_2rem)] px-0 md:mx-4 xl:mx-4 shadow-lg shadow-slate-300 dark:shadow-none dark:border-solid dark:border-2 dark:border-slate-600'
       data-testid='expert'
       aria-label={expert.Name}>
       <div className={`text-center flex flex-col h-full`}>
@@ -20,14 +20,15 @@ export const Expert = ({ expert }) => {
               layout='fill'
               objectFit='cover'
               objectPosition='center'
+              className='group-hover:scale-125 group-focus:scale-125 transition-all	'
             />
           </div>
         </div>
 
         <div className='flex flex-col h-full py-4 px-4 dark:border-t-2 dark:border-slate-600'>
-          <h3 className='h-full mb-2 text-center text-xl md:mb-6 xl:text-2xl font-black text-primary dark:text-secondary'>
+          <h2 className='group-hover:underline group-focus:underline h-full mb-2 text-center text-xl md:mb-6 xl:text-2xl font-black text-primary dark:text-secondary'>
             {expert.Name}
-          </h3>
+          </h2>
 
           {expert.Perex ? (
             <p className='dark:text-white mb-0 leading-5'>

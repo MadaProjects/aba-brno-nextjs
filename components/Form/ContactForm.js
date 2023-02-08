@@ -39,10 +39,11 @@ export const ConatactForm = ({ sendContactTo }) => {
 
   return (
     <section>
-      <div className='py-2 px-4 mx-auto'>
+      <div className='py-2 px-4 mx-auto container'>
         <form
           action='#'
           className='space-y-8'
+          data-testid='contactForm'
           onSubmit={handleSubmit(onSumbit)}>
           <input
             type='hidden'
@@ -129,11 +130,12 @@ export const ConatactForm = ({ sendContactTo }) => {
             </label>
             <textarea
               id='message'
+              name='message'
               rows='6'
               className={
                 errors.message
-                  ? `block p-2.5 w-full text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 !border-red-500 dark:border-red-500`
-                  : `block p-2.5 w-full text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`
+                  ? `block p-2.5 w-full min-h-[200px] md:min-h-[350px] text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 !border-red-500 dark:border-red-500`
+                  : `block p-2.5 w-full min-h-[200px] md:min-h-[350px] text-sm text-gray-900 shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500`
               }
               placeholder='Vaše zpráva...'
               {...register('message', {
@@ -149,26 +151,26 @@ export const ConatactForm = ({ sendContactTo }) => {
             )}
           </div>
           <div className='!mt-4'>
-            <p className='font-small text-sm  !text-center lg:!text-right'>
+            <p className='font-small text-sm  !text-center lg:!text-right dark:text-white'>
               Odesláním souhlasíte se{' '}
               <a
                 href='../suhlas-so-spracovanim-osobnych-udajov'
-                className='underline hover:no-underline'>
+                className='underline hover:no-underline hover:text-primary dark:hover:text-secondary'>
                 zpracováním osobních údajů.
               </a>
             </p>
           </div>
           <div className='text-right'>
-            <button
+            <input
               type='submit'
               className={
                 isSubmitting
                   ? `inline-block py-3 px-5 lg:px-10 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-black bg-gray-400 border-solid border-2 border-gray-400 transition-colors duration-300 ease-in-out cursor-wait	dark:text-white`
-                  : `inline-block py-3 px-5 lg:px-10 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-white bg-primary border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent`
+                  : `inline-block py-3 px-5 lg:px-10 ml-auto mr-0 text-sm font-medium text-center sm:w-fit focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 text-white bg-primary border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent`
               }
-              disabled={isSubmitting}>
-              {isSubmitting ? 'Odesílám...' : 'Odeslat'}
-            </button>
+              value={isSubmitting ? 'Odesílám...' : 'Odeslat'}
+              disabled={isSubmitting}
+            />
           </div>
         </form>
         <ToastContainer />

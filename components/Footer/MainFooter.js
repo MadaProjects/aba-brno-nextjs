@@ -63,7 +63,7 @@ export const MainFooter = () => {
     <div className='container mx-auto mt-6 md:mt-10'>
       <footer className='p-4 bg-white sm:p-6 dark:bg-slate-900'>
         <div className='md:flex md:justify-between'>
-          <div className='mb-6 md:mb-0 '>
+          <div className='mb-6 md:mb-0'>
             <Link
               href='../'
               className='flex items-center overflow-visible'>
@@ -76,7 +76,7 @@ export const MainFooter = () => {
               />
             </Link>
           </div>
-          <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
+          <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 md:pl-10'>
             {data.footerMenu.data.attributes.Menu.map((menuColumn, i) => (
               <div key={`${menuColumn}-${i}`} className='max-w-[200px]'>
                 <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>

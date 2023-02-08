@@ -43,7 +43,7 @@ export const TextOnImage = ({
   return (
     <div
       data-testid='textOnImage'
-      className='mx-auto text-center relative dark:text-white py-5 md:py-10 overflow-hidden'>
+      className='mx-auto text-center relative dark:text-white py-5 md:py-10 xl:py-20 overflow-hidden'>
       {backgroundImage ? (
         <div
           className='bg-center bg-repeat	bg-cover bg-fixed min-h-[200px] absolute inset-0 z-10 before:content-[""] before:absolute before:inset-0 before:z-20 before:bg-black/[.50] dark:before:bg-black/[.70]'
@@ -75,19 +75,19 @@ export const TextOnImage = ({
           ''
         )}
         {buttonText ? (
-          <div className='text-center mb-6'>
+          <div className='text-center mb-0 '>
             {buttonNewTab ? (
               <a
                 href={cleanBtnLink}
                 target='_blank'
                 rel='noreferrer'
-                className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'>
+                className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent'>
                 {buttonText}
               </a>
             ) : (
               <Link
                 href={cleanBtnLink}
-                className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-secondary dark:border-secondary dark:hover:text-white dark:hover:bg-transparent'>
+                className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent'>
                 {buttonText}
               </Link>
             )}

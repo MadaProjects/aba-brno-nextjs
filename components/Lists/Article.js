@@ -24,9 +24,9 @@ export const Article = ({ data }) => {
           <Link
             href={`/clanky/${data.Url}`}
             className='hover:underline text-primary dark:text-secondary'>
-            <h3 className='mb-2 text-center text-xl xl:text-2xl font-black text-primary dark:text-secondary'>
+            <h2 className='mb-2 text-center text-xl xl:text-2xl font-black text-primary dark:text-secondary'>
               {data.Title}
-            </h3>
+            </h2>
           </Link>
           <p className='dark:text-white text-justify'>{data.Perex}</p>
         </div>
