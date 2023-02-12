@@ -13,13 +13,21 @@ export const articlesMocks = {
         createdAt: '2022-11-22T10:50:55.175Z',
         updatedAt: '2022-11-22T14:13:28.153Z',
         publishedAt: '2022-11-22T13:25:49.806Z',
+        Author: {
+          data: {
+            attributes: {
+              Name: 'Mgr. Lucie Vozáková, BCBA',
+              Url: 'mgr-lucie-vozakova-bcba',
+            },
+          },
+        },
         Image: {
           data: {
             id: 5,
             attributes: {
               name: 'girl.jpg',
               alternativeText: 'girl.jpg',
-              caption: 'Caption image ',
+              caption: 'Caption image',
               width: 4000,
               height: 2857,
               formats: {
@@ -114,13 +122,16 @@ export const articlesMocks = {
         createdAt: '2022-11-22T20:14:49.252Z',
         updatedAt: '2022-11-22T20:14:51.710Z',
         publishedAt: '2022-11-22T20:14:51.708Z',
+        Author: {
+          data: null,
+        },
         Image: {
           data: {
             id: 7,
             attributes: {
               name: 'e2ade112f86ef01aff985e2cc37dc405.jpg',
               alternativeText: 'e2ade112f86ef01aff985e2cc37dc405.jpg',
-              caption: 'e2ade112f86ef01aff985e2cc37dc405.jpg',
+              caption: '',
               width: 2500,
               height: 3750,
               formats: {
@@ -218,6 +229,14 @@ export const articlesMocks = {
         createdAt: '2022-11-22T20:15:42.618Z',
         updatedAt: '2022-11-22T20:15:43.467Z',
         publishedAt: '2022-11-22T20:15:43.462Z',
+        Author: {
+          data: {
+            attributes: {
+              Name: 'Mgr. Lucie Vozáková, BCBA',
+              Url: 'mgr-lucie-vozakova-bcba',
+            },
+          },
+        },
         Image: {
           data: {
             id: 8,
@@ -337,6 +356,14 @@ export const articlesMocks_2_Articles = {
         createdAt: '2022-11-22T10:50:55.175Z',
         updatedAt: '2022-11-22T14:13:28.153Z',
         publishedAt: '2022-11-22T13:25:49.806Z',
+        Author: {
+          data: {
+            attributes: {
+              Name: 'Mgr. Lucie Vozáková, BCBA',
+              Url: 'mgr-lucie-vozakova-bcba',
+            },
+          },
+        },
         Image: {
           data: {
             id: 5,
@@ -438,6 +465,14 @@ export const articlesMocks_2_Articles = {
         createdAt: '2022-11-22T20:14:49.252Z',
         updatedAt: '2022-11-22T20:14:51.710Z',
         publishedAt: '2022-11-22T20:14:51.708Z',
+        Author: {
+          data: {
+            attributes: {
+              Name: 'Mgr. Lucie Vozáková, BCBA',
+              Url: 'mgr-lucie-vozakova-bcba',
+            },
+          },
+        },
         Image: {
           data: {
             id: 7,
