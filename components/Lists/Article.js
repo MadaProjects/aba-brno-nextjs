@@ -11,13 +11,19 @@ export const Article = ({ data }) => {
       data-testid='article'
       className=' flex flex-col w-full mb-10 md:w-[calc(33%_-_2rem)] xl:w-[calc(33%_-_4rem)] px-0 md:mx-4 xl:mx-8 shadow-lg shadow-slate-300 dark:shadow-none dark:border-solid dark:border-2 dark:border-slate-600'>
       <div className='relative w-full min-h-[200px] mb-0 '>
-        <Image
-          src={data.Image.data.attributes.url}
-          layout='fill'
-          alt={data.Image.data.attributes.caption}
-          objectFit='cover'
-          objectPosition='center'
-        />
+        <Link href={`/clanky/${data.Url}`}>
+          <Image
+            src={data.Image.data.attributes.url}
+            layout='fill'
+            alt={
+              data.Image.data.attributes.caption
+                ? data.Image.data.attributes.caption
+                : data.Title
+            }
+            objectFit='cover'
+            objectPosition='center'
+          />
+        </Link>
       </div>
       <div className='flex flex-col px-4 py-4 dark:border-t-2 dark:border-slate-600 h-full'>
         <div className='h-full'>
@@ -37,7 +43,7 @@ export const Article = ({ data }) => {
             dateFormated.getMonth() + 1
           }. ${dateFormated.getFullYear()}`}</time>
 
-          {data.Author.data ? (
+          {data.Author?.data ? (
             <p className='mb-0'>
               <Link
                 href={`../odbornici/${data.Author.data.attributes.Url}`}

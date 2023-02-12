@@ -92,8 +92,14 @@ export const Header = () => {
                 id='theme-toggle'
                 type='button'
                 onClick={handleSetDarkMode}
+                aria-label={`${
+                  isDarkMode
+                    ? 'Přepnout na světlý režim'
+                    : 'Prepnout na tmavý režim'
+                }`}
                 className='text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5'>
                 <svg
+                  data-testid='darkModeBtn'
                   id='theme-toggle-dark-icon'
                   className={`${isDarkMode ? 'hidden' : ''} w-5 h-5 `}
                   fill='currentColor'
@@ -102,6 +108,7 @@ export const Header = () => {
                   <path d='M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z'></path>
                 </svg>
                 <svg
+                  data-testid='lightModeBtn'
                   id='theme-toggle-light-icon'
                   className={`${isDarkMode ? '' : 'hidden'} w-5 h-5`}
                   fill='currentColor'

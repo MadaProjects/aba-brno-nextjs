@@ -1,6 +1,6 @@
 describe('Homepage', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/');
+    cy.visit('/');
     cy.injectAxe();
   });
 
@@ -12,7 +12,7 @@ describe('Homepage', () => {
 
 describe('Experts list', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/odbornici');
+    cy.visit('/odbornici');
     cy.injectAxe();
   });
 
@@ -24,7 +24,7 @@ describe('Experts list', () => {
 
 describe('Expert detail', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/odbornici/mgr-lucie-vozakova-bcba');
+    cy.visit('/odbornici/mgr-lucie-vozakova-bcba');
     cy.injectAxe();
   });
 
@@ -36,7 +36,7 @@ describe('Expert detail', () => {
 
 describe('Articles list', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/clanky');
+    cy.visit('/clanky');
     cy.injectAxe();
   });
 
@@ -48,7 +48,7 @@ describe('Articles list', () => {
 
 describe('Article detail', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/clanky/aba-a-zabava');
+    cy.visit('/clanky/aba-a-zabava');
     cy.injectAxe();
   });
 

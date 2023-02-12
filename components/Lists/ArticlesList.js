@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import { NiceTitle } from '../Text/NiceTitle';
 import { Article } from './Article';
 import { Spinner } from '../Spinner';
+import Link from 'next/link';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -20,7 +21,7 @@ export const ArticlesList = ({
     fetcher
   );
 
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load: {error.message}</div>;
   if (!data)
     return (
       <div className='my-10 md:my-16'>
@@ -59,17 +60,21 @@ export const ArticlesList = ({
         ''
       )}
       <div className='flex flex-col md:flex-row'>
-        {onlyThreeArticles.map((article, i) => (
-          <Article key={i} data={article.attributes} />
-        ))}
+        {onlyThreeArticles.length ? (
+          onlyThreeArticles.map((article, i) => (
+            <Article key={i} data={article.attributes} />
+          ))
+        ) : (
+          <p>No articles found</p>
+        )}
       </div>
       {!showAll && (
         <div className='container mx-auto px-6 xl:px-12 text-center md:text-right'>
-          <a
-            href=''
+          <Link
+            href='../clanky'
             className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent'>
             Všechny články
-          </a>
+          </Link>
         </div>
       )}
     </div>
