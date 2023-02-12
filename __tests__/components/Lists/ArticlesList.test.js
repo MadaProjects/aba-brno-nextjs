@@ -126,4 +126,16 @@ describe('ArticlesList', () => {
     expect(screen.getByText(/No articles found/i)).toBeInTheDocument();
     expect(screen.getByText(/No articles found/i).tagName).toBe('P');
   });
+
+  it('shows a link to all articles', async () => {
+    render(
+      <SWRConfig value={{ provider: () => new Map() }}>
+        <ArticlesList />
+      </SWRConfig>
+    );
+    await waitFor(() => screen.getByTestId('articlesList'));
+    expect(screen.getByText(/Všechny články/i)).toBeInTheDocument();
+    expect(screen.getByText(/Všechny články/i).tagName).toBe('A');
+    expect(screen.getByText(/Všechny články/i).href).toContain('clanky');
+  });
 });

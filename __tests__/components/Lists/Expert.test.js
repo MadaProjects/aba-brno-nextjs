@@ -16,7 +16,7 @@ describe('Expert', () => {
   it('render name in heading', () => {
     const expertUnpackedData = expertsMock_1_Experts.data[0].attributes;
     render(<Expert expert={expertUnpackedData} />);
-    const headingEl = screen.getByRole('heading', { level: 3 });
+    const headingEl = screen.getByRole('heading', { level: 2 });
 
     expect(headingEl).toBeInTheDocument();
     expect(headingEl.textContent).toEqual(expertUnpackedData.Name);
@@ -25,7 +25,7 @@ describe('Expert', () => {
   it('render diferent name in heading', () => {
     const expertUnpackedData = expertsMock.data[2].attributes;
     render(<Expert expert={expertUnpackedData} />);
-    const headingEl = screen.getByRole('heading', { level: 3 });
+    const headingEl = screen.getByRole('heading', { level: 2 });
 
     expect(headingEl).toBeInTheDocument();
     expect(headingEl.textContent).toEqual(expertUnpackedData.Name);

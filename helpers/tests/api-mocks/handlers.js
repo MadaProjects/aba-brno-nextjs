@@ -41,39 +41,39 @@ export const articlesErrorHandler = rest.get(
 /*
  * EXPERTS hanlders
  */
-export const expertsSuccessHandler = rest.get(
-  `${process.env.NEXT_PUBLIC_API_URL}api/therapeutists`,
+const expertsSuccessHandler = rest.get(
+  `${process.env.NEXT_PUBLIC_API_URL}/api/therapeutists`,
   (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(expertsMock));
   }
 );
 
 export const expertsSuccessHandler_1_Experts = rest.get(
-  `${process.env.NEXT_PUBLIC_API_URL}api/therapeutists`,
+  `${process.env.NEXT_PUBLIC_API_URL}/api/therapeutists`,
   (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(expertsMock_1_Experts));
   }
 );
 
 export const expertsSuccessHandler_3_Experts = rest.get(
-  `${process.env.NEXT_PUBLIC_API_URL}api/therapeutists`,
+  `${process.env.NEXT_PUBLIC_API_URL}/api/therapeutists`,
   (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(expertsMock_3_Experts));
   }
 );
 
 export const expertsSuccessHandler_4_Experts = rest.get(
-  `${process.env.NEXT_PUBLIC_API_URL}api/therapeutists`,
+  `${process.env.NEXT_PUBLIC_API_URL}/api/therapeutists`,
   (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(expertsMock_4_Experts));
   }
 );
 
 export const expertsErrorHandler = rest.get(
-  `${process.env.NEXT_PUBLIC_API_URL}api/therapeutists`,
+  `${process.env.NEXT_PUBLIC_API_URL}/api/therapeutists`,
   async (req, res, ctx) => {
     return res(ctx.status(403));
   }
 );
 
-export const handlers = [articlesSuccessHandler];
+export const handlers = [articlesSuccessHandler, expertsSuccessHandler];
