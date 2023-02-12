@@ -14,6 +14,66 @@ export const expertsMock = {
         createdAt: '2022-11-28T08:54:29.407Z',
         updatedAt: '2022-11-28T09:18:34.172Z',
         publishedAt: '2022-11-28T09:18:34.166Z',
+        social_media_sites: {
+          data: [
+            {
+              attributes: {
+                Title: 'ABA Facebook',
+                Url: 'https://www.facebook.com',
+                Logo: 'Facebook',
+              },
+            },
+            {
+              attributes: {
+                Title: 'ABA Twitter',
+                Url: 'https://www.twitter.com',
+                Logo: 'Twitter',
+              },
+            },
+            {
+              attributes: {
+                Title: 'Vozakova email',
+                Url: 'vozakovalucie@gmail.com',
+                Logo: 'Email',
+              },
+            },
+            {
+              attributes: {
+                Title: 'Vozakova Lucie telefon',
+                Url: '+420776586963',
+                Logo: 'Telephone',
+              },
+            },
+            {
+              attributes: {
+                Title: 'Lucie vozakova Linkedin',
+                Url: 'https://www.linkedin.com/',
+                Logo: 'LinkedIn',
+              },
+            },
+            {
+              attributes: {
+                Title: 'Vozakova instagram',
+                Url: 'test',
+                Logo: 'Instagram',
+              },
+            },
+            {
+              attributes: {
+                Title: 'Vozakova messenger',
+                Url: 'test',
+                Logo: 'Facebook_messenger',
+              },
+            },
+            {
+              attributes: {
+                Title: 'Vozakova whatsapp',
+                Url: 'test',
+                Logo: 'WhatsApp',
+              },
+            },
+          ],
+        },
         TabText: [
           {
             id: '1',
@@ -133,13 +193,16 @@ export const expertsMock = {
         createdAt: '2022-11-29T08:10:07.629Z',
         updatedAt: '2022-11-29T08:10:24.034Z',
         publishedAt: '2022-11-29T08:10:24.027Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 11,
             attributes: {
               name: 'f5d968ec0c2c4f29099cad9893656696.jpg',
               alternativeText: 'f5d968ec0c2c4f29099cad9893656696.jpg',
-              caption: 'f5d968ec0c2c4f29099cad9893656696.jpg',
+              caption: 'Alt from caption',
               width: 1422,
               height: 1422,
               formats: {
@@ -240,13 +303,16 @@ export const expertsMock = {
         createdAt: '2022-11-28T08:53:14.142Z',
         updatedAt: '2022-11-28T09:18:37.606Z',
         publishedAt: '2022-11-28T09:18:37.603Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 9,
             attributes: {
               name: 'tulia.jpg',
               alternativeText: 'tulia.jpg',
-              caption: 'tulia.jpg',
+              caption: '',
               width: 2500,
               height: 1667,
               formats: {
@@ -343,6 +409,9 @@ export const expertsMock = {
         createdAt: '2022-11-29T08:10:55.916Z',
         updatedAt: '2022-11-29T08:11:07.108Z',
         publishedAt: '2022-11-29T08:11:07.100Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 12,
@@ -418,6 +487,9 @@ export const expertsMock = {
         createdAt: '2022-11-29T08:12:36.386Z',
         updatedAt: '2022-11-29T08:12:37.991Z',
         publishedAt: '2022-11-29T08:12:37.986Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 8,
@@ -538,6 +610,9 @@ export const expertsMock_1_Experts = {
         createdAt: '2022-11-28T08:54:29.407Z',
         updatedAt: '2022-11-28T09:18:34.172Z',
         publishedAt: '2022-11-28T09:18:34.166Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 10,
@@ -658,6 +733,9 @@ export const expertsMock_3_Experts = {
         createdAt: '2022-11-29T08:10:07.629Z',
         updatedAt: '2022-11-29T08:10:24.034Z',
         publishedAt: '2022-11-29T08:10:24.027Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 11,
@@ -765,6 +843,9 @@ export const expertsMock_3_Experts = {
         createdAt: '2022-11-28T08:53:14.142Z',
         updatedAt: '2022-11-28T09:18:37.606Z',
         publishedAt: '2022-11-28T09:18:37.603Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 9,
@@ -868,6 +949,9 @@ export const expertsMock_3_Experts = {
         createdAt: '2022-11-29T08:10:55.916Z',
         updatedAt: '2022-11-29T08:11:07.108Z',
         publishedAt: '2022-11-29T08:11:07.100Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 12,
@@ -956,6 +1040,9 @@ export const expertsMock_4_Experts = {
         createdAt: '2022-11-28T08:54:29.407Z',
         updatedAt: '2022-11-28T09:18:34.172Z',
         publishedAt: '2022-11-28T09:18:34.166Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 10,
@@ -1063,6 +1150,9 @@ export const expertsMock_4_Experts = {
         createdAt: '2022-11-29T08:10:07.629Z',
         updatedAt: '2022-11-29T08:10:24.034Z',
         publishedAt: '2022-11-29T08:10:24.027Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 11,
@@ -1170,6 +1260,9 @@ export const expertsMock_4_Experts = {
         createdAt: '2022-11-28T08:53:14.142Z',
         updatedAt: '2022-11-28T09:18:37.606Z',
         publishedAt: '2022-11-28T09:18:37.603Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 9,
@@ -1273,6 +1366,9 @@ export const expertsMock_4_Experts = {
         createdAt: '2022-11-29T08:10:55.916Z',
         updatedAt: '2022-11-29T08:11:07.108Z',
         publishedAt: '2022-11-29T08:11:07.100Z',
+        social_media_sites: {
+          data: [],
+        },
         Image: {
           data: {
             id: 12,

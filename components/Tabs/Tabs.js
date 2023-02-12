@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { ConatactForm } from '../Form/ContactForm';
 
-export const Tabs = ({ tabs, sendContactTo = '' }) => {
+export const Tabs = ({ tabs = [], sendContactTo = '' }) => {
   const [currentTab, setCurrentTab] = useState(0);
   const [maxTabs, setMaxTabs] = useState(tabs.length + 1);
 

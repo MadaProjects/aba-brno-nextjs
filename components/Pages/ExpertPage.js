@@ -35,13 +35,19 @@ export const ExpertPage = ({ pageData }) => {
           <div className='relative w-60 h-60 md:ml-auto md:mr-0 border-2 border-primary dark:border-secondary'>
             <Image
               src={pageData.Image.data.attributes.url}
-              alt={pageData.Name}
+              alt={
+                pageData.Image.data.attributes.caption
+                  ? pageData.Image.data.attributes.caption
+                  : pageData.Name
+              }
               layout='fill'
               objectFit='cover'
               objectPosition='center'
             />
           </div>
-          <div className='flex items-center	 justify-center	mt-2 md:justify-end	'>
+          <div
+            data-testid='socialNetworks'
+            className='flex items-center	 justify-center	mt-2 md:justify-end'>
             {pageData.social_media_sites.data.map((socialSite, i) => {
               let socialMediaIcon = (
                 <svg
@@ -56,6 +62,8 @@ export const ExpertPage = ({ pageData }) => {
                 </svg>
               );
 
+              // TODO - add more social media icons
+              // TODO - this should be a component
               let socialMediaLink = socialSite.attributes.Url;
               let openInNewTab = true;
               switch (socialSite.attributes.Logo) {

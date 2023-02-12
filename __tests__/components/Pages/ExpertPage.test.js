@@ -25,17 +25,46 @@ describe('ExpertPage', () => {
     expect(screen.getByText(pageData.Perex).tagName).toEqual('P');
   });
 
-  it.skip('render expert text', () => {
-    const pageData = expertsMock.data[1].attributes;
+  it('render expert tabs', () => {
+    const pageData = expertsMock.data[0].attributes;
     render(<ExpertPage pageData={pageData} />);
-    expect(screen.getByText(pageData.Text)).toBeInTheDocument();
+    expect(screen.getByTestId('tabs')).toBeInTheDocument();
   });
 
-  it('render an image', () => {
+  it('render an image with alt from caption', () => {
     const pageData = expertsMock.data[1].attributes;
+    const imgCaption =
+      expertsMock.data[1].attributes.Image.data.attributes.caption;
     render(<ExpertPage pageData={pageData} />);
     expect(
-      screen.getByRole('img', { name: pageData.Name })
+      screen.getByRole('img', { name: imgCaption })
     ).toBeInTheDocument();
+  });
+
+  it('render an image with alt from expert name', () => {
+    const pageData = expertsMock.data[2].attributes;
+    const imgCaption = expertsMock.data[2].attributes.Name;
+    render(<ExpertPage pageData={pageData} />);
+    expect(
+      screen.getByRole('img', { name: imgCaption })
+    ).toBeInTheDocument();
+  });
+
+  // TODO this should be in a separate test file + test for all social networks
+  describe('Social networks', () => {
+    it('show social networks', () => {
+      const pageData = expertsMock.data[0].attributes;
+      render(<ExpertPage pageData={pageData} />);
+      expect(screen.getByTestId('socialNetworks')).toBeInTheDocument();
+    });
+
+    it('show social networks with links', () => {
+      const pageData = expertsMock.data[0].attributes;
+      render(<ExpertPage pageData={pageData} />);
+      expect(screen.getByTestId('socialNetworks')).toBeInTheDocument();
+      expect(screen.getByTestId('socialNetworks').children.length).toEqual(
+        expertsMock.data[0].attributes.social_media_sites.data.length
+      );
+    });
   });
 });
