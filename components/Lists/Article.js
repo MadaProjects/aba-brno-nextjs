@@ -37,7 +37,7 @@ export const Article = ({ data }) => {
             dateFormated.getMonth() + 1
           }. ${dateFormated.getFullYear()}`}</time>
 
-          {data.Author.data ? (
+          {data.Author?.data ? (
             <p className='mb-0'>
               <Link
                 href={`../odbornici/${data.Author.data.attributes.Url}`}

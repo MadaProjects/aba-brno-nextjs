@@ -2,6 +2,10 @@ import { screen, render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { Layout } from '../../../components/Layout/Layout';
 
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
+}));
+
 window.matchMedia =
   window.matchMedia ||
   function () {

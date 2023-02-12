@@ -27,6 +27,10 @@ const newtorkErrorMocks = [
   },
 ];
 
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
+}));
+
 describe('Header', () => {
   it('shows loading text on graphq load', async () => {
     render(

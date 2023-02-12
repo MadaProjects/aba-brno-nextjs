@@ -20,7 +20,7 @@ export const ArticlesList = ({
     fetcher
   );
 
-  if (error) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load: {error.message}</div>;
   if (!data)
     return (
       <div className='my-10 md:my-16'>
@@ -59,9 +59,13 @@ export const ArticlesList = ({
         ''
       )}
       <div className='flex flex-col md:flex-row'>
-        {onlyThreeArticles.map((article, i) => (
-          <Article key={i} data={article.attributes} />
-        ))}
+        {onlyThreeArticles.length ? (
+          onlyThreeArticles.map((article, i) => (
+            <Article key={i} data={article.attributes} />
+          ))
+        ) : (
+          <p>No articles found</p>
+        )}
       </div>
       {!showAll && (
         <div className='container mx-auto px-6 xl:px-12 text-center md:text-right'>

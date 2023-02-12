@@ -1,5 +1,8 @@
 import { rest } from 'msw';
-import { articlesMocks } from '../../../__mocks__/articlesMocks';
+import {
+  articlesMocks,
+  articlesMocks_2_Articles,
+} from '../../../__mocks__/articlesMocks';
 import {
   expertsMock,
   expertsMock_1_Experts,
@@ -14,10 +17,24 @@ const articlesSuccessHandler = rest.get(
   }
 );
 
+export const articlesSuccessHandler_0_Articles = rest.get(
+  `${process.env.NEXT_PUBLIC_API_URL}/api/articles`,
+  (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ data: [] }));
+  }
+);
+
+export const articlesSuccessHandler_2_Articles = rest.get(
+  `${process.env.NEXT_PUBLIC_API_URL}/api/articles`,
+  (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(articlesMocks_2_Articles));
+  }
+);
+
 export const articlesErrorHandler = rest.get(
-  `${process.env.NEXT_PUBLIC_API_URL}api/articles`,
-  async (req, res, ctx) => {
-    return res(ctx.status(403));
+  `${process.env.NEXT_PUBLIC_API_URL}/api/articles`,
+  (req, res, ctx) => {
+    return ctx.throw(500, 'Test Error');
   }
 );
 
