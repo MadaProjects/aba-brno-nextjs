@@ -81,6 +81,7 @@ export const Tabs = ({ tabs = [], sendContactTo = '' }) => {
               <div
                 key={`tabpanel-${i}`}
                 id={`tabpanel-${i}`}
+                data-testid={`tabpanel-${i}`}
                 tabIndex='0'
                 aria-labelledby={`tab-${i}`}
                 className={
@@ -95,6 +96,7 @@ export const Tabs = ({ tabs = [], sendContactTo = '' }) => {
         <div
           key={`tabpanel-999`}
           id={`tabpanel-999`}
+          data-testid={`tabpanel-kontakt-form`}
           tabIndex='0'
           aria-labelledby={`tab-999`}
           className={
