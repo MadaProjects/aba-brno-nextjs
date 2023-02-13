@@ -5,7 +5,6 @@ import { Heading } from '../Tags/Heading';
 import { Tabs } from '../Tabs/Tabs';
 
 export const ExpertPage = ({ pageData }) => {
-  console.log(pageData);
   return (
     <div data-testid='expertPage'>
       <div className='flex flex-col md:flex-row mx-auto max-w-5xl mx-auto'>
