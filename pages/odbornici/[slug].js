@@ -73,6 +73,13 @@ export async function getStaticProps({ params }) {
                   }
                 }
               }
+              TextBeforePricelist
+              TextAfterPriceList
+              PriceList {
+                id
+                LeftRow
+                RightRow
+              }
             }
           }
         }

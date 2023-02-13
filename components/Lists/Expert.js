@@ -25,7 +25,7 @@ export const Expert = ({ expert }) => {
           </div>
         </div>
 
-        <div className='flex flex-col h-full py-4 px-4 dark:border-t-2 dark:border-slate-600'>
+        <div className='flex flex-col h-full py-4 px-4 md:pb-6 dark:border-t-2 dark:border-slate-600'>
           <h2 className='group-hover:underline group-focus:underline h-full mb-2 text-center text-xl md:mb-6 xl:text-2xl font-black text-primary dark:text-secondary'>
             {expert.Name}
           </h2>

@@ -127,3 +127,16 @@ p {
 .textContainer a:hover {
   text-decoration: none;
 }
+
+.pricelist-table p {
+  margin-bottom: 0;
+}
+
+.pricelist-table em {
+  font-size: 0.9em;
+  line-height: 0.9em;
+}
+
+.right-col p {
+  text-align: right;
+}

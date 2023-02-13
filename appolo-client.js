@@ -7,7 +7,6 @@ const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
     fetch,
   }),
-  //uri: 'http://localhost:1337/graphql',
   cache: new InMemoryCache(),
 });
 
