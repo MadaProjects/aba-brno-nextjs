@@ -2,8 +2,15 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { ConatactForm } from '../Form/ContactForm';
+import { PriceList } from '../Pricelist/Pricelist';
 
-export const Tabs = ({ tabs = [], sendContactTo = '' }) => {
+export const Tabs = ({
+  tabs = [],
+  sendContactTo = '',
+  pricelist = [],
+  textBefore = '',
+  textAfter = '',
+}) => {
   const [currentTab, setCurrentTab] = useState(0);
   const [maxTabs, setMaxTabs] = useState(tabs.length + 1);
 
@@ -56,6 +63,28 @@ export const Tabs = ({ tabs = [], sendContactTo = '' }) => {
             ))
           : ''}
 
+        {pricelist.length > 0 ? (
+          <button
+            data-id={maxTabs - 1}
+            id={`tab-${maxTabs - 1}`}
+            role='tab'
+            aria-selected={currentTab === maxTabs - 1 ? true : false}
+            aria-controls={`tabpanel-${maxTabs - 1}`}
+            key={`tabbtn-${maxTabs - 1}`}
+            tabIndex={currentTab == maxTabs - 1 ? '0' : '-1'}
+            onClick={handleTabChange}
+            onKeyDown={changeTabOnKeyDown}
+            className={
+              currentTab == maxTabs - 1
+                ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-primary dark:text-secondary dark:hover:text-secondary border-primary dark:border-secondary'
+                : 'inline-block p-4 rounded-t-lg border-b-2 hover:text-primary dark:hover:text-secondary'
+            }>
+            <span className='inline text-[16px]'>Cennik</span>
+          </button>
+        ) : (
+          ''
+        )}
+
         <button
           data-id={999}
           id={`tab-999`}
@@ -93,6 +122,28 @@ export const Tabs = ({ tabs = [], sendContactTo = '' }) => {
               </div>
             ))
           : ''}
+        {pricelist.length > 0 ? (
+          <div
+            key={`tabpanel-${maxTabs - 1}`}
+            id={`tabpanel-${maxTabs - 1}`}
+            data-testid={`tabpanel-${maxTabs - 1}`}
+            tabIndex='0'
+            aria-labelledby={`tab-${maxTabs - 1}`}
+            className={
+              currentTab == maxTabs - 1
+                ? 'block px-6 py-8 bg-gray-50 dark:bg-gray-800'
+                : 'hidden'
+            }>
+            <PriceList
+              pricelist={pricelist}
+              textBefore={textBefore}
+              textAfter={textAfter}
+            />
+          </div>
+        ) : (
+          ''
+        )}
+
         <div
           key={`tabpanel-999`}
           id={`tabpanel-999`}

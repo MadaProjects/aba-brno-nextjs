@@ -5,6 +5,7 @@ import { Heading } from '../Tags/Heading';
 import { Tabs } from '../Tabs/Tabs';
 
 export const ExpertPage = ({ pageData }) => {
+  console.log(pageData);
   return (
     <div data-testid='expertPage'>
       <div className='flex flex-col md:flex-row mx-auto max-w-5xl mx-auto'>
@@ -181,7 +182,13 @@ export const ExpertPage = ({ pageData }) => {
         </div>
       </div>
       <div className='max-w-5xl mx-auto md:mt-5'>
-        <Tabs tabs={pageData.TabText} sendContactTo={pageData.Email} />
+        <Tabs
+          tabs={pageData.TabText}
+          sendContactTo={pageData.Email}
+          pricelist={pageData.PriceList}
+          textBefore={pageData.TextBeforePricelist}
+          textAfter={pageData.TextAfterPriceList}
+        />
       </div>
     </div>
   );
