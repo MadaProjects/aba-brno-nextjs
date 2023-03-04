@@ -37,7 +37,6 @@ export default function Home({ mainMenu, pageData, allWorkshops }) {
               numberOfDynamicBlocks++;
             }
           }
-
           return (
             <DynamicZone
               element={elementInZone}
@@ -226,6 +225,66 @@ export async function getStaticProps({ params }) {
                             }
                           }
                         }
+                      }
+                    }
+                  }
+                }
+
+                ... on ComponentNewPageSliderNew {
+                  ComponentName
+                  Slide {
+                    id
+                    Title
+                    Text
+                    ExternalUrl
+                    ButtonText
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
+                        }
+                      }
+                    }
+                  }
+                }
+
+                ... on ComponentNewPageDecorativeImg {
+                  Image {
+                    data {
+                      attributes {
+                        url
+                        name
+                        caption
                       }
                     }
                   }

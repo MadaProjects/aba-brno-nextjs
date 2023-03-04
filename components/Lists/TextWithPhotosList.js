@@ -2,31 +2,13 @@ import Image from 'next/image';
 import { NiceTitle } from '../Text/NiceTitle';
 
 // TODO Images should had maximum size
-export const TextWithPhotosList = ({
-  list,
-  headingText = '',
-  perex = '',
-  graphicText = '',
-  headingLevel,
-}) => {
+export const TextWithPhotosList = ({ list }) => {
   return (
     <div
       data-testid='articlesList'
       className='container mx-auto px-4 py-5 md:py-10 md:px-0'>
-      {headingText ? (
-        <NiceTitle
-          headingLevel={headingLevel}
-          headingText={headingText}
-          perex={perex}
-          graphicText={graphicText}
-        />
-      ) : (
-        ''
-      )}
       <div className='flex flex-col flex-wrap md:flex-row pt-4 md:pt-10'>
         {list.map((item, i) => {
-          const currentItem = item.attributes;
-
           return (
             <div
               key={i}
@@ -37,12 +19,12 @@ export const TextWithPhotosList = ({
                 }`}>
                 <div className='relative w-full min-h-[250px] mb-0'>
                   <Image
-                    src={currentItem.Image.data.attributes.url}
+                    src={item.Image.data.attributes.url}
                     layout='fill'
                     alt={
-                      currentItem.Image.data.attributes.caption
-                        ? currentItem.Image.data.attributes.caption
-                        : currentItem.Title
+                      item.Image.data.attributes.caption
+                        ? item.Image.data.attributes.caption
+                        : item.Title
                     }
                     objectFit='cover'
                     objectPosition='center'
@@ -51,11 +33,9 @@ export const TextWithPhotosList = ({
               </div>
               <div className='mt-6'>
                 <h3 className='mb-2 text-center text-xl xl:text-2xl font-black text-primary dark:text-secondary'>
-                  {currentItem.Title}
+                  {item.Title}
                 </h3>
-                <p className='dark:text-white text-justify'>
-                  {currentItem.Text}
-                </p>
+                <p className='dark:text-white text-justify'>{item.Text}</p>
               </div>
             </div>
           );

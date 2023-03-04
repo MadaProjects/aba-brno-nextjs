@@ -20,15 +20,6 @@ export const FOOTER_MENU_QUERY = gql`
                 }
               }
             }
-
-            external_links {
-              data {
-                attributes {
-                  Title
-                  Url
-                }
-              }
-            }
           }
         }
       }
@@ -92,17 +83,22 @@ export const MainFooter = () => {
                       </a>
                     </li>
                   ))}
-                  {menuColumn.external_links.data.map((menuItem, i) => (
-                    <li key={`footer-menu-item-2-${i}`} className='mb-4'>
-                      <a
-                        href={menuItem.attributes.Title}
-                        className='hover:underline'
-                        target='_blank'
-                        rel='noopener noreferrer'>
-                        {menuItem.attributes.Title}
-                      </a>
-                    </li>
-                  ))}
+
+                  {
+                    //TODO - external links to footer
+                  }
+                  {menuColumn.external_links &&
+                    menuColumn.external_links.data.map((menuItem, i) => (
+                      <li key={`footer-menu-item-2-${i}`} className='mb-4'>
+                        <a
+                          href={menuItem.attributes.Title}
+                          className='hover:underline'
+                          target='_blank'
+                          rel='noopener noreferrer'>
+                          {menuItem.attributes.Title}
+                        </a>
+                      </li>
+                    ))}
                 </ul>
               </div>
             ))}

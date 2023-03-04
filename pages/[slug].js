@@ -53,12 +53,10 @@ export default function Home({ pageData, allWorkshops }) {
             numberOfTextWithImageBlocks++;
           }
 
-          if (elementInZone.__typename !== 'ComponentPageSlider') {
+          if (
+            elementInZone.__typename !== 'ComponentNewPageDecorativeImg'
+          ) {
             numberOfDynamicBlocks++;
-          } else {
-            if (elementInZone.ShowTextBlock === true) {
-              numberOfDynamicBlocks++;
-            }
           }
 
           return (
@@ -114,165 +112,236 @@ export async function getStaticProps({ params }) {
                   ListOf
                   ShowAll
                 }
-                ... on ComponentPageTextOnImage {
-                  text_on_image {
-                    data {
-                      attributes {
-                        Title
-                        Perex
-                        Text
-                        ButtonText
-                        ExternalUrl
-                        InternalUrl
-                        BackgroundImage {
-                          data {
-                            attributes {
-                              url
-                              name
-                              caption
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on ComponentPageTextSlider {
-                  BackgroundImage {
-                    data {
-                      attributes {
-                        url
-                      }
-                    }
-                  }
-                  text_on_sliders {
-                    data{
-                      attributes {
-                        Title
-                        Text
-                        TextUnder
-                      }
-                    }
-                  }
-                }
                 ... on ComponentPageNiceTitle {
                   Title
                   GraphicTitle
                   TextUnder
                 }
-                ... on ComponentPageTextWithImage {
-                  text_block_with_image {
-                    data {
-                      attributes {
-                        Title
-                        Perex
-                        Text
-                        ButtonText
-                        ExternalUrl
-                        InternalUrl
-                        Image {
-                          data {
-                            attributes {
-                              url
-                              name
-                              caption
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on ComponentPageText {
-                  text_block {
-                    data {
-                      attributes {
-                        Title
-                        Perex
-                        Text
-                        ButtonText
-                        ExternalUrl
-                        BackgroundColor
-                        InternalUrl {
-                          data {
-                            attributes {
-                              Url
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ...on ComponentPageSlider {
-                  ShowTextBlock
-                  SmallBanner
-                  sliders {
-                    data {
-                      attributes {
-                        Title
-                        Text
-                        ExternalUrl
-                        ButtonText      
-                        article {
-                          data {
-                            attributes {
-                              Url
-                            }
-                          }
-                        }
-                        expert {
-                          data {
-                            attributes {
-                              Url
-                            }
-                          }
-                        }
-                        page {
-                          data {
-                            attributes {
-                              Url
-                            }
-                          }
-                        }
-                        Image {
-                          data {
-                            attributes {
-                              url
-                              name
-                              caption
-                            }
-                          }
-                        }
-                        
-                      }
-                    }
-                  }
-                }
-                
-                ... on ComponentPagePhotoEfect {
-                  Title
-                  GraphicTitlePhotoEffect: GraphicTitle
-                  TextUnderTitle
-                  photo_efect_text {
-                    data {
-                      attributes {
-                        Title
-                        Text
-                        Image {
-                          data {
-                            attributes {
-                              url
-                              name
-                              caption
-                            }
-                          }
+
+                ... on ComponentNewPageTextWithPhotoEffect {
+                  PhotoBlock {
+                    Title
+                    Text
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
                         }
                       }
                     }
                   }
                 }
                 
+                ... on ComponentNewPageTextSlider {
+                  Image {
+                    data {
+                      attributes {
+                        url
+                        name
+                        caption
+                      }
+                    }
+                  }
+                Slide {
+                  Text
+                  TextUnder
+                }
+              }
+                
+                ... on ComponentNewPageTextOnImage {
+                  Titlee: Title
+                  Perex
+                  Textt: Text
+                  ExternalUrl
+                    ButtonText
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
+                        }
+                      }
+                    }
+                  
+                }
+
+                ... on ComponentNewPageTextWithImage {
+                  TextWithImageBlock {
+                    Title
+                    Perex
+                    Text
+                    ExternalUrl
+                    ButtonText
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
+                        }
+                      }
+                    }
+                  }
+                }
+                
+                
+                ... on ComponentNewPageSliderNew {
+                  ComponentName
+                  Slide {
+                    id
+                    Title
+                    Text
+                    ExternalUrl
+                    ButtonText
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
+                        }
+                      }
+                    }
+                  }
+                }
+                
+                ... on ComponentNewPageDecorativeImg {
+                  Image {
+                    data {
+                      attributes {
+                        url
+                        name
+                        caption
+                      }
+                    }
+                  }
+                }
+
+                ... on ComponentNewPageText {
+                  Text {
+                    Title
+                    Perex
+                    Text
+                    ButtonText
+                    ExternalUrl
+
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }

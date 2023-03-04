@@ -20,8 +20,6 @@ const urlify = (text) => {
 };
 
 export const WorkshopPage = ({ pageData }) => {
-  console.log(pageData);
-
   let updateDateWithTime = false;
   const updatedDate = new Date(pageData.DateOfTheWorkshop);
   let formatedUpdatedDate = `${updatedDate.getDate()}. ${

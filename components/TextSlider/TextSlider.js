@@ -70,20 +70,14 @@ export const TextSlider = ({ slides, backgroundImage }) => {
               }>
               <div className='container h-full h-full mx-auto px-4 py-10 lg:py-20 lg:px-6 relative'>
                 <div className='md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 max-w-xl text-white px-4 py-4'>
-                  {slide.attributes.Text ? (
-                    <p className='mb-0 mt-4 text-center'>
-                      {slide.attributes.Text}
-                    </p>
-                  ) : (
-                    ''
+                  {slide.Text && (
+                    <p className='mb-0 mt-4 text-center'>{slide.Text}</p>
                   )}
 
-                  {slide.attributes.TextUnder ? (
+                  {slide.TextUnder && (
                     <p className='mb-0 mt-4 text-center'>
-                      <strong>{slide.attributes.TextUnder}</strong>
+                      <strong>{slide.TextUnder}</strong>
                     </p>
-                  ) : (
-                    ''
                   )}
                 </div>
               </div>
