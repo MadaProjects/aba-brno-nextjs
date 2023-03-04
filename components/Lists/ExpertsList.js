@@ -46,7 +46,9 @@ export const ExpertsList = ({
   );
 
   return (
-    <div data-testid='expertsList'>
+    <div
+      data-testid='expertsList'
+      className='container mx-auto px-4 pt-5 pb-10 md:pt-10 md:pb-12 md:px-0'>
       <NiceTitle
         headingText={headingText}
         perex={perex}

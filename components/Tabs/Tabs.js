@@ -79,7 +79,7 @@ export const Tabs = ({
                 ? 'inline-block p-4 rounded-t-lg border-b-2 text-primary hover:text-primary dark:text-secondary dark:hover:text-secondary border-primary dark:border-secondary'
                 : 'inline-block p-4 rounded-t-lg border-b-2 hover:text-primary dark:hover:text-secondary'
             }>
-            <span className='inline text-[16px]'>Cennik</span>
+            <span className='inline text-[16px]'>Ceník</span>
           </button>
         ) : (
           ''

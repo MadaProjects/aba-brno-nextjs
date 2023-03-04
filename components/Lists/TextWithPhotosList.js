@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { NiceTitle } from '../Text/NiceTitle';
 
+// TODO Images should had maximum size
 export const TextWithPhotosList = ({
   list,
   headingText = '',
@@ -22,7 +23,7 @@ export const TextWithPhotosList = ({
       ) : (
         ''
       )}
-      <div className='flex flex-col flex-wrap md:flex-row '>
+      <div className='flex flex-col flex-wrap md:flex-row pt-4 md:pt-10'>
         {list.map((item, i) => {
           const currentItem = item.attributes;
 

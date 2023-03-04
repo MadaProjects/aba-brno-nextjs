@@ -34,7 +34,7 @@ const DynamicZone = dynamic(() =>
 );
 */
 
-export default function Home({ pageData }) {
+export default function Home({ pageData, allWorkshops }) {
   let numberOfTextWithImageBlocks = 0;
   let numberOfDynamicBlocks = -1;
   const dymamicComponents = pageData.attributes.pageDynamicZone;
@@ -64,6 +64,7 @@ export default function Home({ pageData }) {
           return (
             <DynamicZone
               element={elementInZone}
+              allWorkshops={allWorkshops}
               key={i}
               orderNumber={numberOfDynamicBlocks}
               numberOfTextWithImageBlocks={numberOfTextWithImageBlocks}
@@ -276,6 +277,28 @@ export async function getStaticProps({ params }) {
             }
           }
         }
+        workshops(sort: "DateOfTheWorkshop:desc")  {
+          data {
+            attributes {
+              Title
+              Url
+              Perex
+              Text
+              DateOfTheWorkshop
+              TimeOfTheWorkshop
+              RegistrationLinkForTheTorkshop
+              Image {
+                data {
+                  attributes {
+                    name
+                    caption
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     `,
   });
@@ -283,6 +306,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       pageData: data.pages.data[0],
+      allWorkshops: data.workshops.data,
     },
   };
 }

@@ -4,6 +4,7 @@ import { TextWithImage } from '../Text/TextWithImage';
 import { TextOnImage } from '../Text/TextOnImage';
 import { ArticlesList } from '../Lists/ArticlesList';
 import { ExpertsList } from '../Lists/ExpertsList';
+import { WorkshopsList } from '../Lists/WorkshopsList';
 import { Slider } from '../Slider/Slider';
 import { TextSlider } from '../TextSlider/TextSlider';
 import { TextWithPhotosList } from '../Lists/TextWithPhotosList';
@@ -13,6 +14,7 @@ export const DynamicZone = ({
   element,
   numberOfTextWithImageBlocks,
   orderNumber,
+  allWorkshops,
 }) => {
   let returnComponent = '';
 
@@ -113,6 +115,18 @@ export const DynamicZone = ({
         case 'Therapeutist':
           return (
             <ExpertsList
+              headingLevel={orderNumber === 0 ? 1 : 2}
+              headingText={element.Title}
+              perex={element.TextUnderTitle}
+              graphicText={element.GraphicTitleSignpost}
+              showAll={element.ShowAll ? element.ShowAll : false}
+            />
+          );
+          break;
+        case 'Workshops':
+          return (
+            <WorkshopsList
+              workshops={allWorkshops}
               headingLevel={orderNumber === 0 ? 1 : 2}
               headingText={element.Title}
               perex={element.TextUnderTitle}
