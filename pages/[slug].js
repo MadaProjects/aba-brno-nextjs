@@ -34,7 +34,7 @@ const DynamicZone = dynamic(() =>
 );
 */
 
-export default function Home({ pageData, allWorkshops }) {
+export default function Home({ pageData, allWorkshops, headerMenu }) {
   let numberOfTextWithImageBlocks = 0;
   let numberOfDynamicBlocks = -1;
   const dymamicComponents = pageData.attributes.pageDynamicZone;
@@ -100,11 +100,11 @@ export async function getStaticProps({ params }) {
               Title
               pageDynamicZone {
                 __typename
-                ... on ComponentPageContactForm {
+                ... on ComponentNewPageContactForm {
                   WhereSendEmailsFromForm
                 }
 
-                ... on ComponentPagePage {
+                ... on ComponentNewPagePage {
                   Title
                   GraphicTitleSignpost: GraphicTitle
                   TextUnderTitle
@@ -112,7 +112,7 @@ export async function getStaticProps({ params }) {
                   ListOf
                   ShowAll
                 }
-                ... on ComponentPageNiceTitle {
+                ... on ComponentNewPageNiceTitle {
                   Title
                   GraphicTitle
                   TextUnder
@@ -368,6 +368,34 @@ export async function getStaticProps({ params }) {
             }
           }
         }
+        
+        headerMenu {
+          data {
+            id
+            attributes {
+              Menu {
+                main_page {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+                submenu_pages {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     `,
   });
@@ -376,6 +404,7 @@ export async function getStaticProps({ params }) {
     props: {
       pageData: data.pages.data[0],
       allWorkshops: data.workshops.data,
+      headerMenu: data.headerMenu.data.attributes,
     },
   };
 }

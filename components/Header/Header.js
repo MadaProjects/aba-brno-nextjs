@@ -8,39 +8,39 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Spinner } from '../Spinner';
 
-export const MENU_QUERY = gql`
-  query MainMenu {
-    headerMenu {
-      data {
-        id
-        attributes {
-          Menu {
-            main_page {
-              data {
-                id
-                attributes {
-                  Title
-                  Url
-                }
-              }
-            }
-            submenu_pages {
-              data {
-                id
-                attributes {
-                  Title
-                  Url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+// export const MENU_QUERY = gql`
+//   query MainMenu {
+//     headerMenu {
+//       data {
+//         id
+//         attributes {
+//           Menu {
+//             main_page {
+//               data {
+//                 id
+//                 attributes {
+//                   Title
+//                   Url
+//                 }
+//               }
+//             }
+//             submenu_pages {
+//               data {
+//                 id
+//                 attributes {
+//                   Title
+//                   Url
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
-export const Header = () => {
+export const Header = ({ headerMenu }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
   const router = useRouter();
@@ -65,12 +65,16 @@ export const Header = () => {
     }
   };
 
-  const { loading, error, data } = useQuery(MENU_QUERY);
+  return <>Menu</>;
 
+  /*
+  
+  const { loading, error, data } = useQuery('');
   if (loading) return <Spinner />;
   if (error) return `${error.message}`;
 
   const homepageUrl = document.location.host;
+  */
 
   return (
     <div className=' shadow-md dark:shadow-none ' data-testid='header'>

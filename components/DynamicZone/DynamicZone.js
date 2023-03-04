@@ -50,7 +50,7 @@ export const DynamicZone = ({
 
       return allTextWithImageBlocks;
       break;
-    case 'ComponentPageNiceTitle':
+    case 'ComponentNewPageNiceTitle':
       return (
         <NiceTitle
           headingText={element.Title}
@@ -68,7 +68,7 @@ export const DynamicZone = ({
         />
       );
       break;
-    case 'ComponentPagePage':
+    case 'ComponentNewPagePage':
       switch (element.ListOf) {
         case 'Therapeutist':
           return (
@@ -119,18 +119,6 @@ export const DynamicZone = ({
         />
       );
       break;
-    case 'ComponentPageTextSlider':
-      const allTextSlides = element.text_on_sliders.data;
-      const backgroundImage = element.BackgroundImage;
-
-      return (
-        <TextSlider
-          slides={allTextSlides}
-          backgroundImage={backgroundImage}
-        />
-      );
-      break;
-
     case 'ComponentNewPageTextSlider':
       return (
         <TextSlider
@@ -144,7 +132,7 @@ export const DynamicZone = ({
       return <TextWithPhotosList list={element.PhotoBlock} />;
 
       break;
-    case 'ComponentPageContactForm':
+    case 'ComponentNewPageContactForm':
       return (
         <ConatactForm sendContactTo={element.WhereSendEmailsFromForm} />
       );
