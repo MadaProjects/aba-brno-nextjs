@@ -6,6 +6,8 @@ import Image from 'next/legacy/image';
 import { gql } from '@apollo/client';
 import client from '../appolo-client';
 
+import { Header } from '../components/Header/Header';
+import { MainFooter } from '../components/Footer/MainFooter';
 import { SimpleText } from '../components/Text/SimpleText';
 import { TextWithImage } from '../components/Text/TextWithImage';
 import { TextOnImage } from '../components/Text/TextOnImage';
@@ -14,27 +16,13 @@ import { DynamicZone } from '../components/DynamicZone/DynamicZone';
 
 import styles from '../styles/Home.module.css';
 
-/*
-const SimpleText = dynamic(() => import('../components/Text/SimpleText'));
-
-const TextWithImage = dynamic(() =>
-  import('../components/Text/TextWithImage')
-);
-
-const TextOnImage = dynamic(() =>
-  import('../components/Text/TextOnImage')
-);
-
-const ExpertsList = dynamic(() =>
-  import('../components/Lists/ExpertsList')
-);
-
-const DynamicZone = dynamic(() =>
-  import('../components/DynamicZone/DynamicZone')
-);
-*/
-
-export default function Home({ pageData, allWorkshops, headerMenu }) {
+export default function Home({
+  pageData,
+  allWorkshops,
+  headerMenu,
+  footerMenu,
+  setting,
+}) {
   let numberOfTextWithImageBlocks = 0;
   let numberOfDynamicBlocks = -1;
   const dymamicComponents = pageData.attributes.pageDynamicZone;
@@ -46,6 +34,8 @@ export default function Home({ pageData, allWorkshops, headerMenu }) {
         <meta name='description' content='ABA Brno' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      <Header headerMenu={headerMenu} />
 
       <main className={styles.main}>
         {dymamicComponents.map((elementInZone, i) => {
@@ -71,7 +61,7 @@ export default function Home({ pageData, allWorkshops, headerMenu }) {
         })}
       </main>
 
-      <footer className={styles.footer}></footer>
+      <MainFooter footerMenu={footerMenu} setting={setting} />
     </div>
   );
 }
@@ -106,19 +96,15 @@ export async function getStaticProps({ params }) {
 
                 ... on ComponentNewPagePage {
                   Title
-                  GraphicTitleSignpost: GraphicTitle
                   TextUnderTitle
                   ButtonText
                   ListOf
                   ShowAll
                 }
-                ... on ComponentNewPageNiceTitle {
-                  Title
-                  GraphicTitle
-                  TextUnder
-                }
+
 
                 ... on ComponentNewPageTextWithPhotoEffect {
+                  TitleOnPage
                   PhotoBlock {
                     Title
                     Text
@@ -396,6 +382,40 @@ export async function getStaticProps({ params }) {
             }
           }
         }
+        footerMenu {
+          data {
+            attributes {
+              Menu {
+                id
+                Title
+                pages {
+                  data {
+                    attributes {
+                      Url
+                      Title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        setting {
+          data {
+            attributes {
+              SiteName
+              social_media_sites {
+                data {
+                  attributes {
+                    Title
+                    Url
+                    Logo
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     `,
   });
@@ -405,6 +425,8 @@ export async function getStaticProps({ params }) {
       pageData: data.pages.data[0],
       allWorkshops: data.workshops.data,
       headerMenu: data.headerMenu.data.attributes,
+      footerMenu: data.footerMenu.data.attributes,
+      setting: data.setting.data.attributes,
     },
   };
 }

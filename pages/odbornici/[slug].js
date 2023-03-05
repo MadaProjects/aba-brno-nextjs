@@ -5,8 +5,15 @@ import client from '../../appolo-client';
 import { Heading } from '../../components/Tags/Heading';
 import ReactMarkdown from 'react-markdown';
 import { ExpertPage } from '../../components/Pages/ExpertPage';
+import { Header } from '../../components/Header/Header';
+import { MainFooter } from '../../components/Footer/MainFooter';
 
-export default function Expert({ pageData }) {
+export default function Expert({
+  pageData,
+  headerMenu,
+  footerMenu,
+  setting,
+}) {
   const pageTitle = `ABA Brno - ${pageData.Name}`;
   return (
     <div>
@@ -16,11 +23,12 @@ export default function Expert({ pageData }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
+      <Header headerMenu={headerMenu} />
       <main className='container mx-auto px-4 py-5 dark:text-white md:py-10'>
         <ExpertPage pageData={pageData} />
       </main>
 
-      <footer></footer>
+      <MainFooter footerMenu={footerMenu} setting={setting} />
     </div>
   );
 }
@@ -83,6 +91,69 @@ export async function getStaticProps({ params }) {
             }
           }
         }
+
+        
+        headerMenu {
+          data {
+            id
+            attributes {
+              Menu {
+                main_page {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+                submenu_pages {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        footerMenu {
+          data {
+            attributes {
+              Menu {
+                id
+                Title
+                pages {
+                  data {
+                    attributes {
+                      Url
+                      Title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        setting {
+          data {
+            attributes {
+              SiteName
+              social_media_sites {
+                data {
+                  attributes {
+                    Title
+                    Url
+                    Logo
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     `,
   });
@@ -90,6 +161,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       pageData: data.therapeutists.data[0].attributes,
+      headerMenu: data.headerMenu.data.attributes,
+      footerMenu: data.footerMenu.data.attributes,
+      setting: data.setting.data.attributes,
     },
   };
 }

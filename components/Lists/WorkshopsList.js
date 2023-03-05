@@ -6,7 +6,6 @@ export const WorkshopsList = ({
   workshops,
   headingText = '',
   perex = '',
-  graphicText = '',
   doNotShowArticleWithThisUrl = false,
   showAll,
   headingLevel,
@@ -19,7 +18,6 @@ export const WorkshopsList = ({
         <NiceTitle
           headingText={headingText}
           perex={perex}
-          graphicText={graphicText}
           headingLevel={headingLevel}
         />
       ) : (

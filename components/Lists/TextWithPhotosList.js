@@ -2,11 +2,13 @@ import Image from 'next/image';
 import { NiceTitle } from '../Text/NiceTitle';
 
 // TODO Images should had maximum size
-export const TextWithPhotosList = ({ list }) => {
+export const TextWithPhotosList = ({ list, title }) => {
   return (
     <div
       data-testid='articlesList'
       className='container mx-auto px-4 py-5 md:py-10 md:px-0'>
+      {title && <NiceTitle headingText={title} />}
+
       <div className='flex flex-col flex-wrap md:flex-row pt-4 md:pt-10'>
         {list.map((item, i) => {
           return (
@@ -31,7 +33,7 @@ export const TextWithPhotosList = ({ list }) => {
                   />
                 </div>
               </div>
-              <div className='mt-6'>
+              <div className='mt-8'>
                 <h3 className='mb-2 text-center text-xl xl:text-2xl font-black text-primary dark:text-secondary'>
                   {item.Title}
                 </h3>

@@ -2,6 +2,9 @@ import Head from 'next/head';
 import Image from 'next/legacy/image';
 import { gql } from '@apollo/client';
 import client from '../appolo-client';
+
+import { Header } from '../components/Header/Header';
+import { MainFooter } from '../components/Footer/MainFooter';
 import { SimpleText } from '../components/Text/SimpleText';
 import { TextWithImage } from '../components/Text/TextWithImage';
 import { TextOnImage } from '../components/Text/TextOnImage';
@@ -11,7 +14,13 @@ import styles from '../styles/Home.module.css';
 import { useState } from 'react';
 import { DynamicZone } from '../components/DynamicZone/DynamicZone';
 
-export default function Home({ mainMenu, pageData, allWorkshops }) {
+export default function Home({
+  pageData,
+  allWorkshops,
+  headerMenu,
+  footerMenu,
+  setting,
+}) {
   let numberOfTextWithImageBlocks = 0;
   let numberOfDynamicBlocks = -1;
   const dymamicComponents = pageData.attributes.pageDynamicZone;
@@ -24,6 +33,7 @@ export default function Home({ mainMenu, pageData, allWorkshops }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
+      <Header headerMenu={headerMenu} />
       <main className={styles.main} role='main'>
         {dymamicComponents.map((elementInZone, i) => {
           if (elementInZone.__typename === 'ComponentPageTextWithImage') {
@@ -49,7 +59,7 @@ export default function Home({ mainMenu, pageData, allWorkshops }) {
         })}
       </main>
 
-      <footer className={styles.footer}></footer>
+      <MainFooter footerMenu={footerMenu} setting={setting} />
     </div>
   );
 }
@@ -70,19 +80,13 @@ export async function getStaticProps({ params }) {
 
                 ... on ComponentNewPagePage {
                   Title
-                  GraphicTitleSignpost: GraphicTitle
                   TextUnderTitle
                   ButtonText
                   ListOf
                   ShowAll
                 }
-                ... on ComponentNewPageNiceTitle {
-                  Title
-                  GraphicTitle
-                  TextUnder
-                }
-
                 ... on ComponentNewPageTextWithPhotoEffect {
+                  TitleOnPage
                   PhotoBlock {
                     Title
                     Text
@@ -330,31 +334,7 @@ export async function getStaticProps({ params }) {
             }
           }
         }
-      }
-    `,
-  });
 
-  return {
-    props: {
-      pageData: data.pages.data[0],
-      allWorkshops: data.workshops.data,
-    },
-  };
-}
-
-/*
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { slug: 'test' } }],
-    fallback: false,
-  };
-}
-*/
-/*
-export async function getStaticProps() {
-  const { data } = await client.query({
-    query: gql`
-      query MainMenu {
         headerMenu {
           data {
             id
@@ -369,6 +349,49 @@ export async function getStaticProps() {
                     }
                   }
                 }
+                submenu_pages {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        footerMenu {
+          data {
+            attributes {
+              Menu {
+                id
+                Title
+                pages {
+                  data {
+                    attributes {
+                      Url
+                      Title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        setting {
+          data {
+            attributes {
+              SiteName
+              social_media_sites {
+                data {
+                  attributes {
+                    Title
+                    Url
+                    Logo
+                  }
+                }
               }
             }
           }
@@ -379,8 +402,11 @@ export async function getStaticProps() {
 
   return {
     props: {
-      mainMenu: data,
+      pageData: data.pages.data[0],
+      allWorkshops: data.workshops.data,
+      headerMenu: data.headerMenu.data.attributes,
+      footerMenu: data.footerMenu.data.attributes,
+      setting: data.setting.data.attributes,
     },
   };
 }
-*/

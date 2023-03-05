@@ -33,7 +33,7 @@ export const TextOnImage = ({ headingLevel = 1, blockData }) => {
   } else if (blockData.workshop.data) {
     textBtnUrl = `../poradame/${blockData.workshop.data.attributes.Url}`;
   }
-
+  console.log(blockData);
   return (
     <div
       data-testid='textOnImage'
@@ -61,9 +61,9 @@ export const TextOnImage = ({ headingLevel = 1, blockData }) => {
           </p>
         )}
 
-        {blockData.Text && (
+        {blockData.Textt && (
           <div className='max-w-5xl	mr-auto ml-auto text-white'>
-            <ReactMarkdown>{blockData.Text}</ReactMarkdown>
+            <ReactMarkdown>{blockData.Textt}</ReactMarkdown>
           </div>
         )}
 
@@ -90,7 +90,7 @@ export const TextOnImage = ({ headingLevel = 1, blockData }) => {
 
       {blockData.Image.data.attributes.caption && (
         <p
-          className={`absolute pr-2 right-0 mb-0 bottom-0 z-10 text-xs pr-2text-right text-slate-600 dark:text-slate-400`}
+          className='absolute bottom-0 z-20 right-0 mb-0 text-xs pr-2 text-right text-slate-400'
           dangerouslySetInnerHTML={{
             __html: urlify(blockData.Image.data.attributes.caption),
           }}></p>

@@ -1,5 +1,18 @@
 import { useState, useEffect } from 'react';
 
+const urlify = (text) => {
+  var urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRegex, function (url) {
+    return (
+      '<a href="' +
+      url +
+      '" rel="noopener noreferrer" target="_blank">' +
+      url +
+      '</a>'
+    );
+  });
+};
+
 export const TextSlider = ({ slides, backgroundImage }) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
@@ -84,6 +97,14 @@ export const TextSlider = ({ slides, backgroundImage }) => {
             </div>
           );
         })}
+
+        {backgroundImage.data.attributes.caption && (
+          <p
+            className='absolute bottom-0 z-20 right-0 mb-0 text-xs pr-2 text-right text-slate-400'
+            dangerouslySetInnerHTML={{
+              __html: urlify(backgroundImage.data.attributes.caption),
+            }}></p>
+        )}
       </div>
 
       {slides.length > 1 ? (

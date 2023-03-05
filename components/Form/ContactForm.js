@@ -155,6 +155,7 @@ export const ConatactForm = ({ sendContactTo }) => {
               Odesláním souhlasíte se{' '}
               <a
                 href='../suhlas-so-spracovanim-osobnych-udajov'
+                target={'_blank'}
                 className='underline hover:no-underline hover:text-primary dark:hover:text-secondary'>
                 zpracováním osobních údajů.
               </a>

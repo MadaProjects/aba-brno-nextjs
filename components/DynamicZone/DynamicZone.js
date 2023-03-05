@@ -54,7 +54,6 @@ export const DynamicZone = ({
       return (
         <NiceTitle
           headingText={element.Title}
-          graphicText={element.GraphicTitle}
           headingLevel={orderNumber === 0 ? 1 : 2}
           perex={element.TextUnder}
         />
@@ -76,7 +75,6 @@ export const DynamicZone = ({
               headingLevel={orderNumber === 0 ? 1 : 2}
               headingText={element.Title}
               perex={element.TextUnderTitle}
-              graphicText={element.GraphicTitleSignpost}
               showAll={element.ShowAll ? element.ShowAll : false}
             />
           );
@@ -88,7 +86,6 @@ export const DynamicZone = ({
               headingLevel={orderNumber === 0 ? 1 : 2}
               headingText={element.Title}
               perex={element.TextUnderTitle}
-              graphicText={element.GraphicTitleSignpost}
               showAll={element.ShowAll ? element.ShowAll : false}
             />
           );
@@ -99,7 +96,6 @@ export const DynamicZone = ({
               headingLevel={orderNumber === 0 ? 1 : 2}
               headingText={element.Title}
               perex={element.TextUnderTitle}
-              graphicText={element.GraphicTitleSignpost}
               showAll={element.ShowAll ? element.ShowAll : false}
             />
           );
@@ -129,7 +125,12 @@ export const DynamicZone = ({
       break;
 
     case 'ComponentNewPageTextWithPhotoEffect':
-      return <TextWithPhotosList list={element.PhotoBlock} />;
+      return (
+        <TextWithPhotosList
+          list={element.PhotoBlock}
+          title={element.TitleOnPage}
+        />
+      );
 
       break;
     case 'ComponentNewPageContactForm':
