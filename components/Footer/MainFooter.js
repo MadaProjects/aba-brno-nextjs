@@ -12,9 +12,7 @@ export const MainFooter = ({ footerMenu, setting }) => {
       <footer className='p-4 bg-white sm:p-6 dark:bg-slate-900'>
         <div className='md:flex md:justify-between'>
           <div className='mb-6 md:mb-0'>
-            <Link
-              href='../'
-              className='flex items-center overflow-visible'>
+            <Link href='../' className='flex items-center overflow-visible'>
               <Image
                 src='/logo.png'
                 width={100}
@@ -69,7 +67,7 @@ export const MainFooter = ({ footerMenu, setting }) => {
               <a
                 href='https://www.petermada.info/'
                 target='_blank'
-                className='hover:underline'
+                className='underline hover:no-underline hover:text-primary dark:hover:text-secondary'
                 rel='noopener noreferrer'>
                 Peter Mada
               </a>
@@ -80,7 +78,7 @@ export const MainFooter = ({ footerMenu, setting }) => {
               <a
                 href='https://unsplash.com/'
                 target='_blank'
-                className='hover:underline'
+                className='underline hover:no-underline hover:text-primary dark:hover:text-secondary'
                 rel='noopener noreferrer'>
                 Unsplash
               </a>
@@ -202,7 +200,7 @@ export const MainFooter = ({ footerMenu, setting }) => {
                 return (
                   <a
                     href={socialMedia.attributes.Url}
-                    className='text-gray-500 hover:text-gray-900 dark:hover:text-white'
+                    className='text-gray-500 hover:text-primary dark:hover:text-secondary'
                     key={`social-media-footer-${i}`}
                     target='_blank'
                     rel='noopener noreferrer'>

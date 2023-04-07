@@ -152,9 +152,9 @@ export const Header = ({ headerMenu }) => {
             <ul className='flex flex-col p-4 mt-[2px] bg-gray-50 tracking-wider rounded-lg border border-gray-100 md:flex-row md:space-x-4 md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700  lg:space-x-8'>
               {headerMenu?.Menu.map((menu, i) => {
                 const activeClassName =
-                  'block py-2 pr-4 pl-3 text-whitebg-blue-700 text-sm rounded md:bg-transparent md:text-blue-700 md:p-0 lg:text-base dark:text-white leading-none md:leading-none';
+                  'block py-2 pr-4 pl-3 text-whitebg-blue-700 text-sm rounded md:bg-transparent md:text-blue-700 md:p-0 lg:text-base dark:text-white leading-none md:leading-none xl:leading-none';
                 const nonActiveClassName =
-                  'block py-2 pr-4 pl-3 text-gray-700  text-sm rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent lg:text-base leading-none  md:leading-none';
+                  'block py-2 pr-4 pl-3 text-gray-700  text-sm rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent lg:text-base leading-none md:leading-none xl:leading-none';
 
                 if (menu.main_page.data.attributes.Url === 'homepage') {
                   return '';

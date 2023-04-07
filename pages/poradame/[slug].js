@@ -11,13 +11,14 @@ import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 import { ShareSocial } from '../../components/ShareSocial/ShareSocial';
 import { WorkshopPage } from '../../components/Pages/WorkshopPage';
+import { Header } from '../../components/Header/Header';
+import { MainFooter } from '../../components/Footer/MainFooter';
 
-export default function Article({ pageData }) {
+export default function Article({ pageData, headerMenu, footerMenu, setting }) {
   const router = useRouter();
 
   const wordsPerMinute = 225;
-  const totalNumberOfWordsInArticle =
-    pageData.Text.trim().split(/\s+/).length;
+  const totalNumberOfWordsInArticle = pageData.Text.trim().split(/\s+/).length;
   const totalMinutesToread = Math.ceil(
     totalNumberOfWordsInArticle / wordsPerMinute
   );
@@ -54,18 +55,17 @@ export default function Article({ pageData }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
+      <Header headerMenu={headerMenu} />
       <main className='container mx-auto' data-testid='articlePage'>
         <WorkshopPage pageData={pageData} />
       </main>
 
-      <footer></footer>
+      <MainFooter footerMenu={footerMenu} setting={setting} />
     </div>
   );
 }
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/Workshops`
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/Workshops`);
   const experts = await res.json();
 
   const paths = experts.data.map((expert) => ({
@@ -119,6 +119,67 @@ export async function getStaticProps({ params }) {
             }
           }
         }
+        headerMenu {
+          data {
+            id
+            attributes {
+              Menu {
+                main_page {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+                submenu_pages {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        footerMenu {
+          data {
+            attributes {
+              Menu {
+                id
+                Title
+                pages {
+                  data {
+                    attributes {
+                      Url
+                      Title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        setting {
+          data {
+            attributes {
+              SiteName
+              social_media_sites {
+                data {
+                  attributes {
+                    Title
+                    Url
+                    Logo
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     `,
   });
@@ -126,6 +187,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       pageData: data.workshops.data[0].attributes,
+      headerMenu: data.headerMenu.data.attributes,
+      footerMenu: data.footerMenu.data.attributes,
+      setting: data.setting.data.attributes,
     },
   };
 }

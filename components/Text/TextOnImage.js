@@ -33,7 +33,6 @@ export const TextOnImage = ({ headingLevel = 1, blockData }) => {
   } else if (blockData.workshop.data) {
     textBtnUrl = `../poradame/${blockData.workshop.data.attributes.Url}`;
   }
-  console.log(blockData);
   return (
     <div
       data-testid='textOnImage'

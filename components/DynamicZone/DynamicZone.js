@@ -117,10 +117,7 @@ export const DynamicZone = ({
       break;
     case 'ComponentNewPageTextSlider':
       return (
-        <TextSlider
-          slides={element.Slide}
-          backgroundImage={element.Image}
-        />
+        <TextSlider slides={element.Slide} backgroundImage={element.Image} />
       );
       break;
 
@@ -134,13 +131,10 @@ export const DynamicZone = ({
 
       break;
     case 'ComponentNewPageContactForm':
-      return (
-        <ConatactForm sendContactTo={element.WhereSendEmailsFromForm} />
-      );
+      return <ConatactForm sendContactTo={element.WhereSendEmailsFromForm} />;
       break;
     default:
       console.log(`Block element is not defined - ${element.__typename}`);
-      console.log(element);
       return '';
   }
 };

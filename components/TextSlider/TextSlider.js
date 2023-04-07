@@ -108,7 +108,9 @@ export const TextSlider = ({ slides, backgroundImage }) => {
       </div>
 
       {slides.length > 1 ? (
-        <div className='flex items-center justify-center mt-4'>
+        <div
+          className='flex items-center justify-center 
+        mt-6 lg:mt-4'>
           <a
             href=''
             className='mx-4 p-px hover:scale-125 transition-transform duration-300 dark:text-slate-300'
