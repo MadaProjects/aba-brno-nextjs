@@ -45,6 +45,7 @@ export default function Article({ pageData }) {
   };
 
   // TODO this should be in article tag
+  // TODO check date format in time tag
   return (
     <div>
       <Head>

@@ -3,16 +3,22 @@ import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 import { Heading } from '../Tags/Heading';
 
-export const SimpleText = ({
-  headingLevel = 1,
-  headingText,
-  paragraphText,
-  perexText,
-  buttonText,
-  buttonLink,
-  buttonNewTab = false,
-}) => {
-  const cleanBtnLink = buttonLink === 'homepage' ? '/' : buttonLink;
+export const SimpleText = ({ headingLevel = 1, textData }) => {
+  let textBtnUrl = '';
+  let openInNewTab = false;
+
+  if (textData.ExternalUrl) {
+    textBtnUrl = textData.ExternalUrl;
+    openInNewTab = true;
+  } else if (textData.article.data) {
+    textBtnUrl = `../clanky/${textData.article.data.attributes.Url}`;
+  } else if (textData.expert.data) {
+    textBtnUrl = `../odbornici/${textData.expert.data.attributes.Url}`;
+  } else if (textData.page.data) {
+    textBtnUrl = `../${textData.page.data.attributes.Url}`;
+  } else if (textData.workshop.data) {
+    textBtnUrl = `../poradame/${textData.workshop.data.attributes.Url}`;
+  }
 
   return (
     <div
@@ -20,44 +26,42 @@ export const SimpleText = ({
       className='container mx-auto text-center dark:text-white px-4 py-6 md:py-10'>
       <Heading
         level={headingLevel}
-        headingClass={perexText ? 'mb-3 xl:mb-3' : ''}>
-        {headingText}
+        headingClass={textData.Perex ? 'mb-3 xl:mb-3' : ''}>
+        {textData.Title}
       </Heading>
-      {perexText ? (
+      {textData.Perex ? (
         <p className='italic mb-7 text-center max-w-lg mx-auto'>
-          {perexText}
+          {textData.Perex}
         </p>
       ) : (
         ''
       )}
-      {paragraphText ? (
+      {textData.Text ? (
         <div className='max-w-4xl	mr-auto ml-auto'>
-          <ReactMarkdown>{paragraphText}</ReactMarkdown>
+          <ReactMarkdown>{textData.Text}</ReactMarkdown>
         </div>
       ) : (
         ''
       )}
 
-      {buttonText ? (
+      {textData.ButtonText && textBtnUrl && (
         <div className='text-center mb-6'>
-          {buttonNewTab ? (
+          {openInNewTab ? (
             <a
-              href={cleanBtnLink}
+              href={textBtnUrl}
               target='_blank'
               rel='noreferrer'
               className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent'>
-              {buttonText}
+              {textData.ButtonText}
             </a>
           ) : (
             <Link
-              href={cleanBtnLink}
+              href={textBtnUrl}
               className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent'>
-              {buttonText}
+              {textData.ButtonText}
             </Link>
           )}
         </div>
-      ) : (
-        ''
       )}
     </div>
   );
@@ -65,9 +69,5 @@ export const SimpleText = ({
 
 SimpleText.propTypes = {
   headingLevel: PropTypes.number,
-  headingText: PropTypes.string,
-  paragraphText: PropTypes.string,
-  perexText: PropTypes.string,
-  buttonText: PropTypes.string,
-  buttonNewTab: PropTypes.bool,
+  textData: PropTypes.object,
 };

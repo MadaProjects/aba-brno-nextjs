@@ -6,6 +6,8 @@ import Image from 'next/legacy/image';
 import { gql } from '@apollo/client';
 import client from '../appolo-client';
 
+import { Header } from '../components/Header/Header';
+import { MainFooter } from '../components/Footer/MainFooter';
 import { SimpleText } from '../components/Text/SimpleText';
 import { TextWithImage } from '../components/Text/TextWithImage';
 import { TextOnImage } from '../components/Text/TextOnImage';
@@ -14,27 +16,13 @@ import { DynamicZone } from '../components/DynamicZone/DynamicZone';
 
 import styles from '../styles/Home.module.css';
 
-/*
-const SimpleText = dynamic(() => import('../components/Text/SimpleText'));
-
-const TextWithImage = dynamic(() =>
-  import('../components/Text/TextWithImage')
-);
-
-const TextOnImage = dynamic(() =>
-  import('../components/Text/TextOnImage')
-);
-
-const ExpertsList = dynamic(() =>
-  import('../components/Lists/ExpertsList')
-);
-
-const DynamicZone = dynamic(() =>
-  import('../components/DynamicZone/DynamicZone')
-);
-*/
-
-export default function Home({ pageData }) {
+export default function Home({
+  pageData,
+  allWorkshops,
+  headerMenu,
+  footerMenu,
+  setting,
+}) {
   let numberOfTextWithImageBlocks = 0;
   let numberOfDynamicBlocks = -1;
   const dymamicComponents = pageData.attributes.pageDynamicZone;
@@ -47,23 +35,24 @@ export default function Home({ pageData }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
+      <Header headerMenu={headerMenu} />
+
       <main className={styles.main}>
         {dymamicComponents.map((elementInZone, i) => {
           if (elementInZone.__typename === 'ComponentPageTextWithImage') {
             numberOfTextWithImageBlocks++;
           }
 
-          if (elementInZone.__typename !== 'ComponentPageSlider') {
+          if (
+            elementInZone.__typename !== 'ComponentNewPageDecorativeImg'
+          ) {
             numberOfDynamicBlocks++;
-          } else {
-            if (elementInZone.ShowTextBlock === true) {
-              numberOfDynamicBlocks++;
-            }
           }
 
           return (
             <DynamicZone
               element={elementInZone}
+              allWorkshops={allWorkshops}
               key={i}
               orderNumber={numberOfDynamicBlocks}
               numberOfTextWithImageBlocks={numberOfTextWithImageBlocks}
@@ -72,7 +61,7 @@ export default function Home({ pageData }) {
         })}
       </main>
 
-      <footer className={styles.footer}></footer>
+      <MainFooter footerMenu={footerMenu} setting={setting} />
     </div>
   );
 }
@@ -101,177 +90,328 @@ export async function getStaticProps({ params }) {
               Title
               pageDynamicZone {
                 __typename
-                ... on ComponentPageContactForm {
+                ... on ComponentNewPageContactForm {
                   WhereSendEmailsFromForm
                 }
 
-                ... on ComponentPagePage {
+                ... on ComponentNewPagePage {
                   Title
-                  GraphicTitleSignpost: GraphicTitle
                   TextUnderTitle
                   ButtonText
                   ListOf
                   ShowAll
                 }
-                ... on ComponentPageTextOnImage {
-                  text_on_image {
-                    data {
-                      attributes {
-                        Title
-                        Perex
-                        Text
-                        ButtonText
-                        ExternalUrl
-                        InternalUrl
-                        BackgroundImage {
-                          data {
-                            attributes {
-                              url
-                              name
-                              caption
-                            }
-                          }
+
+
+                ... on ComponentNewPageTextWithPhotoEffect {
+                  TitleOnPage
+                  PhotoBlock {
+                    Title
+                    Text
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
                         }
                       }
                     }
                   }
                 }
-                ... on ComponentPageTextSlider {
-                  BackgroundImage {
+                
+                ... on ComponentNewPageTextSlider {
+                  Image {
                     data {
                       attributes {
                         url
+                        name
+                        caption
                       }
                     }
                   }
-                  text_on_sliders {
-                    data{
-                      attributes {
-                        Title
-                        Text
-                        TextUnder
-                      }
-                    }
-                  }
-                }
-                ... on ComponentPageNiceTitle {
-                  Title
-                  GraphicTitle
+                Slide {
+                  Text
                   TextUnder
                 }
-                ... on ComponentPageTextWithImage {
-                  text_block_with_image {
-                    data {
-                      attributes {
-                        Title
-                        Perex
-                        Text
-                        ButtonText
-                        ExternalUrl
-                        InternalUrl
-                        Image {
-                          data {
-                            attributes {
-                              url
-                              name
-                              caption
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on ComponentPageText {
-                  text_block {
-                    data {
-                      attributes {
-                        Title
-                        Perex
-                        Text
-                        ButtonText
-                        ExternalUrl
-                        BackgroundColor
-                        InternalUrl {
-                          data {
-                            attributes {
-                              Url
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ...on ComponentPageSlider {
-                  ShowTextBlock
-                  SmallBanner
-                  sliders {
-                    data {
-                      attributes {
-                        Title
-                        Text
-                        ExternalUrl
-                        ButtonText      
-                        article {
-                          data {
-                            attributes {
-                              Url
-                            }
-                          }
-                        }
-                        expert {
-                          data {
-                            attributes {
-                              Url
-                            }
-                          }
-                        }
-                        page {
-                          data {
-                            attributes {
-                              Url
-                            }
-                          }
-                        }
-                        Image {
-                          data {
-                            attributes {
-                              url
-                              name
-                              caption
-                            }
-                          }
-                        }
-                        
-                      }
-                    }
-                  }
-                }
+              }
                 
-                ... on ComponentPagePhotoEfect {
-                  Title
-                  GraphicTitlePhotoEffect: GraphicTitle
-                  TextUnderTitle
-                  photo_efect_text {
-                    data {
-                      attributes {
-                        Title
-                        Text
-                        Image {
-                          data {
-                            attributes {
-                              url
-                              name
-                              caption
-                            }
-                          }
+                ... on ComponentNewPageTextOnImage {
+                  Titlee: Title
+                  Perex
+                  Textt: Text
+                  ExternalUrl
+                    ButtonText
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
+                        }
+                      }
+                    }
+                  
+                }
+
+                ... on ComponentNewPageTextWithImage {
+                  TextWithImageBlock {
+                    Title
+                    Perex
+                    Text
+                    ExternalUrl
+                    ButtonText
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
                         }
                       }
                     }
                   }
                 }
                 
+                
+                ... on ComponentNewPageSliderNew {
+                  ComponentName
+                  Slide {
+                    id
+                    Title
+                    Text
+                    ExternalUrl
+                    ButtonText
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    Image {
+                      data {
+                        attributes {
+                          url
+                          name
+                          caption
+                        }
+                      }
+                    }
+                  }
+                }
+                
+                ... on ComponentNewPageDecorativeImg {
+                  Image {
+                    data {
+                      attributes {
+                        url
+                        name
+                        caption
+                      }
+                    }
+                  }
+                }
+
+                ... on ComponentNewPageText {
+                  Text {
+                    Title
+                    Perex
+                    Text
+                    ButtonText
+                    ExternalUrl
+
+                    article {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    expert {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    page {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                    workshop {
+                      data {
+                        attributes {
+                          Url
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        workshops(sort: "DateOfTheWorkshop:desc")  {
+          data {
+            attributes {
+              Title
+              Url
+              Perex
+              Text
+              DateOfTheWorkshop
+              TimeOfTheWorkshop
+              RegistrationLinkForTheTorkshop
+              Image {
+                data {
+                  attributes {
+                    name
+                    caption
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        
+        headerMenu {
+          data {
+            id
+            attributes {
+              Menu {
+                main_page {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+                submenu_pages {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        footerMenu {
+          data {
+            attributes {
+              Menu {
+                id
+                Title
+                pages {
+                  data {
+                    attributes {
+                      Url
+                      Title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        setting {
+          data {
+            attributes {
+              SiteName
+              social_media_sites {
+                data {
+                  attributes {
+                    Title
+                    Url
+                    Logo
+                  }
+                }
               }
             }
           }
@@ -283,6 +423,10 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       pageData: data.pages.data[0],
+      allWorkshops: data.workshops.data,
+      headerMenu: data.headerMenu.data.attributes,
+      footerMenu: data.footerMenu.data.attributes,
+      setting: data.setting.data.attributes,
     },
   };
 }

@@ -1,5 +1,18 @@
 import { useState, useEffect } from 'react';
 
+const urlify = (text) => {
+  var urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRegex, function (url) {
+    return (
+      '<a href="' +
+      url +
+      '" rel="noopener noreferrer" target="_blank">' +
+      url +
+      '</a>'
+    );
+  });
+};
+
 export const TextSlider = ({ slides, backgroundImage }) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
@@ -70,30 +83,34 @@ export const TextSlider = ({ slides, backgroundImage }) => {
               }>
               <div className='container h-full h-full mx-auto px-4 py-10 lg:py-20 lg:px-6 relative'>
                 <div className='md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 max-w-xl text-white px-4 py-4'>
-                  {slide.attributes.Text ? (
-                    <p className='mb-0 mt-4 text-center'>
-                      {slide.attributes.Text}
-                    </p>
-                  ) : (
-                    ''
+                  {slide.Text && (
+                    <p className='mb-0 mt-4 text-center'>{slide.Text}</p>
                   )}
 
-                  {slide.attributes.TextUnder ? (
+                  {slide.TextUnder && (
                     <p className='mb-0 mt-4 text-center'>
-                      <strong>{slide.attributes.TextUnder}</strong>
+                      <strong>{slide.TextUnder}</strong>
                     </p>
-                  ) : (
-                    ''
                   )}
                 </div>
               </div>
             </div>
           );
         })}
+
+        {backgroundImage.data.attributes.caption && (
+          <p
+            className='absolute bottom-0 z-20 right-0 mb-0 text-xs pr-2 text-right text-slate-400'
+            dangerouslySetInnerHTML={{
+              __html: urlify(backgroundImage.data.attributes.caption),
+            }}></p>
+        )}
       </div>
 
       {slides.length > 1 ? (
-        <div className='flex items-center justify-center mt-4'>
+        <div
+          className='flex items-center justify-center 
+        mt-6 lg:mt-4'>
           <a
             href=''
             className='mx-4 p-px hover:scale-125 transition-transform duration-300 dark:text-slate-300'

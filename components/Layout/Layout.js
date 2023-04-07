@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import { useEffect, useLayoutEffect } from 'react';
-import { MainFooter } from '../Footer/MainFooter';
-import { Header } from '../Header/Header';
 
 export const Layout = ({ children }) => {
   // TODO this run twice
@@ -49,9 +47,7 @@ export const Layout = ({ children }) => {
         <meta name='theme-color' content='#ffffff' />
       </Head>
 
-      <Header />
       <div className='text-base text-forText'>{children}</div>
-      <MainFooter />
     </div>
   );
 };

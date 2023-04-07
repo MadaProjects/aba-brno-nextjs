@@ -4,111 +4,70 @@ import { TextWithImage } from '../Text/TextWithImage';
 import { TextOnImage } from '../Text/TextOnImage';
 import { ArticlesList } from '../Lists/ArticlesList';
 import { ExpertsList } from '../Lists/ExpertsList';
+import { WorkshopsList } from '../Lists/WorkshopsList';
 import { Slider } from '../Slider/Slider';
 import { TextSlider } from '../TextSlider/TextSlider';
 import { TextWithPhotosList } from '../Lists/TextWithPhotosList';
 import { ConatactForm } from '../Form/ContactForm';
+import { DecorativeSlider } from '../Slider/DecorativeSlider';
 
 export const DynamicZone = ({
   element,
   numberOfTextWithImageBlocks,
   orderNumber,
+  allWorkshops,
 }) => {
   let returnComponent = '';
 
   // TODO too much duplicities
   switch (element.__typename) {
-    case 'ComponentPageText':
-      const textData = element.text_block.data.attributes;
-      const buttonLink =
-        textData.InternalUrl && textData.InternalUrl.data
-          ? textData.InternalUrl.data.attributes.Url
-          : textData.ExternalUrl
-          ? textData.ExternalUrl
-          : false;
-      const openLinkInNewTab =
-        textData.InternalUrl && textData.InternalUrl.data ? false : true;
+    case 'ComponentNewPageText':
+      const allText = element.Text.map((textBlock, i) => {
+        return (
+          <SimpleText
+            key={i}
+            headingLevel={orderNumber === 0 && i === 0 ? 1 : 2}
+            textData={textBlock}
+          />
+        );
+      });
 
-      return (
-        <SimpleText
-          headingLevel={orderNumber === 0 ? 1 : 2}
-          headingText={textData.Title}
-          paragraphText={textData.Text}
-          perexText={textData.Perex}
-          buttonText={textData.ButtonText}
-          buttonLink={buttonLink}
-          buttonNewTab={openLinkInNewTab}
-        />
+      return allText;
+      break;
+    case 'ComponentNewPageTextWithImage':
+      let allTextWithImageBlocks = element.TextWithImageBlock.map(
+        (textWithImageBlock, i) => {
+          return (
+            <TextWithImage
+              key={i}
+              headingLevel={orderNumber === 0 && i === 0 ? 1 : 2}
+              blockData={textWithImageBlock}
+              imageOnLeft={i % 2 === 0 ? true : false}
+            />
+          );
+        }
       );
-      break;
-    case 'ComponentPageTextWithImage':
-      const textWithImage = element.text_block_with_image.data.attributes;
-      const buttonLinkTextWithImage =
-        textWithImage.InternalUrl && textWithImage.InternalUrl.data
-          ? textWithImage.InternalUrl.data.attributes.Url
-          : textWithImage.ExternalUrl
-          ? textWithImage.ExternalUrl
-          : false;
-      const openLinkInNewTabTextWithImage =
-        textWithImage.InternalUrl && textWithImage.InternalUrl.data
-          ? false
-          : true;
 
-      return element.text_block_with_image.data ? (
-        <TextWithImage
-          headingLevel={orderNumber === 0 ? 1 : 2}
-          headingText={textWithImage.Title}
-          perexText={textWithImage.Perex}
-          paragraphText={textWithImage.Text}
-          imgUrl={textWithImage.Image.data.attributes.url}
-          imgData={textWithImage.Image}
-          buttonText={textWithImage.ButtonText}
-          buttonLink={buttonLinkTextWithImage}
-          buttonNewTab={openLinkInNewTabTextWithImage}
-          isEven={numberOfTextWithImageBlocks % 2}
-        />
-      ) : null;
+      return allTextWithImageBlocks;
       break;
-    case 'ComponentPageNiceTitle':
+    case 'ComponentNewPageNiceTitle':
       return (
         <NiceTitle
           headingText={element.Title}
-          graphicText={element.GraphicTitle}
           headingLevel={orderNumber === 0 ? 1 : 2}
           perex={element.TextUnder}
         />
       );
       break;
-    case 'ComponentPageTextOnImage':
-      const textOnImgData = element.text_on_image.data.attributes;
-      const textOnImgBtnLink = textOnImgData.InternalUrl
-        ? textOnImgData.InternalUrl
-        : textOnImgData.ExternalUrl
-        ? textOnImgData.ExternalUrl
-        : false;
-
-      const textOnImgOpenLinkInNewTab =
-        textOnImgData.InternalUrl && textOnImgData.InternalUrl.data
-          ? false
-          : true;
-
+    case 'ComponentNewPageTextOnImage':
       return (
         <TextOnImage
           headingLevel={orderNumber === 0 ? 1 : 2}
-          headingText={textOnImgData.Title}
-          perexText={textOnImgData.Perex}
-          paragraphText={textOnImgData.Text}
-          backgroundImage={
-            textOnImgData.BackgroundImage.data.attributes.url
-          }
-          imgData={textOnImgData.BackgroundImage}
-          buttonText={textOnImgData.ButtonText}
-          buttonLink={textOnImgBtnLink}
-          buttonNewTab={textOnImgOpenLinkInNewTab}
+          blockData={element}
         />
       );
       break;
-    case 'ComponentPagePage':
+    case 'ComponentNewPagePage':
       switch (element.ListOf) {
         case 'Therapeutist':
           return (
@@ -116,7 +75,17 @@ export const DynamicZone = ({
               headingLevel={orderNumber === 0 ? 1 : 2}
               headingText={element.Title}
               perex={element.TextUnderTitle}
-              graphicText={element.GraphicTitleSignpost}
+              showAll={element.ShowAll ? element.ShowAll : false}
+            />
+          );
+          break;
+        case 'Workshops':
+          return (
+            <WorkshopsList
+              workshops={allWorkshops}
+              headingLevel={orderNumber === 0 ? 1 : 2}
+              headingText={element.Title}
+              perex={element.TextUnderTitle}
               showAll={element.ShowAll ? element.ShowAll : false}
             />
           );
@@ -127,52 +96,42 @@ export const DynamicZone = ({
               headingLevel={orderNumber === 0 ? 1 : 2}
               headingText={element.Title}
               perex={element.TextUnderTitle}
-              graphicText={element.GraphicTitleSignpost}
               showAll={element.ShowAll ? element.ShowAll : false}
             />
           );
           break;
       }
       break;
-    case 'ComponentPageSlider':
-      const allSlides = element.sliders.data;
+    case 'ComponentNewPageDecorativeImg':
+      return <DecorativeSlider slide={element} />;
+      break;
+    case 'ComponentNewPageSliderNew':
+      const allSlidesNew = element.Slide;
 
       return (
         <Slider
           headingLevel={orderNumber === 0 ? 1 : 2}
-          slides={allSlides}
-          showTextBlock={element.ShowTextBlock ? true : false}
-          smallBanner={element.SmallBanner ? true : false}
+          slides={allSlidesNew}
         />
       );
       break;
-    case 'ComponentPageTextSlider':
-      const allTextSlides = element.text_on_sliders.data;
-      const backgroundImage = element.BackgroundImage;
-
+    case 'ComponentNewPageTextSlider':
       return (
-        <TextSlider
-          slides={allTextSlides}
-          backgroundImage={backgroundImage}
-        />
+        <TextSlider slides={element.Slide} backgroundImage={element.Image} />
       );
       break;
-    case 'ComponentPagePhotoEfect':
-      const listOfTexts = element.photo_efect_text.data;
+
+    case 'ComponentNewPageTextWithPhotoEffect':
       return (
         <TextWithPhotosList
-          headingLevel={orderNumber === 0 ? 1 : 2}
-          list={listOfTexts}
-          headingText={element.Title}
-          perex={element.TextUnderTitle}
-          graphicText={element.GraphicTitlePhotoEffect}
+          list={element.PhotoBlock}
+          title={element.TitleOnPage}
         />
       );
+
       break;
-    case 'ComponentPageContactForm':
-      return (
-        <ConatactForm sendContactTo={element.WhereSendEmailsFromForm} />
-      );
+    case 'ComponentNewPageContactForm':
+      return <ConatactForm sendContactTo={element.WhereSendEmailsFromForm} />;
       break;
     default:
       console.log(`Block element is not defined - ${element.__typename}`);

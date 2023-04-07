@@ -11,7 +11,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export const ArticlesList = ({
   headingText = '',
   perex = '',
-  graphicText = '',
   doNotShowArticleWithThisUrl = false,
   showAll,
   headingLevel,
@@ -49,16 +48,14 @@ export const ArticlesList = ({
     <div
       data-testid='articlesList'
       className='container mx-auto px-4 pt-5 pb-10 md:pt-10 md:pb-12 md:px-0'>
-      {headingText ? (
+      {headingText && (
         <NiceTitle
           headingText={headingText}
           perex={perex}
-          graphicText={graphicText}
           headingLevel={headingLevel}
         />
-      ) : (
-        ''
       )}
+
       <div className='flex flex-col md:flex-row'>
         {onlyThreeArticles.length ? (
           onlyThreeArticles.map((article, i) => (

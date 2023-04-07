@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-export const Slider = ({
-  slides,
-  showTextBlock,
-  smallBanner,
-  headingLevel,
-}) => {
+export const Slider = ({ slides, headingLevel }) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   const goToSlide = (e) => {
@@ -70,17 +66,27 @@ export const Slider = ({
   }, [slides.length]);
   */
 
-  const sliderHeight = smallBanner ? '200' : '400';
-  const sliderHeightXl = smallBanner ? '300' : '550';
-  const sliderHeightVh = smallBanner ? '25' : '60';
-
-  const heightVar = smallBanner
-    ? 'h-[25vh] min-h-[200px] lg:min-h-[300px]'
-    : 'h-[60vh] min-h-[400px] lg:min-h-[550px]';
+  const heightVar = 'h-[60vh] min-h-[400px] lg:min-h-[550px]';
 
   return (
     <div className='pb-6'>
       {slides.map((slide, i) => {
+        let slideBtnUrl = '';
+        let openInNewTab = false;
+
+        if (slide.ExternalUrl) {
+          slideBtnUrl = slide.ExternalUrl;
+          openInNewTab = true;
+        } else if (slide.article.data) {
+          slideBtnUrl = `../clanky/${slide.article.data.attributes.Url}`;
+        } else if (slide.expert.data) {
+          slideBtnUrl = `../odbornici/${slide.expert.data.attributes.Url}`;
+        } else if (slide.page.data) {
+          slideBtnUrl = `../${slide.page.data.attributes.Url}`;
+        } else if (slide.workshop.data) {
+          slideBtnUrl = `../poradame/${slide.workshop.data.attributes.Url}`;
+        }
+
         return (
           <div
             key={`slide-${i}`}
@@ -90,51 +96,51 @@ export const Slider = ({
                 : `hidden mx-auto relative bg-no-repeat bg-center bg-cover ${heightVar}`
             }
             style={{
-              backgroundImage: `url(${slide.attributes.Image.data.attributes.url})`,
+              backgroundImage: `url(${slide.Image.data.attributes.url})`,
             }}>
-            {showTextBlock && !smallBanner && (
-              <div className='container h-full h-full mx-auto px-4 py-4 lg:py-20 lg:px-6 relative'>
-                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-6 md:top-[initial] md:right-[initial] md:bottom-20 md:translate-x-0 md:translate-y-0 bg-black/80 w-[300px] md:w-[400px] xl:w-[450px] text-white px-4 py-4 md:px-10 md:py-6'>
-                  {headingLevel === 1 && i === 0 ? (
-                    <h1 className='font-black text-lg text-center md:text-xl'>
-                      {slide.attributes.Title}
-                    </h1>
-                  ) : (
-                    <h2 className='font-black text-lg text-center md:text-xl'>
-                      {slide.attributes.Title}
-                    </h2>
-                  )}
+            <div className='container h-full h-full mx-auto px-4 py-4 lg:py-20 lg:px-6 relative'>
+              <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:left-6 md:top-[initial] md:right-[initial] md:bottom-20 md:translate-x-0 md:translate-y-0 bg-black/80 w-[300px] md:w-[400px] xl:w-[450px] text-white px-4 py-4 md:px-10 md:py-6'>
+                {headingLevel === 1 && i === 0 ? (
+                  <h1 className='font-black text-lg text-center md:text-xl'>
+                    {slide.Title}
+                  </h1>
+                ) : (
+                  <h2 className='font-black text-lg text-center md:text-xl'>
+                    {slide.Title}
+                  </h2>
+                )}
 
-                  {slide.attributes.Text ? (
-                    <p className='mb-0 mt-4 text-center'>
-                      {slide.attributes.Text}
-                    </p>
-                  ) : (
-                    ''
-                  )}
+                {slide.Text && (
+                  <p className='mb-0 mt-4 text-center'>{slide.Text}</p>
+                )}
 
-                  {slide.attributes.ButtonText ? (
-                    <div className='text-center mt-4'>
+                {slide.ButtonText && slideBtnUrl && (
+                  <div className='text-center mt-4'>
+                    {openInNewTab ? (
                       <a
-                        href=''
+                        href={slideBtnUrl}
+                        rel='noopener noreferrer'
+                        target='_blank'
                         className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent tracking-wider		'>
-                        {slide.attributes.ButtonText}
+                        {slide.ButtonText}
                       </a>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                </div>
+                    ) : (
+                      <Link
+                        href={slideBtnUrl}
+                        className='px-8 py-3 mt-4 inline-block font-black bg-primary text-white leading-none border-solid border-2 border-primary transition-colors duration-300 ease-in-out 	hover:bg-white hover:text-primary dark:bg-tertiary dark:border-tertiary dark:hover:text-white dark:hover:bg-transparent tracking-wider		'>
+                        {slide.ButtonText}
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
 
-            {slide.attributes.Image.data.attributes.caption && (
+            {slide.Image.data.attributes.caption && (
               <p
-                className='absolute bottom-0 right-0 mb-0 text-xs pr-2 text-right text-slate-50 dark:text-slate-500'
+                className='absolute bottom-[-20px] right-0 mb-0 text-xs pr-2 text-right text-slate-600 dark:text-slate-400'
                 dangerouslySetInnerHTML={{
-                  __html: urlify(
-                    slide.attributes.Image.data.attributes.caption
-                  ),
+                  __html: urlify(slide.Image.data.attributes.caption),
                 }}></p>
             )}
           </div>
@@ -142,7 +148,7 @@ export const Slider = ({
       })}
 
       {slides.length > 1 ? (
-        <div className='flex items-center justify-center mt-4'>
+        <div className='flex items-center justify-center mt-6 lg:mt-4'>
           <a
             href=''
             className='mx-4 p-px hover:scale-125 transition-transform duration-300 dark:text-slate-300'

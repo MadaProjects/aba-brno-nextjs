@@ -22,7 +22,6 @@ const shuffleArray = (array) => {
 export const ExpertsList = ({
   headingText,
   perex,
-  graphicText,
   showAll,
   headingLevel,
 }) => {
@@ -46,15 +45,16 @@ export const ExpertsList = ({
   );
 
   return (
-    <div data-testid='expertsList'>
+    <div
+      data-testid='expertsList'
+      className='container mx-auto px-4 pt-5 pb-10 md:pt-10 md:pb-12 md:px-0'>
       <NiceTitle
         headingText={headingText}
         perex={perex}
-        graphicText={graphicText}
         headingLevel={headingLevel}
       />
       <div
-        className={`container mx-auto flex flex-col flex-wrap px-4 pt-0 pb-5 md:flex-row md:py-10 md:px-0 ${
+        className={`container mx-auto flex flex-col flex-wrap px-4 pt-0 pb-5 md:flex-row md:py-10 md:pt-5 md:px-0 ${
           !showAll ? 'pb-0 md:pb-0' : ''
         }`}>
         {selectedExperts.map((expert, i) => (

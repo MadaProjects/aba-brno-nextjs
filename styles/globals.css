@@ -140,3 +140,11 @@ p {
 .right-col p {
   text-align: right;
 }
+
+p > a {
+  text-decoration: underline;
+}
+
+p > a:hover {
+  text-decoration: none;
+}
