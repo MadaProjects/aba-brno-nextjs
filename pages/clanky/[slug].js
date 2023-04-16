@@ -50,7 +50,7 @@ export default function Article({ pageData, headerMenu, footerMenu, setting }) {
   return (
     <div>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{`${pageData.Title} | ${setting.SiteName}`}</title>
         <meta name='description' content='ABA Brno' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
