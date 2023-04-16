@@ -7,16 +7,17 @@ import { gql } from '@apollo/client';
 import client from '../../appolo-client';
 import { Heading } from '../../components/Tags/Heading';
 import { ArticlesList } from '../../components/Lists/ArticlesList';
+import { Header } from '../../components/Header/Header';
+import { MainFooter } from '../../components/Footer/MainFooter';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 import { ShareSocial } from '../../components/ShareSocial/ShareSocial';
 
-export default function Article({ pageData }) {
+export default function Article({ pageData, headerMenu, footerMenu, setting }) {
   const router = useRouter();
 
   const wordsPerMinute = 225;
-  const totalNumberOfWordsInArticle =
-    pageData.Text.trim().split(/\s+/).length;
+  const totalNumberOfWordsInArticle = pageData.Text.trim().split(/\s+/).length;
   const totalMinutesToread = Math.ceil(
     totalNumberOfWordsInArticle / wordsPerMinute
   );
@@ -49,11 +50,12 @@ export default function Article({ pageData }) {
   return (
     <div>
       <Head>
-        <title>ABA Brno</title>
+        <title>{pageTitle}</title>
         <meta name='description' content='ABA Brno' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
+      <Header headerMenu={headerMenu} />
       <main className='container mx-auto' data-testid='articlePage'>
         <div className='container max-w-5xl mx-auto px-4 py-5 dark:text-white md:py-10'>
           <Heading level={1} headingClass='max-w-5xl mx-auto'>
@@ -131,22 +133,20 @@ export default function Article({ pageData }) {
             )}
           </div>
 
-          <ShareSocial text={pageData.Title} />
+          <ShareSocial text={pageData.Title} url={''} />
         </div>
         <div>
           <ArticlesList doNotShowArticleWithThisUrl={pageData.Url} />
         </div>
       </main>
 
-      <footer></footer>
+      <MainFooter footerMenu={footerMenu} setting={setting} />
     </div>
   );
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/articles`
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/articles`);
   const articles = await res.json();
 
   const paths = articles.data.map((article) => ({
@@ -191,6 +191,68 @@ export async function getStaticProps({ params }) {
             }
           }
         }
+        
+        headerMenu {
+          data {
+            id
+            attributes {
+              Menu {
+                main_page {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+                submenu_pages {
+                  data {
+                    id
+                    attributes {
+                      Title
+                      Url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        footerMenu {
+          data {
+            attributes {
+              Menu {
+                id
+                Title
+                pages {
+                  data {
+                    attributes {
+                      Url
+                      Title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        setting {
+          data {
+            attributes {
+              SiteName
+              social_media_sites {
+                data {
+                  attributes {
+                    Title
+                    Url
+                    Logo
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     `,
   });
@@ -198,6 +260,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       pageData: data.articles.data[0].attributes,
+      headerMenu: data.headerMenu.data.attributes,
+      footerMenu: data.footerMenu.data.attributes,
+      setting: data.setting.data.attributes,
     },
   };
 }

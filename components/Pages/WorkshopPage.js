@@ -19,6 +19,13 @@ const urlify = (text) => {
   });
 };
 
+const get_current_url = () => {
+  if (typeof window !== 'undefined') {
+    return window.location.href;
+  }
+  return '';
+};
+
 export const WorkshopPage = ({ pageData }) => {
   let updateDateWithTime = false;
   const updatedDate = new Date(pageData.DateOfTheWorkshop);
@@ -135,7 +142,7 @@ export const WorkshopPage = ({ pageData }) => {
 
         <hr className='mt-6 mb-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:mt-8 lg:mb-4'></hr>
 
-        <ShareSocial text={pageData.Title} />
+        <ShareSocial text={pageData.Title} url={get_current_url()} />
       </div>
     </div>
   );
