@@ -2,14 +2,8 @@ import Link from 'next/link';
 
 // TODO check if this works properly
 export const ShareSocial = ({ text, url }) => {
-  const get_current_url = () => {
-    if (typeof window !== 'undefined') {
-      return window.location.href;
-    } else {
-      return '';
-    }
-  };
-
+  console.log(url);
+  // TODO get hashtags from props
   return (
     <div>
       <p className='mb-2 mt-6 text-sm text-right'>Sdílet: </p>
@@ -20,7 +14,9 @@ export const ShareSocial = ({ text, url }) => {
           rel='noopener noreferrer'
           passHref={true}
           className='twitter-share-button mr-2 hover:text-primary dark:hover:text-secondary'
-          href={`http://twitter.com/share?text=${text}&url=${get_current_url()}&hashtags=ABA,ABABrno`}>
+          href={`http://twitter.com/intent/tweet?text=${encodeURIComponent(
+            text
+          )}&url=${url}&hashtags=ABA,ABABrno`}>
           <svg
             className='w-5 h-5'
             fill='currentColor'
@@ -34,7 +30,9 @@ export const ShareSocial = ({ text, url }) => {
           target={'_blank'}
           title='Sdílet na Facebooku'
           rel='noopener noreferrer'
-          href={`https://www.facebook.com/sharer/sharer.php?u=${get_current_url()}`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(
+            text
+          )}&hashtags=ABA,ABABrno`}
           className='fb-xfbml-parse-ignore hover:text-primary dark:hover:text-secondary'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
