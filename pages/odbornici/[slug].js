@@ -8,17 +8,11 @@ import { ExpertPage } from '../../components/Pages/ExpertPage';
 import { Header } from '../../components/Header/Header';
 import { MainFooter } from '../../components/Footer/MainFooter';
 
-export default function Expert({
-  pageData,
-  headerMenu,
-  footerMenu,
-  setting,
-}) {
-  const pageTitle = `ABA Brno - ${pageData.Name}`;
+export default function Expert({ pageData, headerMenu, footerMenu, setting }) {
   return (
     <div>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{`${pageData.Title} | ${setting.SiteName}`}</title>
         <meta name='description' content='ABA Brno' />
         <link rel='icon' href='/favicon.ico' />
       </Head>

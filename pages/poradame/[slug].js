@@ -45,12 +45,13 @@ export default function Article({ pageData, headerMenu, footerMenu, setting }) {
       );
     });
   };
+  console.log(setting);
 
   // TODO check date format in time tag
   return (
     <div>
       <Head>
-        <title>ABA Brno</title>
+        <title>{`${pageData.Title} | ${setting.SiteName}`}</title>
         <meta name='description' content='ABA Brno' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
