@@ -49,6 +49,8 @@ export const WorkshopPage = ({ pageData }) => {
     }`;
   }
 
+  // TODO add share social
+  //  <ShareSocial text={pageData.Title} url={get_current_url()} />
   return (
     <div data-testid='workshopPage'>
       <div className='container max-w-5xl mx-auto px-4 py-5 dark:text-white md:py-10'>
@@ -141,8 +143,6 @@ export const WorkshopPage = ({ pageData }) => {
         )}
 
         <hr className='mt-6 mb-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:mt-8 lg:mb-4'></hr>
-
-        <ShareSocial text={pageData.Title} url={get_current_url()} />
       </div>
     </div>
   );
