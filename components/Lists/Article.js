@@ -1,4 +1,5 @@
-import Image from 'next/legacy/image';
+//import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Heading } from '../Tags/Heading';
 
@@ -14,7 +15,7 @@ export const Article = ({ data }) => {
         <Link href={`/clanky/${data.Url}`}>
           <Image
             src={data.Image.data.attributes.url}
-            layout='fill'
+            layout='responsive'
             alt={
               data.Image.data.attributes.caption
                 ? data.Image.data.attributes.caption
@@ -22,6 +23,7 @@ export const Article = ({ data }) => {
             }
             objectFit='cover'
             objectPosition='center'
+            priority={true}
           />
         </Link>
       </div>

@@ -47,6 +47,7 @@ export default function Article({ pageData, headerMenu, footerMenu, setting }) {
 
   // TODO this should be in article tag
   // TODO check date format in time tag
+  // TODO add share social -  <ShareSocial text={pageData.Title} url={''} />;
   return (
     <div>
       <Head>
@@ -132,8 +133,6 @@ export default function Article({ pageData, headerMenu, footerMenu, setting }) {
               ''
             )}
           </div>
-
-          <ShareSocial text={pageData.Title} url={''} />
         </div>
         <div>
           <ArticlesList doNotShowArticleWithThisUrl={pageData.Url} />
