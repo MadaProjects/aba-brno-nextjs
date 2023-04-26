@@ -8,6 +8,15 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        sm: '1280px',
+        md: '1280px',
+        lg: '1280px',
+        xl: '1280px',
+      },
+    },
     extend: {
       colors: {
         transparent: 'transparent',

@@ -6,24 +6,27 @@ import { Heading } from '../Tags/Heading';
 // TODO should be in article tag
 export const Article = ({ data }) => {
   const dateFormated = new Date(data.publishedAt);
-
   return (
     <div
       data-testid='article'
-      className=' flex flex-col w-full mb-10 md:w-[calc(33%_-_2rem)] xl:w-[calc(33%_-_4rem)] px-0 md:mx-4 xl:mx-8 shadow-lg shadow-slate-300 dark:shadow-none dark:border-solid dark:border-2 dark:border-slate-600'>
-      <div className='relative w-full min-h-[200px] mb-0 '>
-        <Link href={`/clanky/${data.Url}`}>
+      className=' flex flex-col w-full mb-10 md:w-[calc(50%_-_2rem)] xl:w-[calc(33%_-_4rem)] px-0 md:mx-4 xl:mx-8 shadow-lg shadow-slate-300 dark:shadow-none dark:border-solid dark:border-2 dark:border-slate-600'>
+      <div className='relative w-full h-[300px] mb-0'>
+        <Link
+          href={`/clanky/${data.Url}`}
+          className='block h-[300px] overflow-hidden relative'>
           <Image
-            src={data.Image.data.attributes.url}
-            layout='responsive'
+            //className='object-cover min-h-[300px] w-full h-auto absolute top-1/2 -translate-y-1/2'
+            src={data.Image.data.attributes.formats.medium.url}
             alt={
-              data.Image.data.attributes.caption
-                ? data.Image.data.attributes.caption
+              data.Image.data.attributes.name
+                ? data.Image.data.attributes.name
                 : data.Title
             }
+            layout='fill'
             objectFit='cover'
-            objectPosition='center'
-            priority={true}
+            className='object-cover'
+            // width={data.Image.data.attributes.formats.medium.height}
+            // height={data.Image.data.attributes.formats.medium.width}
           />
         </Link>
       </div>

@@ -2,7 +2,6 @@ import Link from 'next/link';
 
 // TODO check if this works properly
 export const ShareSocial = ({ text, url }) => {
-  console.log(url);
   // TODO get hashtags from props
   return (
     <div>

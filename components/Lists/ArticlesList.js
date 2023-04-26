@@ -56,7 +56,7 @@ export const ArticlesList = ({
         />
       )}
 
-      <div className='flex flex-col md:flex-row'>
+      <div className='flex flex-col md:flex-row md:flex-wrap'>
         {onlyThreeArticles.length ? (
           onlyThreeArticles.map((article, i) => (
             <Article key={i} data={article.attributes} />
