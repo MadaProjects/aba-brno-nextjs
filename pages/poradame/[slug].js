@@ -45,7 +45,6 @@ export default function Article({ pageData, headerMenu, footerMenu, setting }) {
       );
     });
   };
-  console.log(setting);
 
   // TODO check date format in time tag
   return (

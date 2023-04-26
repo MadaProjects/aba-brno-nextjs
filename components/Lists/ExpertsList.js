@@ -19,12 +19,7 @@ const shuffleArray = (array) => {
 };
 
 // TODO change key in map
-export const ExpertsList = ({
-  headingText,
-  perex,
-  showAll,
-  headingLevel,
-}) => {
+export const ExpertsList = ({ headingText, perex, showAll, headingLevel }) => {
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API_URL}/api/therapeutists?populate[0]=Image`,
     fetcher
@@ -54,7 +49,7 @@ export const ExpertsList = ({
         headingLevel={headingLevel}
       />
       <div
-        className={`container mx-auto flex flex-col flex-wrap px-4 pt-0 pb-5 md:flex-row md:py-10 md:pt-5 md:px-0 ${
+        className={`mx-auto flex flex-col flex-wrap pt-0 pb-5 md:flex-row md:px-4 md:py-10 md:pt-5 md:px-0 ${
           !showAll ? 'pb-0 md:pb-0' : ''
         }`}>
         {selectedExperts.map((expert, i) => (
